@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/fragment_tracking">
+
+    <fragment
+        android:id="@+id/fragment_tracking"
+        android:name="no.agens.covid19.ui.tracking.TrackingFragment"
+        android:label="@string/tab_title_tracking"
+        tools:layout="@layout/fragment_tracking" />
+
+    <fragment
+        android:id="@+id/fragment_information"
+        android:name="no.agens.covid19.ui.information.InformationFragment"
+        android:label="@string/tab_title_information"
+        tools:layout="@layout/fragment_dashboard" />
+
+</navigation>

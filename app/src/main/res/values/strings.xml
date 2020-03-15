@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">COVID19</string>
+    <string name="tab_title_tracking">Tracking</string>
+    <string name="tab_title_information">Information</string>
+    <string name="tracking_please_activate">Please activate tracking of your position by clicking the button below</string>
+    <string name="tracking_activate_tracking_button_text">Activate tracking now</string>
+    <string name="dialog_require_location_message">In order to use this service we need to know your location. Do you want us to track your location and provide realtime COVID-19 information?</string>
+    <string name="dialog_require_location_title">Location access is required</string>
+    <string name="generic_no">No</string>
+    <string name="generic_yes">Yes</string>
+    <string name="tracking_button_is_active">Tracking is active</string>
+</resources>
