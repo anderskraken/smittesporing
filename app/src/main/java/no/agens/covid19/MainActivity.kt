@@ -1,25 +1,18 @@
 package no.agens.covid19
 
 import android.Manifest
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.pm.VersionedPackage
 import android.os.Build
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import no.agens.covid19.messages.LocationAccessGranted
 import no.agens.covid19.messages.RequestLocationPermissions
-import no.agens.covid19.ui.tracking.TrackingFragment
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
@@ -46,34 +39,38 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
     }
 
     override fun checkLocationPermissions() {
-        val permissionAccessCoarseLocationApproved = ActivityCompat
-            .checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+        val permissionAccessFineLocationApproved = ActivityCompat
+            .checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
                 PackageManager.PERMISSION_GRANTED
 
-        if (permissionAccessCoarseLocationApproved && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val backgroundLocationPermissionApproved = ActivityCompat
-                .checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) ==
-                    PackageManager.PERMISSION_GRANTED
+        Timber.d("")
 
-            if (backgroundLocationPermissionApproved) {
-                // App can access location both in the foreground and in the background.
-                // Start your service that doesn't have a foreground service type
-                // defined.
+        if (permissionAccessFineLocationApproved) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val backgroundLocationPermissionApproved = ActivityCompat
+                    .checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) ==
+                        PackageManager.PERMISSION_GRANTED
+
+                if (backgroundLocationPermissionApproved) {
+                    MessageBus.publish(LocationAccessGranted())
+                } else {
+                    // App can only access location in the foreground. Display a dialog
+                    // warning the user that your app must have all-the-time access to
+                    // location in order to function properly. Then, request background
+                    // location.
+                    ActivityCompat.requestPermissions(this,
+                        arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                        ACCESS_LOCATION_PERMISSION_REQUEST_CODE
+                    )
+                }
             } else {
-                // App can only access location in the foreground. Display a dialog
-                // warning the user that your app must have all-the-time access to
-                // location in order to function properly. Then, request background
-                // location.
-                ActivityCompat.requestPermissions(this,
-                    arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
-                    ACCESS_LOCATION_PERMISSION_REQUEST_CODE
-                )
+                MessageBus.publish(LocationAccessGranted())
             }
         } else {
             // App doesn't have access to the device's location at all. Make full request
             // for permission.
             ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 ACCESS_LOCATION_PERMISSION_REQUEST_CODE
             )
         }
@@ -87,10 +84,9 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
         if (requestCode == ACCESS_LOCATION_PERMISSION_REQUEST_CODE) {
             val granted = grantResults[0] == PackageManager.PERMISSION_GRANTED
             if (granted) {
-                Timber.d("We have location access!")
-                val trackingFragment =
-                    supportFragmentManager.findFragmentById(R.id.fragment_tracking) as TrackingFragment
-                trackingFragment.locationPermissionsGranted()
+                checkLocationPermissions()
+//                Timber.d("We have location access!")
+//                MessageBus.publish(LocationAccessGranted())
             } else {
                 AlertDialog.Builder(this)
                     .setTitle(R.string.dialog_require_location_title)
@@ -106,7 +102,7 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
 
     override fun onChanged(t: MessageBus.Message?) {
 
-        when(t) {
+        when (t) {
             is RequestLocationPermissions -> {
                 checkLocationPermissions()
             }
