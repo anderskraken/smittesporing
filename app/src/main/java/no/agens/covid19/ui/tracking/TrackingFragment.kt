@@ -10,15 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_tracking.*
-import no.agens.covid19.CheckLocationPermissionsListener
-import no.agens.covid19.MessageBus
-import no.agens.covid19.R
-import no.agens.covid19.messages.LocationAccessGranted
-import no.agens.covid19.messages.RequestLocationPermissions
+import no.agens.covid19.*
 
-class TrackingFragment : Fragment(), Observer<MessageBus.Message> {
+class TrackingFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -35,7 +30,7 @@ class TrackingFragment : Fragment(), Observer<MessageBus.Message> {
 
         buttonActivateTracking.setOnClickListener {
             buttonActivateTracking.isEnabled = false
-            MessageBus.publish(RequestLocationPermissions())
+            MessageBus.publish(RequestLocationPermissions)
         }
     }
 
@@ -56,7 +51,13 @@ class TrackingFragment : Fragment(), Observer<MessageBus.Message> {
             locationPermissionsGranted()
         }
 
-        MessageBus.observeBus(this, this)
+        MessageBus.onBusChanged(this) {
+            when (it) {
+                is LocationAccessGranted -> {
+                    locationPermissionsGranted()
+                }
+            }
+        }
     }
 
     private fun locationPermissionsGranted() {
@@ -66,15 +67,6 @@ class TrackingFragment : Fragment(), Observer<MessageBus.Message> {
             resources.getColor(R.color.tracking_active, context!!.theme))
         buttonActivateTracking.setOnClickListener {
             AlertDialog.Builder(context!!).setMessage("Stop location tracking").show()
-        }
-    }
-
-    override fun onChanged(t: MessageBus.Message?) {
-
-        when (t) {
-            is LocationAccessGranted -> {
-                locationPermissionsGranted()
-            }
         }
     }
 }

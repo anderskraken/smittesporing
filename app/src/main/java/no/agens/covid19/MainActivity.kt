@@ -8,15 +8,11 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import no.agens.covid19.messages.LocationAccessGranted
-import no.agens.covid19.messages.RequestLocationPermissions
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
-    Observer<MessageBus.Message> {
+class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener {
 
     companion object {
         const val ACCESS_LOCATION_PERMISSION_REQUEST_CODE = 42
@@ -35,7 +31,13 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        MessageBus.observeBus(this, this)
+        MessageBus.onBusChanged(this) {
+            when (it) {
+                is RequestLocationPermissions -> {
+                    checkLocationPermissions()
+                }
+            }
+        }
     }
 
     override fun checkLocationPermissions() {
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
                         PackageManager.PERMISSION_GRANTED
 
                 if (backgroundLocationPermissionApproved) {
-                    MessageBus.publish(LocationAccessGranted())
+                    MessageBus.publish(LocationAccessGranted)
                 } else {
                     // App can only access location in the foreground. Display a dialog
                     // warning the user that your app must have all-the-time access to
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
                     )
                 }
             } else {
-                MessageBus.publish(LocationAccessGranted())
+                MessageBus.publish(LocationAccessGranted)
             }
         } else {
             // App doesn't have access to the device's location at all. Make full request
@@ -99,14 +101,4 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
             }
         }
     }
-
-    override fun onChanged(t: MessageBus.Message?) {
-
-        when (t) {
-            is RequestLocationPermissions -> {
-                checkLocationPermissions()
-            }
-        }
-    }
-
 }
