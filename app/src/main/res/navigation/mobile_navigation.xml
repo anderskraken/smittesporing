@@ -13,14 +13,22 @@
 
     <fragment
         android:id="@+id/navigation_symptoms"
-        android:name="no.agens.covid19.ui.information.SymptomsFragment"
+        android:name="no.agens.covid19.ui.information.Symptoms.SymptomsFragment"
         android:label="@string/tab_title_symptoms"
-        tools:layout="@layout/fragment_symptoms" />
+        tools:layout="@layout/fragment_symptoms_step1" >
+        <action
+            android:id="@+id/action_navigation_symptoms_to_symptomsStep1"
+            app:destination="@id/symptomsStep1" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_share"
         android:name="no.agens.covid19.ui.information.ShareFragment"
         android:label="@string/tab_title_share"
         tools:layout="@layout/fragment_share" />
+    <fragment
+        android:id="@+id/symptomsStep1"
+        android:name="no.agens.covid19.ui.information.Symptoms.SymptomsStep1"
+        android:label="SymptomsStep1" />
 
 </navigation>

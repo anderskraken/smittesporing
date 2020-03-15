@@ -84,7 +84,6 @@ class TrackingFragment : Fragment() {
 
     private fun disableTracking() {
         buttonActivateTracking.setText(R.string.tracking_activate_tracking_button_text)
-        buttonActivateTracking.setBackgroundColor(resources.getColor(R.color.button_blue))
         buttonActivateTracking.setOnClickListener { activateTracking() }
         context!!.stopService(Intent(context, LocationTrackerService::class.java))
     }

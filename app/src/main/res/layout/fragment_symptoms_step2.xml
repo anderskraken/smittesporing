@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/textTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Symptoms"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        style="@style/textBasic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Fyll inn informasjonen nedenfor."
+        app:layout_constraintEnd_toEndOf="@+id/title"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/gender"
+        style="@style/textBasic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Kjønn"
+        app:layout_constraintStart_toStartOf="@+id/subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle" />
+
+    <RadioGroup
+        android:id="@+id/gender_group"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/selection_group_outline"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="@+id/subtitle"
+        app:layout_constraintStart_toStartOf="@+id/gender"
+        app:layout_constraintTop_toBottomOf="@+id/gender">
+
+        <RadioButton
+            android:id="@+id/gender_male"
+            style="@style/textButton"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:paddingHorizontal="20dp"
+            android:text="Mann"
+            android:gravity="center"
+            android:textColor="@color/radio_flat_text_selector" />
+
+        <RadioButton
+            android:id="@+id/gender_female"
+            style="@style/textButton"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:paddingHorizontal="20dp"
+            android:text="Kvinne"
+            android:gravity="center"
+            android:textColor="@color/radio_flat_text_selector" />
+
+        <RadioButton
+            android:id="@+id/gender_other"
+            style="@style/textButton"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:paddingHorizontal="20dp"
+            android:text="Vil ikke oppgi"
+            android:gravity="center"
+            android:textColor="@color/radio_flat_text_selector" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/age"
+        style="@style/textBasic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Alder"
+        app:layout_constraintStart_toStartOf="@+id/gender_group"
+        app:layout_constraintTop_toBottomOf="@+id/gender_group" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ageInput"
+        style="@style/inputOutlined"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:boxStrokeColor="@color/colorPrimaryDark"
+        app:helperTextEnabled="false"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="@+id/gender_group"
+        app:layout_constraintStart_toStartOf="@+id/age"
+        app:layout_constraintTop_toBottomOf="@+id/age">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/risikogruppeLabel"
+        style="@style/textBasic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Er du i en risikogruppe?"
+        app:layout_constraintEnd_toEndOf="@+id/ageInput"
+        app:layout_constraintStart_toStartOf="@+id/ageInput"
+        app:layout_constraintTop_toBottomOf="@+id/ageInput" />
+
+    <RadioGroup
+        android:id="@+id/riskGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/selection_group_outline"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="@+id/risikogruppeLabel"
+        app:layout_constraintStart_toStartOf="@+id/risikogruppeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/risikogruppeLabel">
+
+        <RadioButton
+            android:id="@+id/riskGroupYes"
+            style="@style/textButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:text="Ja"
+            android:textColor="@color/radio_flat_text_selector" />
+
+        <RadioButton
+            android:id="@+id/riskGroupNo"
+            style="@style/textButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:text="Nei"
+            android:textColor="@color/radio_flat_text_selector" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/infectedLabel"
+        style="@style/textBasic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Har du testet positivt for COVID-19?"
+        app:layout_constraintEnd_toEndOf="@+id/riskGroup"
+        app:layout_constraintStart_toStartOf="@+id/riskGroup"
+        app:layout_constraintTop_toBottomOf="@+id/riskGroup" />
+
+    <RadioGroup
+        android:id="@+id/infectedGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/selection_group_outline"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="@+id/infectedLabel"
+        app:layout_constraintStart_toStartOf="@+id/infectedLabel"
+        app:layout_constraintTop_toBottomOf="@+id/infectedLabel">
+
+        <RadioButton
+            android:id="@+id/infectedYes"
+            style="@style/textButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:text="Ja"
+            android:textColor="@color/radio_flat_text_selector" />
+
+        <RadioButton
+            android:id="@+id/infectedNo"
+            style="@style/textButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:text="Nei"
+            android:textColor="@color/radio_flat_text_selector" />
+
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
