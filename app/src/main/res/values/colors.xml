@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="tracking_active">#8BC34A</color>
+    <color name="button_blue">#165DC6</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="button_green">#009C1B</color>
 </resources>

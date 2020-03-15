@@ -1,7 +1,7 @@
 package no.agens.covid19.ui.tracking
 
 import android.Manifest
-import android.app.AlertDialog
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +12,8 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_tracking.*
 import no.agens.covid19.*
+import no.agens.covid19.messages.LocationAccessGranted
+import no.agens.covid19.messages.RequestLocationPermissions
 
 class TrackingFragment : Fragment() {
 
@@ -29,9 +31,13 @@ class TrackingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         buttonActivateTracking.setOnClickListener {
-            buttonActivateTracking.isEnabled = false
-            MessageBus.publish(RequestLocationPermissions)
+            activateTracking()
         }
+    }
+
+    private fun activateTracking() {
+        buttonActivateTracking.isEnabled = false
+        MessageBus.publish(RequestLocationPermissions)
     }
 
     override fun onResume() {
@@ -62,11 +68,35 @@ class TrackingFragment : Fragment() {
 
     private fun locationPermissionsGranted() {
 
+        buttonActivateTracking.isEnabled = true
         buttonActivateTracking.setText(R.string.tracking_button_is_active)
         buttonActivateTracking.setBackgroundColor(
-            resources.getColor(R.color.tracking_active, context!!.theme))
+            resources.getColor(R.color.button_green, context!!.theme))
+
+        val intent = Intent(context, LocationTrackerService::class.java)
+        if (AppInfo.isOreoOrNewer()) {
+            context!!.startForegroundService(intent)
+        } else {
+            context!!.startService(intent)
+        }
         buttonActivateTracking.setOnClickListener {
-            AlertDialog.Builder(context!!).setMessage("Stop location tracking").show()
+            disableTracking()
+        }
+    }
+
+    private fun disableTracking() {
+        buttonActivateTracking.setText(R.string.tracking_activate_tracking_button_text)
+        buttonActivateTracking.setBackgroundColor(resources.getColor(R.color.button_blue))
+        buttonActivateTracking.setOnClickListener { activateTracking() }
+        context!!.stopService(Intent(context, LocationTrackerService::class.java))
+    }
+
+    override fun onChanged(t: MessageBus.Message?) {
+
+        when (t) {
+            is LocationAccessGranted -> {
+                locationPermissionsGranted()
+            }
         }
     }
 }

@@ -26,6 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:background="@color/button_blue"
+        android:textColor="@color/white" android:paddingStart="12dp" android:paddingEnd="12dp"
         android:text="@string/tracking_activate_tracking_button_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -8,7 +8,11 @@
     <string name="dialog_require_location_title">Location access is required</string>
     <string name="generic_no">No</string>
     <string name="generic_yes">Yes</string>
-    <string name="tracking_button_is_active">Tracking is active</string>
+    <string name="tracking_button_is_active">Stop tracking</string>
     <string name="menu_symptoms">Symptoms</string>
     <string name="tab_title_symptoms">Symptoms</string>
+    <string name="channel_name">COVID19</string>
+    <string name="channel_description">General notifications from the COVID19 tracker app</string>
+    <string name="background_notification_title">COVID19</string>
+    <string name="background_notification_message">COVID19 is tracking your location in the background</string>
 </resources>

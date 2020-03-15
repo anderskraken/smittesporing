@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (BuildConfig.DEBUG == true) {
+            Timber.plant(Timber.DebugTree())
+        }
+
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
