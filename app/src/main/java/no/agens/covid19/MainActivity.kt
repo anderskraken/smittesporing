@@ -12,15 +12,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import no.agens.covid19.messages.RequestLocationPermissions
 import no.agens.covid19.ui.tracking.TrackingFragment
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener {
+class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener,
+    Observer<MessageBus.Message> {
 
     companion object {
         const val ACCESS_LOCATION_PERMISSION_REQUEST_CODE = 42
@@ -35,17 +38,11 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 //        val appBarConfiguration = AppBarConfiguration(setOf(
-//            R.id.navigation_home, R.id.navigation_dashboard))
+//            R.id.fragment_tracking, R.id.fragment_information))
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
 
-    override fun onAttachFragment(fragment: Fragment) {
-        super.onAttachFragment(fragment)
-        if(fragment is NavHostFragment) {
-            val trackingFragment = fragment.childFragmentManager.findFragmentById(R.id.fragment_tracking) as TrackingFragment
-            trackingFragment.setCheckLocationPermissionListener(this)
-        }
+        MessageBus.observeBus(this, this)
     }
 
     override fun checkLocationPermissions() {
@@ -103,6 +100,15 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener {
                         dialog.dismiss()
                         checkLocationPermissions()
                     }.show()
+            }
+        }
+    }
+
+    override fun onChanged(t: MessageBus.Message?) {
+
+        when(t) {
+            is RequestLocationPermissions -> {
+                checkLocationPermissions()
             }
         }
     }

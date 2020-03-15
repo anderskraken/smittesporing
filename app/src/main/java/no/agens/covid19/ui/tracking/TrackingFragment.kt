@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_tracking.*
 import no.agens.covid19.CheckLocationPermissionsListener
+import no.agens.covid19.MessageBus
 import no.agens.covid19.R
+import no.agens.covid19.messages.RequestLocationPermissions
 
 class TrackingFragment : Fragment() {
 
@@ -28,8 +30,13 @@ class TrackingFragment : Fragment() {
 
         buttonActivateTracking.setOnClickListener {
             buttonActivateTracking.isEnabled = false
-            checkLocationPermissionListener?.checkLocationPermissions()
+            MessageBus.publish(RequestLocationPermissions())
         }
+    }
+
+    override fun onResume() {
+        buttonActivateTracking.isEnabled = true
+        super.onResume()
     }
 
     fun setCheckLocationPermissionListener(listener: CheckLocationPermissionsListener) {
