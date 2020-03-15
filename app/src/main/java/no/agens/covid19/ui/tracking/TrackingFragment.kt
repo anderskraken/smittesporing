@@ -12,8 +12,6 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_tracking.*
 import no.agens.covid19.*
-import no.agens.covid19.messages.LocationAccessGranted
-import no.agens.covid19.messages.RequestLocationPermissions
 
 class TrackingFragment : Fragment() {
 
@@ -91,12 +89,4 @@ class TrackingFragment : Fragment() {
         context!!.stopService(Intent(context, LocationTrackerService::class.java))
     }
 
-    override fun onChanged(t: MessageBus.Message?) {
-
-        when (t) {
-            is LocationAccessGranted -> {
-                locationPermissionsGranted()
-            }
-        }
-    }
 }
