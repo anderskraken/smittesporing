@@ -40,9 +40,9 @@ class SymptomsStep2 : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_symptoms_step2, container, false)
 
-        root.step2NextButton.setOnClickListener {
-
-        }
+        root.saveButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_symptomsStep2_to_symptomsStep3, null)
+        )
 
         root.step2BackButton.setOnClickListener {
             findNavController().navigateUp()
