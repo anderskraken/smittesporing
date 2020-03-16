@@ -66,10 +66,15 @@ class TrackingFragment : Fragment() {
 
     private fun locationPermissionsGranted() {
 
+        val theme = context!!.theme
+
         buttonActivateTracking.isEnabled = true
         buttonActivateTracking.setText(R.string.tracking_button_is_active)
         buttonActivateTracking.setBackgroundColor(
-            resources.getColor(R.color.button_green, context!!.theme))
+            resources.getColor(R.color.button_green, theme))
+        trackingIcon.setImageDrawable(
+            resources.getDrawable(R.drawable.tracking_arrow_active, theme))
+        textTrackingState.text = resources.getString(R.string.tracking_is_active)
 
         val intent = Intent(context, LocationTrackerService::class.java)
         if (AppInfo.isOreoOrNewer()) {
@@ -83,8 +88,12 @@ class TrackingFragment : Fragment() {
     }
 
     private fun disableTracking() {
+        val theme = context!!.theme
         buttonActivateTracking.setText(R.string.tracking_activate_tracking_button_text)
         buttonActivateTracking.setOnClickListener { activateTracking() }
+        buttonActivateTracking.setBackgroundColor(resources.getColor(R.color.colorPrimary, theme))
+        trackingIcon.setImageDrawable(
+            resources.getDrawable(R.drawable.tracking_arrow_disabled, theme))
         context!!.stopService(Intent(context, LocationTrackerService::class.java))
     }
 

@@ -2,8 +2,8 @@
     <string name="app_name">COVID19</string>
     <string name="tab_title_tracking">Tracking</string>
     <string name="tab_title_share">Share</string>
-    <string name="tracking_please_activate">Please activate tracking of your position by clicking the button below</string>
-    <string name="tracking_activate_tracking_button_text">Activate tracking now</string>
+    <string name="tracking_not_active">Tracking is not active.</string>
+    <string name="tracking_activate_tracking_button_text">Activate tracking</string>
     <string name="dialog_require_location_message">In order to use this service we need to know your location. Do you want us to track your location and provide realtime COVID-19 information?</string>
     <string name="dialog_require_location_title">Location access is required</string>
     <string name="generic_no">No</string>
@@ -17,4 +17,7 @@
     <string name="background_notification_message">COVID19 is tracking your location in the background</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tracking_location_privacy_notice">Location data is stored on your device until you choose to share them.</string>
+    <string name="tracking_is_active">Tracking is active. The most imporant thing you can do now is to keep your distance from others.</string>
+    <string name="tracking_header">Movement</string>
 </resources>
