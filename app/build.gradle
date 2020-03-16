@@ -1,6 +1,31 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id "com.betomorrow.appcenter" version "1.2.1"
+}
+
+appcenter {
+    apiToken = "859b43102e5beb789776dd17986e9bcadea32b58"
+    ownerName = "agens"
+    distributionGroups = ["Public"]
+    releaseNotes = "Alpha"
+    notifyTesters = false
+    apps {
+        release {
+            appName = "Smittesporing"
+        }
+    }
+}
+
 
 android {
     compileSdkVersion 29
@@ -10,16 +35,39 @@ android {
         applicationId "no.agens.covid19"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1
+        versionCode generateVersionCode()
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    def storepass = null
+
+    Properties properties = new Properties()
+    def propertiesFile = project.rootProject.file('local.properties')
+    if (propertiesFile.exists()) {
+        properties.load(propertiesFile.newDataInputStream())
+        storepass = properties.getProperty('covid19_pwd')
+    }
+
+    if (storepass != null) {
+        signingConfigs {
+            release {
+                storeFile file("../covid19.jks")
+                storePassword storepass
+                keyAlias "covid19"
+                keyPassword storepass
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (storepass != null) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 
@@ -56,4 +104,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+static def generateVersionCode() {
+    def result = "git rev-list HEAD --count".execute().text.trim() //unix
+    if (result.empty) throw new RuntimeException("Could not generate versioncode on this platform? Cmd output: ${result.text}")
+    return result.toInteger()
 }
