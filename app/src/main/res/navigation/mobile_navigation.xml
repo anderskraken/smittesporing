@@ -46,6 +46,14 @@
     <fragment
         android:id="@+id/symptomsStep3"
         android:name="no.agens.covid19.ui.information.Symptoms.SymptomsStep3"
-        android:label="SymptomsStep3" />
+        android:label="SymptomsStep3" >
+        <action
+            android:id="@+id/action_symptomsStep3_to_symptomsSummary"
+            app:destination="@id/symptomsSummary" />
+    </fragment>
+    <fragment
+        android:id="@+id/symptomsSummary"
+        android:name="no.agens.covid19.ui.information.Symptoms.SymptomsSummary"
+        android:label="SymptomsSummary" />
 
 </navigation>

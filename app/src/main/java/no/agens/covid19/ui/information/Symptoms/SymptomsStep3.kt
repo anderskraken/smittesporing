@@ -20,10 +20,7 @@ class SymptomsStep3 : androidx.fragment.app.Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_symptoms_step3, container, false)
 
-        root.saveButton.setOnClickListener {
-            // TODO: Save details here
-            findNavController().popBackStack(R.id.navigation_symptoms, false)
-        }
+        root.saveButton.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_symptomsStep3_to_symptomsSummary, null))
 
         return root
     }
