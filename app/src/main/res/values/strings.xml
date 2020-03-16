@@ -15,4 +15,6 @@
     <string name="channel_description">General notifications from the COVID19 tracker app</string>
     <string name="background_notification_title">COVID19</string>
     <string name="background_notification_message">COVID19 is tracking your location in the background</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
