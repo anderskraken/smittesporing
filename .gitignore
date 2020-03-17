@@ -27,3 +27,5 @@ DerivedData/
 
 # Cocoapods
 Pods/
+xcshareddata
+xcschememanagement.plist
