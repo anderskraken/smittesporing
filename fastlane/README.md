@@ -21,6 +21,11 @@ or alternatively using `brew cask install fastlane`
 fastlane ios certificates
 ```
 Download and install certificates
+### ios upload_appcenter
+```
+fastlane ios upload_appcenter
+```
+
 
 ----
 

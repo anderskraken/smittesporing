@@ -32,4 +32,17 @@ platform :ios do
     )
 
   end
+
+  lane  :upload_appcenter do
+    setup_ci
+
+    gym(
+      workspace: "./Covid19.xcworkspace"
+    )
+
+    appcenter_upload(notify_testers: true)
+  end
+
+
+  
 end
