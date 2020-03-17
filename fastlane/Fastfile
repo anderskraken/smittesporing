@@ -5,12 +5,22 @@ default_platform(:ios)
 platform :ios do
   desc "Download and install certificates"
   lane :certificates do
+    setup_ci
+
     match(
-      app_identifier: ["no.agens.Covid19"], 
+      app_identifier: ["no.agens.covid19"], 
+      username: "ios-enterprise@agens.no",
+      type: "enterprise",
+      readonly: is_ci,
+      git_url: "git@bitbucket.org:agens/ios-certificates-agens-enterprise.git",
+    )
+
+    match(
+      app_identifier: ["no.agens.covid19"], 
       username: "ios-enterprise@agens.no",
       type: "development",
       readonly: is_ci,
-      git_url: "git@bitbucket.org:agens/ios-certificates-agens-enterprise.git"
+      git_url: "git@bitbucket.org:agens/ios-certificates-agens-enterprise.git",
     )
   end
 end
