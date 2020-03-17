@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#165DC6</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="tracking_active">#8BC34A</color>
+    <color name="button_blue">#165DC6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="button_green">#009C1B</color>
+    <color name="black">#000000</color>
+    <color name="light_grey">#D3D3D3</color>
+    
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/black</color>
+>>>>>>> Stashed changes
+</resources>

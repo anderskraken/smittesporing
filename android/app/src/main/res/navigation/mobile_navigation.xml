@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_tracking">
+
+    <fragment
+        android:id="@+id/navigation_tracking"
+        android:name="no.agens.covid19.ui.tracking.TrackingFragment"
+        android:label="@string/tab_title_tracking"
+        tools:layout="@layout/fragment_tracking" />
+
+    <fragment
+        android:id="@+id/navigation_symptoms"
+        android:name="no.agens.covid19.ui.information.Symptoms.SymptomsFragment"
+        android:label="@string/tab_title_symptoms"
+        tools:layout="@layout/fragment_symptoms_step1" >
+        <action
+            android:id="@+id/action_navigation_symptoms_to_symptomsStep1"
+            app:destination="@id/symptomsStep1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_share"
+        android:name="no.agens.covid19.ui.information.ShareFragment"
+        android:label="@string/tab_title_share"
+        tools:layout="@layout/fragment_share" />
+    <fragment
+        android:id="@+id/symptomsStep1"
+        android:name="no.agens.covid19.ui.information.Symptoms.SymptomsStep1"
+        android:label="SymptomsStep1" >
+        <action
+            android:id="@+id/action_symptomsStep1_to_symptomsStep2"
+            app:destination="@id/symptomsStep2">
+            <argument
+                android:name="intermediateSymptoms"
+                app:argType="string" />
+
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/symptomsStep2"
+        android:name="no.agens.covid19.ui.information.Symptoms.SymptomsStep2"
+        android:label="fragment_symptoms_step3"
+        tools:layout="@layout/fragment_symptoms_step3" >
+        <action
+            android:id="@+id/action_symptomsStep2_to_symptomsStep3"
+            app:destination="@id/symptomsStep3" />
+        <argument
+            android:name="intermediateSymptoms"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/symptomsStep3"
+        android:name="no.agens.covid19.ui.information.Symptoms.SymptomsStep3"
+        android:label="SymptomsStep3" >
+        <action
+            android:id="@+id/action_symptomsStep3_to_symptomsSummary"
+            app:destination="@id/symptomsSummary" />
+    </fragment>
+    <fragment
+        android:id="@+id/symptomsSummary"
+        android:name="no.agens.covid19.ui.information.Symptoms.SymptomsSummary"
+        android:label="SymptomsSummary" />
+
+</navigation>

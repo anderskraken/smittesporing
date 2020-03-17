@@ -1,0 +1,61 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="textTitle">
+        <item name="android:textSize">32sp</item>
+        <item name="lineHeight">38dp</item>
+        <item name="fontWeight">500</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontStyle">normal</item>
+    </style>
+
+    <style name="textBasic">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">19dp</item>
+        <item name="fontWeight">500</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontStyle">normal</item>
+    </style>
+
+    <style name="textButtonPrimary">
+        <item name="android:textSize">18sp</item>
+        <item name="lineHeight">22dp</item>
+        <item name="fontWeight">500</item>
+        <item name="fontStyle">normal</item>
+    </style>
+
+    <style name="inputOutlined" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">6dp</item>
+        <item name="boxCornerRadiusBottomStart">6dp</item>
+        <item name="boxCornerRadiusTopStart">6dp</item>
+        <item name="boxCornerRadiusTopEnd">6dp</item>
+    </style>
+
+    <style name="primaryButton">
+        <item name="color">@color/colorPrimary</item>
+        <item name="background">@style/textButtonPrimary</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="fontWeight">600</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="accentButton">
+        <item name="color">@color/button_green</item>
+        <item name="background">@style/textButtonPrimary</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="fontWeight">600</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <color name="transparent">#00FFFFFF</color>
+</resources>

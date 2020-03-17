@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">COVID19</string>
+    <string name="tab_title_tracking">Bevegelse</string>
+    <string name="tab_title_share">Del</string>
+    <string name="tracking_not_active">Sporing er ikke aktiv.</string>
+    <string name="tracking_activate_tracking_button_text">Aktiver sporing</string>
+    <string name="dialog_require_location_message">For at denne tjenesten skal være nytting må vi spore lokasjonen din. Vil du at vi skal spore lokasjonen din og gi deg fortløpende COVID19-informasjon?</string>
+    <string name="dialog_require_location_title">Tilgang til lokasjonsdata</string>
+    <string name="generic_no">Nei</string>
+    <string name="generic_yes">Ja</string>
+    <string name="tracking_button_is_active">Avbryt sporing</string>
+    <string name="menu_symptoms">Symptomer</string>
+    <string name="tab_title_symptoms">Symptomer</string>
+    <string name="channel_name">COVID19</string>
+    <string name="channel_description">General notifications from the COVID19 tracker app</string>
+    <string name="background_notification_title">COVID19</string>
+    <string name="background_notification_message">COVID19 sporer lokasjonen i bakgrunnen.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tracking_location_privacy_notice">Lokasjonsdata lagres lokalt inntil du velger å dele disse.</string>
+    <string name="tracking_is_active">Sporing er aktiv. Det viktigste du kan gjøre er å holde avstand fra andre.</string>
+    <string name="tracking_header">Bevegelser</string>
+    <string name="symptoms_header">Symptomer</string>
+    <string name="symptoms_no_information">Du har ikke lagt inn noe informasjon.</string>
+    <string name="symptoms_register_information_button">Registrer informasjon</string>
+</resources>
