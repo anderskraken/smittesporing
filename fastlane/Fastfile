@@ -22,5 +22,14 @@ platform :ios do
       readonly: is_ci,
       git_url: "git@bitbucket.org:agens/ios-certificates-agens-enterprise.git",
     )
+
+    match(
+      app_identifier: ["no.agens.covid19.appstore"], 
+      username: "ios-dev@agens.no",
+      type: "appstore",
+      readonly: is_ci,
+      git_url: "git@bitbucket.org:agens/ios-certificates-agens.git",
+    )
+
   end
 end
