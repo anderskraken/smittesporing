@@ -32,7 +32,12 @@
         android:label="SymptomsStep1" >
         <action
             android:id="@+id/action_symptomsStep1_to_symptomsStep2"
-            app:destination="@id/symptomsStep2" />
+            app:destination="@id/symptomsStep2">
+            <argument
+                android:name="intermediateSymptoms"
+                app:argType="string" />
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/symptomsStep2"
@@ -42,6 +47,9 @@
         <action
             android:id="@+id/action_symptomsStep2_to_symptomsStep3"
             app:destination="@id/symptomsStep3" />
+        <argument
+            android:name="intermediateSymptoms"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/symptomsStep3"
