@@ -35,6 +35,10 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
         addCenteredWithMargin(infoBadge)
 
         trackingButton = MainButton(text: "Aktiver sporing", type: .primary, action: requestLocationPermission)
+        trackingButton.add(for: .touchUpInside) {
+            self.trackingActive.toggle()
+        }
+
         view.addSubview(trackingButton)
         trackingButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(UIEdgeInsets.horizontal)
@@ -68,9 +72,6 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
                     trackingActive = true
-                    trackingButton.add(for: .touchUpInside) {
-                        self.trackingActive.toggle()
-                    }
                 }
             }
         }

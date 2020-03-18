@@ -30,4 +30,14 @@ extension UIViewController {
     func addCenteredWithMargin(_ view: UIView) {
         self.view.addCenteredWithMargin(view)
     }
+    
+    func addKeyboardDismisser() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

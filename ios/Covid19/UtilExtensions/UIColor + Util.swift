@@ -24,4 +24,6 @@ extension UIColor {
 extension CGColor {
     
     static var stroke: CGColor { UIColor.stroke.cgColor }
+    static var blue: CGColor { UIColor.blue.cgColor }
+    static var textBlack: CGColor { UIColor.textBlack.cgColor }
 }

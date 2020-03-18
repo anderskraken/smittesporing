@@ -16,9 +16,13 @@ extension UIEdgeInsets {
     
     static var safeAreaBottom: CGFloat { safeArea?.bottom ?? 0 }
 
-    static var safeMargins: UIEdgeInsets { UIEdgeInsets(top: safeAreaTop + 24, left: 20, bottom: safeAreaBottom + 24, right: 20) }
+    static var safeMargins: UIEdgeInsets { UIEdgeInsets(top: safeAreaTop + 24, left: .margin, bottom: safeAreaBottom + 24, right: .margin) }
     
-    static var horizontal: UIEdgeInsets { UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20) }
+    static var horizontal: UIEdgeInsets { UIEdgeInsets(top: 0, left: .margin, bottom: 0, right: .margin) }
     
-    static var margins: UIEdgeInsets { UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20) }
+    static var margins: UIEdgeInsets { UIEdgeInsets(top: .margin, left: .margin, bottom: .margin, right: .margin) }
+}
+
+extension CGFloat {
+    static var margin: CGFloat { 20 }
 }

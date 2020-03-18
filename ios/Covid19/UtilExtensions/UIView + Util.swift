@@ -10,6 +10,20 @@ import UIKit
 
 extension UIView {
     
+    func addFilling(_ view: UIView, insets: UIEdgeInsets = .zero) {
+        addSubview(view)
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(insets)
+            if let stack = view as? UIStackView { //StackViews needs width/height
+                if stack.axis == .horizontal {
+                    make.height.equalToSuperview().inset(insets)
+                } else {
+                    make.width.equalToSuperview().inset(insets)
+                }
+            }
+        }
+    }
+
     func addCenteredWithMargin(_ view: UIView) {
         addSubview(view)
         view.snp.makeConstraints { make in

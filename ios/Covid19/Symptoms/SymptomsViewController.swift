@@ -8,12 +8,13 @@
 
 import UIKit
 
-class SymptomsViewController: UIViewController {
+class SymptomsViewController: UIViewController, FormDelegate {
     
-    var registrationForm = RegistrationForm()
+    lazy var registrationForm = RegistrationForm(delegate: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addKeyboardDismisser()
         setupUnregisteredView()
     }
     
@@ -44,5 +45,9 @@ class SymptomsViewController: UIViewController {
     private func registerTapped() {
         view.removeAllSubviews()
         setupForm()
+    }
+    
+    func registered(data: RegisteredData) {
+        print(data)
     }
 }

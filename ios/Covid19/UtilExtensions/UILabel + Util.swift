@@ -12,10 +12,22 @@ extension UILabel {
     
     static func title(_ text: String?) -> UILabel {
         return UILabel(text)
-            .withFont(UIFont.medium(size: 32), maxSize: 32)
+            .withFont(UIFont.medium(size: 28), maxSize: 32)
             .colored(.textBlack)
     }
-    
+
+    static func title2(_ text: String?) -> UILabel {
+        return UILabel(text)
+            .withFont(UIFont.medium(size: 23), maxSize: 28)
+            .colored(.textBlack)
+    }
+
+    static func title3(_ text: String?) -> UILabel {
+        return UILabel(text)
+            .withFont(UIFont.medium(size: 16), maxSize: 28)
+            .colored(.textBlack)
+    }
+
     static func body(_ text: String?) -> UILabel {
         return UILabel(text)
             .withFont(UIFont.medium(size: 18))

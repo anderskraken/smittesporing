@@ -44,7 +44,7 @@ enum MainButtonType {
     
     var textColor: UIColor { self == .secondary ? .blue : .white }
     
-    var borderColor: CGColor? { self == .secondary ? UIColor.blue.cgColor : nil }
+    var borderColor: CGColor? { self == .secondary ? .blue : nil }
     
     var borderWidth: CGFloat { self == .secondary ? 2 : 0 }
     

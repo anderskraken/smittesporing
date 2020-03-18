@@ -32,7 +32,7 @@ extension UIFont {
 
 struct AppFontName {
     static let regular = "Barlow-Regular"
-    static let bold = "Barlow-Bold"
+    static let bold = "Barlow-SemiBold"
     static let italic = "Barlow-Italic"
 }
 
