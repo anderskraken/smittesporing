@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:fontFamily">@font/barlow_regular</item>
+        <item name="android:textColor">@color/textPrimary</item>
     </style>
 
     <style name="textTitle">
@@ -58,4 +60,5 @@
     </style>
 
     <color name="transparent">#00FFFFFF</color>
+    <color name="textPrimary">#061B3A</color>
 </resources>
