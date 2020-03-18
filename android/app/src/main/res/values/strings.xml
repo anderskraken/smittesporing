@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">COVID19</string>
+    <string name="app_name">Smittesporing</string>
     <string name="tab_title_tracking">Bevegelse</string>
     <string name="tab_title_share">Del</string>
     <string name="tracking_not_active">Sporing er ikke aktiv.</string>
