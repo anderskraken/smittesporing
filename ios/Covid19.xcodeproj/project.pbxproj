@@ -43,6 +43,7 @@
 		6368F139242253D60010C071 /* RegistrationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368F138242253D60010C071 /* RegistrationForm.swift */; };
 		B058781D28D6684AA55E16A6 /* Pods_Covid19.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92715C682D31244C504DE276 /* Pods_Covid19.framework */; };
 		D35398EA788E343BEFDBA985 /* Pods_Covid19Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD482D618109C3BD53474AD /* Pods_Covid19Tests.framework */; };
+		DC112C6424224DE6007A3C09 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC112C6324224DE6007A3C09 /* Configuration.swift */; };
 		DCF3D7102421214600671399 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF3D70F2421214600671399 /* AppDelegate.swift */; };
 		DCF3D7142421214600671399 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF3D7132421214600671399 /* TabBarController.swift */; };
 		DCF3D7192421214700671399 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF3D7182421214700671399 /* Assets.xcassets */; };
@@ -103,7 +104,11 @@
 		BBD482D618109C3BD53474AD /* Pods_Covid19Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covid19Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCC094174D00706D722BFEAB /* Pods-Covid19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tests.release.xcconfig"; path = "Target Support Files/Pods-Covid19Tests/Pods-Covid19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D788307DFA847B21B1B38F93 /* Pods-Covid19.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19.debug.xcconfig"; path = "Target Support Files/Pods-Covid19/Pods-Covid19.debug.xcconfig"; sourceTree = "<group>"; };
+		DCF3D70C2421214600671399 /* Covid19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covid19.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF3D70C2421214600671399 /* Smittesporing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smittesporing.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC112C6124224C49007A3C09 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		DC112C6324224DE6007A3C09 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		DCF3D70C2421214600671399 /* Covid19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covid19.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF3D70F2421214600671399 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF3D7132421214600671399 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		DCF3D7182421214700671399 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,6 +226,7 @@
 		DCF3D7032421214600671399 = {
 			isa = PBXGroup;
 			children = (
+				DC112C6124224C49007A3C09 /* Config.xcconfig */,
 				6368F0CB24212E420010C071 /* Default-568h@2x.png */,
 				DCF3D70E2421214600671399 /* Covid19 */,
 				DCF3D7252421214700671399 /* Covid19Tests */,
@@ -245,6 +251,7 @@
 				6368F0D224213D0C0010C071 /* Fonts */,
 				6368F0CD242135E50010C071 /* UtilExtensions */,
 				6368F12B242237040010C071 /* ViewComponents */,
+				DC112C6324224DE6007A3C09 /* Configuration.swift */,
 				DCF3D70F2421214600671399 /* AppDelegate.swift */,
 				DCF3D7132421214600671399 /* TabBarController.swift */,
 				6368F13A242253F70010C071 /* LocationTracking */,
@@ -291,6 +298,7 @@
 				DCF3D7092421214600671399 /* Frameworks */,
 				DCF3D70A2421214600671399 /* Resources */,
 				F831D537C617887466109790 /* [CP] Embed Pods Frameworks */,
+				8F6AA784C354800A8E05729A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -441,6 +449,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8F6AA784C354800A8E05729A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covid19/Pods-Covid19-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covid19/Pods-Covid19-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covid19/Pods-Covid19-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F831D537C617887466109790 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -479,6 +504,7 @@
 				6368F12F242238640010C071 /* UIImageView + Util.swift in Sources */,
 				6368F131242239360010C071 /* UIView + Util.swift in Sources */,
 				6368F137242242E40010C071 /* UIControl + Util.swift in Sources */,
+				DC112C6424224DE6007A3C09 /* Configuration.swift in Sources */,
 				6368F126242145F90010C071 /* UIEdgeInsets + Util.swift in Sources */,
 				6368F128242146B30010C071 /* UILabel + Util.swift in Sources */,
 				6368F0CF242135F30010C071 /* UIColor + Util.swift in Sources */,
@@ -517,6 +543,7 @@
 /* Begin XCBuildConfiguration section */
 		DC29B8E124214849005317F2 /* Release AppStore */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC112C6124224C49007A3C09 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -577,12 +604,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 33KVL2LY9J;
 				INFOPLIST_FILE = Covid19/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = no.agens.covid19.appstore;
 				PRODUCT_NAME = Smittesporing;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore no.agens.covid19.appstore";
@@ -616,6 +645,7 @@
 		};
 		DCF3D7292421214700671399 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC112C6124224C49007A3C09 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -677,6 +707,7 @@
 		};
 		DCF3D72A2421214700671399 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC112C6124224C49007A3C09 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -737,12 +768,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = US7P5RSD3X;
 				INFOPLIST_FILE = Covid19/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = no.agens.covid19;
 				PRODUCT_NAME = Smittesporing;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development no.agens.covid19";
@@ -758,12 +791,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = US7P5RSD3X;
 				INFOPLIST_FILE = Covid19/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = no.agens.covid19;
 				PRODUCT_NAME = Smittesporing;
 				PROVISIONING_PROFILE_SPECIFIER = "match InHouse no.agens.Covid19";
