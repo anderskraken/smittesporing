@@ -33,6 +33,14 @@ platform :ios do
 
   end
 
+  lane :cultivate do
+    update_xcconfig_value(
+      path: 'Config.xcconfig',
+      name: 'APPCENTER_SECRET',
+      value: ENV["APPCENTER_SECRET"]
+    )
+  end
+
   lane  :upload_appcenter do
     setup_ci
 

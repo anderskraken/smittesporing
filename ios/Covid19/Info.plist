@@ -53,5 +53,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>AppCenterSecret</key>
+	<string>$(APPCENTER_SECRET)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>appcenter-$(APPCENTER_SECRET)</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

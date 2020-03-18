@@ -10,7 +10,7 @@ import UIKit
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
-import Keys
+import AppCenterDistribute
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,9 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureAppCenter() {
-        MSAppCenter.start(Covid19Keys().appCenterSecret, withServices:[
+        let secret = Secrets.appCenterSecret
+        
+        MSAppCenter.start(Secrets.appCenterSecret, withServices:[
           MSAnalytics.self,
-          MSCrashes.self
+          MSCrashes.self,
+          MSDistribute.self
         ])
     }
 }
