@@ -37,7 +37,9 @@ platform :ios do
     setup_ci
 
     gym(
-      workspace: "./Covid19.xcworkspace"
+      workspace: "./Covid19.xcworkspace",
+      configuration: "Release",
+      export_method: "enterprise",
     )
 
     appcenter_upload(notify_testers: true)

@@ -29,3 +29,7 @@ DerivedData/
 Pods/
 xcshareddata
 xcschememanagement.plist
+.env*
+
+*.dSYM.zip
+*.ipa
