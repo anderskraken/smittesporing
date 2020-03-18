@@ -1,10 +1,10 @@
 # Smittesporing
 
-A pro-bonon plug-and-use open source project for Norwegian government to monitor covid-19.
+A pro-bono plug-and-use open source project for the Norwegian government to monitor covid-19.
 
 ##### Why?
 
-Because we want to help save lives. No private interest in making this happen.
+Because we want to help save lives. No private gain in making this happen.
 
 ##### Gates
 
