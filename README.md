@@ -6,7 +6,7 @@ With Smittesporing the government can
 - Find sources of infection
 - Track corona symptoms live
 - See where there's an outbreak
-- Understand how many people which are highly likely to be infected with covid-19
+- Understand who needs treatment for covid-19 in the coming week
 
 With Smittesporing the end users can
 - Share their current symptoms and movements with the government
