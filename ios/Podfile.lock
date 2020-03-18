@@ -7,12 +7,13 @@ PODS:
   - AppCenter/Core (3.0.0)
   - AppCenter/Crashes (3.0.0):
     - AppCenter/Core
-  - Keys (1.0.1)
+  - AppCenter/Distribute (3.0.0):
+    - AppCenter/Core
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - AppCenter
-  - Keys (from `Pods/CocoaPodsKeys`)
+  - AppCenter/Distribute
   - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
@@ -20,15 +21,10 @@ SPEC REPOS:
     - AppCenter
     - SnapKit
 
-EXTERNAL SOURCES:
-  Keys:
-    :path: Pods/CocoaPodsKeys
-
 SPEC CHECKSUMS:
   AppCenter: 7a0bbe928d07467ac8b2d7f6f2a675872a6471d8
-  Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 2ae824812c73c4de23966ac25f9587449680e447
+PODFILE CHECKSUM: 777b7b7f24ac4b08958044aa81a43121a8897a7b
 
 COCOAPODS: 1.9.1

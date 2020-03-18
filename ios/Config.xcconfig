@@ -1,0 +1,15 @@
+//
+//  Config.xcconfig
+//  Covid19
+//
+//  Created by Per Thomas Haga on 18/03/2020.
+//  Copyright © 2020 Agens. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// THIS IS AUTOMATICALLY CULTIVATED FROM `bundle exec fastlane cultivate`.
+// DO NOT PUSH ANY SECRETS TO THE REPO
+
+APPCENTER_SECRET =

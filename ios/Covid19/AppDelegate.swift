@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+import AppCenterDistribute
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +26,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
+        configureAppCenter()
         return true
+    }
+    
+    func configureAppCenter() {
+        if Env.isDebug {
+            MSAppCenter.start(Secrets.appCenterSecret, withServices:[
+              MSAnalytics.self,
+              MSCrashes.self,
+            ])
+        } else if Env.isRelease {
+            MSAppCenter.start(Secrets.appCenterSecret, withServices:[
+              MSAnalytics.self,
+              MSCrashes.self,
+              MSDistribute.self
+            ])
+        } else {
+            MSAppCenter.start(Secrets.appCenterSecret, withServices:[
+              MSAnalytics.self,
+              MSCrashes.self,
+            ])
+        }
     }
 }
 
