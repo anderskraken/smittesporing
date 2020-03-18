@@ -1,4 +1,4 @@
-# 👋 Smittesporing
+# ![👋 Smittesporing](https://user-images.githubusercontent.com/3652587/76966051-44f38700-691d-11ea-9e6f-029972c943f9.jpg)
 
 A pro-bono open source frontend project looking for API and backing by the Norwegian government.
 
