@@ -11,11 +11,11 @@ With Smittesporing the government can
 With Smittesporing the end users can
 - Share their current symptoms and movements with the government
 
-### 🤩 Why?
+## 🤩 Why?
 
 Because we want to help save lives. We have no commercial interest here, and we don't have an existing product to peddle.
 
-### 🎯 Is this backed by the Norwegian health organisations?
+## 🎯 Is this backed by the Norwegian health organisations?
 
 No, not yet! We have tried to reach out to a few, but still waiting for response! 
 
@@ -23,13 +23,13 @@ We don't want to spend time on this unless it can be of use. Without government 
 
 In the meantime we continue work on vision, pitch and direction of the project. 
 
-### 🔐 Security and privacy
+## 🔐 Security and privacy
 
 We create the frontend following best practice wrt privacy and security (ssl pinning, strong encryption using secure enclave). 
 
 The backend for this project is out of scope for us, but if government wants help implementing backend I think developers of Norway is ready to scramble!
 
-### 🗂 Resources
+## 🗂 Resources
 
 #### Pitch and vision
 
@@ -40,7 +40,7 @@ https://docs.google.com/presentation/d/1HzRt4ows4wgMnpFP22DQdgAjMGJ5MQl10E8UzW5P
 
 [![Image](https://user-images.githubusercontent.com/3652587/76911085-bee92900-68a7-11ea-93ef-93be2cab8fd6.png)https://www.figma.com/file/uhSNnqm8nNH912WQQnr0c4/Smittesporing?node-id=0%3A1](https://www.figma.com/file/uhSNnqm8nNH912WQQnr0c4/Smittesporing?node-id=0%3A1)
 
-### 🙌 How can I help?
+## 🙌 How can I help?
 
 Glad you asked!
 
@@ -50,7 +50,7 @@ We need someone who can create issues and tasks with acceptance criterias
 
 #### Join as designer
 
-Shoot an email to [hfossli@agens.no](mailto:hfossli@agens.no) or [join](https://join.slack.com/t/smittesporing/shared_invite/zt-cu8u059j-uRE_2T7JJR~y_T8T0pUIrQ) our slack to talk more! We'll be happy to give you access to Figma.
+[Join](https://join.slack.com/t/smittesporing/shared_invite/zt-cu8u059j-uRE_2T7JJR~y_T8T0pUIrQ) our slack to talk more! We'll be happy to give you access to Figma. If you prefer Sketch, then that's fine too! 
 
 #### Join as app developer
 
@@ -61,14 +61,14 @@ High level we got work to do such as
 - Exporting locations
 - Exporting forms
 
-#### Join as web developer
+### Join as web developer
 
 Needs include
 - The government needs a good web app to dive into all the data.
 - Setting up a public website for the project.
 - See the google slides for more ideas. More tasks to be added. 
 
-##### Join as tester 
+#### Join as tester 
 
 Anyone can try the builds below 👇
 
