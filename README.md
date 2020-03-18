@@ -1,6 +1,6 @@
 # ![👋 Smittesporing](https://user-images.githubusercontent.com/3652587/76966051-44f38700-691d-11ea-9e6f-029972c943f9.jpg)
 
-A pro-bono open source frontend project looking for API and backing by the Norwegian government.
+A pro-bono plug-and-use open source project for government health organisations to monitor Covid-19 spread by help of a mobile app (Android & iOS) that tracks and stores the user's movements locally on the device, and only submits these securely to the government registry when you reasonably suspect that you have been infected.
 
 With Smittesporing the government can
 - Find sources of infection
@@ -13,16 +13,17 @@ With Smittesporing the end users can
 
 ### 🤩 Why?
 
-Because we want to help save lives. No private gain in making this happen.
+Because we want to help save lives. We have no commercial interest here, and we don't have an existing product to peddle.
 
-### 🎯 How?
+### 🎯 Is this backed by the Norwegian health organisations?
 
-**Initial:** Continue work on vision, pitch and direction of the project.   
-**Gate 1:** We need government support. Without government support within Friday 20th of March we will kill this idea.  
-**Gate 2:** We need to address privacy and security concerns.  
-**Gate 3:** Integrate towards government backend
+No, not yet! We have tried to reach out to a few, but still waiting for response! 
 
-### 🔐 Security
+We don't want to spend time on this unless it can be of use. Without government support within Friday 20 March we will probably kill this project.
+
+In the meantime we continue work on vision, pitch and direction of the project. 
+
+### 🔐 Security and privacy
 
 We create the frontend following best practice wrt privacy and security (ssl pinning, strong encryption using secure enclave). 
 
@@ -62,7 +63,18 @@ High level we got work to do such as
 
 #### Join as web developer
 
-The government need a good web app to dive into all the data. See the google slides for more ideas. More tasks to come.
+Needs include
+- The government needs a good web app to dive into all the data.
+- Setting up a public website for the project.
+- See the google slides for more ideas. More tasks to be added. 
+
+##### Join as tester 
+
+Anyone can try the builds below 👇
+
+Especially keen to get in touch if you are health professional to QA on the self reporting, etc.
+
+Send your feedback on slack or on github issues.
 
 ### ✅ Tasks
 
@@ -74,7 +86,7 @@ We will use [issues](https://github.com/agens-no/smittesporing/issues) for tasks
 
 ### ⚖️ License
 
-Fully open source MIT.
+Fully open source under MIT license.
 
 ### 📲 Download latest build
 
