@@ -10,13 +10,29 @@ import UIKit
 
 extension UILabel {
     
-    static func title(_ text: String) -> UILabel {
+    static func title(_ text: String?) -> UILabel {
         return UILabel(text)
-            .withFont(UIFont.medium(size: 32))
+            .withFont(UIFont.medium(size: 32), maxSize: 32)
             .colored(.textBlack)
     }
     
-    convenience init(_ text: String) {
+    static func body(_ text: String?) -> UILabel {
+        return UILabel(text)
+            .withFont(UIFont.medium(size: 18))
+            .colored(.textBlack)
+            .aligned(.center)
+            .lineCount(0)
+    }
+
+    static func bodySmall(_ text: String?) -> UILabel {
+        return UILabel(text)
+            .withFont(UIFont.medium(size: 14))
+            .colored(.textBlack)
+            .aligned(.center)
+            .lineCount(0)
+    }
+
+    convenience init(_ text: String?) {
         self.init(frame: .zero)
         self.text = text
     }
@@ -36,9 +52,9 @@ extension UILabel {
         return self
     }
 
-    func withFont(_ font: UIFont?) -> UILabel {
+    func withFont(_ font: UIFont?, maxSize: CGFloat? = nil) -> UILabel {
         self.font = font
-        return scaledFont()
+        return scaledFont(max: maxSize)
     }
 
     func scaledFont(max: CGFloat? = nil) -> UILabel {
