@@ -2,11 +2,11 @@
 
 A pro-bono plug-and-use open source project for government health organisations to monitor Covid-19 spread by help of a mobile app (Android & iOS) that tracks and stores the user's movements locally on the device, and only submits these securely to the government registry when you reasonably suspect that you have been infected.
 
-With Smittesporing the government can
-- Find sources of infection
-- Track corona symptoms live
-- See where there's an outbreak
-- Understand who needs treatment for covid-19 in the coming week
+With Smittesporing governmental health authorities can
+- Analyse and identify sources of infection
+- Track corona symptoms real-time
+- See where there an outbreak
+- Understand and project need of treatment for covid-19 in the coming days
 
 With Smittesporing the end users can
 - Share their current symptoms and movements with the government
@@ -17,9 +17,9 @@ Because we want to help save lives. We have no commercial interest here, and we 
 
 ## 🎯 Is this backed by the Norwegian health organisations?
 
-No, not yet! We have tried to reach out to a few, but still waiting for response! 
+Not yet -  We are in touch with several entitites within the Norwegian government, and there is a lot of interest - yet understandably they are quite swamped at the moment.
 
-We don't want to spend time on this unless it can be of use. Without government support within Friday 20 March we will probably kill this project.
+We don't want to spend time on this project unless it can be of use, and would be glad to merge with other efforts. Without government support within Friday 20 March we will probably kill this project.
 
 In the meantime we continue work on vision, pitch and direction of the project. 
 
@@ -43,6 +43,11 @@ https://docs.google.com/presentation/d/1HzRt4ows4wgMnpFP22DQdgAjMGJ5MQl10E8UzW5P
 ## 🙌 How can I help?
 
 Glad you asked!
+
+
+#### Spread the word
+
+Do you know anyone in health authorities or health NGO that might be helpful to make this happen - reach out to them.
 
 #### Join as project manager
 
