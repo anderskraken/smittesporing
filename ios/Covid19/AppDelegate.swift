@@ -30,12 +30,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func configureAppCenter() {        
-        MSAppCenter.start(Secrets.appCenterSecret, withServices:[
-          MSAnalytics.self,
-          MSCrashes.self,
-          MSDistribute.self
-        ])
+    func configureAppCenter() {
+        if Env.isDebug {
+            MSAppCenter.start(Secrets.appCenterSecret, withServices:[
+              MSAnalytics.self,
+              MSCrashes.self,
+            ])
+        } else if Env.isRelease {
+            MSAppCenter.start(Secrets.appCenterSecret, withServices:[
+              MSAnalytics.self,
+              MSCrashes.self,
+              MSDistribute.self
+            ])
+        } else {
+            MSAppCenter.start(Secrets.appCenterSecret, withServices:[
+              MSAnalytics.self,
+              MSCrashes.self,
+            ])
+        }
     }
 }
 

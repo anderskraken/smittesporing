@@ -35,3 +35,39 @@ struct Secrets {
         return try! Configuration.value(for: "AppCenterSecret")
     }
 }
+
+struct Env {
+    
+    static let isAppStore: Bool = {
+        #if DEBUG
+            return false
+        #elseif RELEASE
+            return false
+        #else
+            return true
+        #endif
+    }()
+    
+    static let isDebug: Bool = {
+        #if DEBUG
+            return true
+        #elseif RELEASE
+            return false
+        #else
+            return false
+        #endif
+    }()
+    
+    static let isRelease: Bool = {
+        #if DEBUG
+            return false
+        #elseif RELEASE
+            return true
+        #else
+            return false
+        #endif
+    }()
+
+    
+
+}
