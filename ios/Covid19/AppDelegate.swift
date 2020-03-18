@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+import Keys
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
+        configureAppCenter()
         return true
+    }
+    
+    func configureAppCenter() {
+        MSAppCenter.start(Covid19Keys().appCenterSecret, withServices:[
+          MSAnalytics.self,
+          MSCrashes.self
+        ])
     }
 }
 
