@@ -70,9 +70,7 @@ We will use [issues](https://github.com/agens-no/smittesporing/issues) for tasks
 
 ### 💬 Chat with us
 
-##### [Join](https://join.slack.com/t/smittesporing/shared_invite/zt-cu8u059j-uRE_2T7JJR~y_T8T0pUIrQ) our slack
-
-<a href="https://join.slack.com/t/smittesporing/shared_invite/zt-cu8u059j-uRE_2T7JJR~y_T8T0pUIrQ"><img src="https://user-images.githubusercontent.com/3652587/76910880-22268b80-68a7-11ea-9a12-fef289800853.png" width=100/></a>
+[Join us on <img src="https://user-images.githubusercontent.com/3652587/76966259-97cd3e80-691d-11ea-9f2a-b84e3989cdd6.png" width=60/> now!](https://join.slack.com/t/smittesporing/shared_invite/zt-cu8u059j-uRE_2T7JJR~y_T8T0pUIrQ)
 
 ### ⚖️ License
 
