@@ -1,6 +1,16 @@
 # Smittesporing
 
-A pro-bono plug-and-use open source project for the Norwegian government to monitor covid-19.
+👋 A pro-bono plug-and-use open source project for the Norwegian government to monitor covid-19.
+
+With Smittesporing the government can
+- Find sources of infection
+- Track corona symptoms live
+- See where there's an outbreak
+- Understand how many people which are highly likely to be infected with covid-19
+
+With Smittesporing the end users can
+- Share their current symptoms and movements with the government
+
 
 ##### Why?
 
