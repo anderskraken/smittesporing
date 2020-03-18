@@ -33,8 +33,11 @@ The backend for this project is out of scope for us, but if government wants hel
 
 #### Pitch and vision
 
-[![Image](https://user-images.githubusercontent.com/3652587/76909909-8431c180-68a4-11ea-965d-36a7b1dfc23a.png)
-https://docs.google.com/presentation/d/1HzRt4ows4wgMnpFP22DQdgAjMGJ5MQl10E8UzW5PROQ/edit?usp=sharing](https://docs.google.com/presentation/d/1HzRt4ows4wgMnpFP22DQdgAjMGJ5MQl10E8UzW5PROQ/edit#slide=id.p)
+![Image](https://user-images.githubusercontent.com/3652587/76909909-8431c180-68a4-11ea-965d-36a7b1dfc23a.png)
+
+Norwegian version: [https://docs.google.com/presentation/d/1HzRt4ows4wgMnpFP22DQdgAjMGJ5MQl10E8UzW5PROQ/edit?usp=sharing](https://docs.google.com/presentation/d/1HzRt4ows4wgMnpFP22DQdgAjMGJ5MQl10E8UzW5PROQ/edit#slide=id.p)
+
+English version: [https://docs.google.com/presentation/d/1gSJ7ohVBFdqynN2oO6TFzC_-__iJxMXx46B9C2vzhZY/edit?usp=sharing](https://docs.google.com/presentation/d/1gSJ7ohVBFdqynN2oO6TFzC_-__iJxMXx46B9C2vzhZY/edit?usp=sharing)
 
 #### Design files
 
