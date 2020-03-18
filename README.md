@@ -10,6 +10,7 @@ With Smittesporing governmental health authorities can
 
 With Smittesporing the end users can
 - Share their current symptoms and movements with the government
+- Help detect source of infections
 
 ## 🤩 Why?
 
