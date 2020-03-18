@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_tracking.*
 import no.agens.covid19.*
+import no.agens.covid19.preferences.PreferencesRepository
 
 class TrackingFragment : Fragment() {
 
@@ -34,7 +35,9 @@ class TrackingFragment : Fragment() {
     }
 
     private fun activateTracking() {
+        val context = this.context ?: return
         buttonActivateTracking.isEnabled = false
+        PreferencesRepository.enableTracking(context)
         MessageBus.publish(RequestLocationPermissions)
     }
 
@@ -66,7 +69,12 @@ class TrackingFragment : Fragment() {
 
     private fun locationPermissionsGranted() {
 
-        val theme = context!!.theme
+        val context = this.context ?: return
+
+        if (PreferencesRepository.trackingActivelyDisabled(context)) {
+            return
+        }
+        val theme = context.theme
 
         buttonActivateTracking.isEnabled = true
         buttonActivateTracking.setText(R.string.tracking_button_is_active)
@@ -78,9 +86,9 @@ class TrackingFragment : Fragment() {
 
         val intent = Intent(context, LocationTrackerService::class.java)
         if (AppInfo.isOreoOrNewer()) {
-            context!!.startForegroundService(intent)
+            context.startForegroundService(intent)
         } else {
-            context!!.startService(intent)
+            context.startService(intent)
         }
         buttonActivateTracking.setOnClickListener {
             disableTracking()
@@ -88,13 +96,17 @@ class TrackingFragment : Fragment() {
     }
 
     private fun disableTracking() {
-        val theme = context!!.theme
+        val context = this.context ?: return
+        val theme = context.theme
+
+        PreferencesRepository.disableTracking(context)
+
         buttonActivateTracking.setText(R.string.tracking_activate_tracking_button_text)
         buttonActivateTracking.setOnClickListener { activateTracking() }
         buttonActivateTracking.setBackgroundColor(resources.getColor(R.color.colorPrimary, theme))
         trackingIcon.setImageDrawable(
             resources.getDrawable(R.drawable.tracking_arrow_disabled, theme))
-        context!!.stopService(Intent(context, LocationTrackerService::class.java))
+        context.stopService(Intent(context, LocationTrackerService::class.java))
     }
 
 }
