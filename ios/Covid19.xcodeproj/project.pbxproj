@@ -237,7 +237,6 @@
 			buildPhases = (
 				30D0E4EDB40A7037C6E029BD /* [CP] Check Pods Manifest.lock */,
 				DCF3D7082421214600671399 /* Sources */,
-				DC112C60242242CB007A3C09 /* Set environment variables */,
 				DCF3D7092421214600671399 /* Frameworks */,
 				DCF3D70A2421214600671399 /* Resources */,
 				F831D537C617887466109790 /* [CP] Embed Pods Frameworks */,
@@ -409,24 +408,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covid19/Pods-Covid19-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DC112C60242242CB007A3C09 /* Set environment variables */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Set environment variables";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ -n \"${APPCENTER_SECRET}\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set CFBundleURLTypes:0:CFBundleURLSchemes:0 appcenter-${APPCENTER_SECRET}\" \"${BUILT_PRODUCTS_DIR}/Covid19.app/Info.plist\"\nfi\n";
-		};
 		F831D537C617887466109790 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -557,6 +538,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 33KVL2LY9J;
 				INFOPLIST_FILE = Covid19/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -719,6 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = US7P5RSD3X;
 				INFOPLIST_FILE = Covid19/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -740,6 +723,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = US7P5RSD3X;
 				INFOPLIST_FILE = Covid19/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -30,9 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func configureAppCenter() {
-        let secret = Secrets.appCenterSecret
-        
+    func configureAppCenter() {        
         MSAppCenter.start(Secrets.appCenterSecret, withServices:[
           MSAnalytics.self,
           MSCrashes.self,

@@ -5,17 +5,27 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="1.829061">
+      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="2.033123">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.002421">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.002808">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: update_xcconfig_value" time="0.007878">
+      <testcase classname="fastlane.lanes" name="2: setup_ci" time="0.002391">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: gym" time="99.734271">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: appcenter_upload" time="12.521772">
         
       </testcase>
     
