@@ -18,7 +18,7 @@ class RegistrationForm: UIView, FormInputDelegate {
     weak var delegate: FormDelegate?
     
     let progressBar = UIProgressView(progressViewStyle: .bar)
-    let mainContent = UIScrollView()
+    let mainContent = FadingScrollView(fadingEdges: .vertical)
     let mainStack = UIStackView()
     let bottomContent = UIView()
 

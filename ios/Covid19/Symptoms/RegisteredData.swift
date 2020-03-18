@@ -19,4 +19,28 @@ struct RegisteredData {
     let beenOutsideNordic: Bool
     let returnedHomeDate: String?
     let symptoms: [String]
+    
+    var personaliaDesc: String {
+        "\(gender), \(age), \(inRiskGroup ? "" : "ikke ")i risikogruppe"
+    }
+    
+    var suspicionDesc: String? {
+        suspectsInfection ? "Mistenker smitte" : nil
+    }
+    
+    var testedDesc: String {
+        "Har \(testedPositive ? "" : "ikke ")tested positivt"
+    }
+    
+    var provenInfectionDesc: String {
+        "Har \(testedPositive ? "" : "ikke ")fått påvist smitte"
+    }
+    
+    var contactDesc: String {
+        "Har \(inContactWithInfectedPerson ? "" : "ikke ")vært i kontakt med person som har testet positivt for COVID-19"
+    }
+
+    var travelDesc: String {
+        "Har \(beenOutsideNordic ? "" : "ikke ")vært utenfor Norden de siste 14 dagene"
+    }
 }

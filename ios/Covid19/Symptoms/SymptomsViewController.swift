@@ -36,10 +36,41 @@ class SymptomsViewController: UIViewController, FormDelegate {
         addTitle("Registrer informasjon")
         let titleView = view.subviews.first!
         view.addSubview(registrationForm)
+        registrationForm.showPage(1)
         registrationForm.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(titleView.snp.bottom)
         }
+    }
+    
+    func setupSummary(data: RegisteredData) {
+        addTitle("Oppsummering")
+        let titleView = view.subviews.first!
+        let scrollView = FadingScrollView(fadingEdges: .vertical)
+        
+        let message = InfoBadge(text: "Du må holde deg i hjemmekarantene frem til og med 28. mars.",
+                             image: UIImage(named: "home"),
+                             tint: .blue)
+        
+
+        view.addSubview(scrollView)
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview().inset(UIEdgeInsets.horizontal)
+            make.top.equalTo(titleView.snp.bottom).offset(24)
+        }
+        
+        let editButton = MainButton(text: "Registrer endring", type: .primary) {
+            self.registerTapped()
+        }
+        
+        let shareButton = MainButton(text: "Del data", type: .secondary) {
+            
+        }
+        
+        let stack = UIStackView()
+        stack.addVertically(views: message, SummaryView(data: data), editButton, shareButton)
+        scrollView.addFilling(stack, insets: UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0))
     }
     
     private func registerTapped() {
@@ -49,5 +80,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
     
     func registered(data: RegisteredData) {
         print(data)
+        view.removeAllSubviews()
+        setupSummary(data: data)
     }
 }

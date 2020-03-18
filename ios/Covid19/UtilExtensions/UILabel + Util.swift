@@ -43,6 +43,22 @@ extension UILabel {
             .aligned(.center)
             .lineCount(0)
     }
+    
+    static func tag(_ text: String?) -> UILabel {
+        let label = UILabel(text)
+            .withFont(UIFont.semiBold(size: 14))
+            .colored(.white)
+            .aligned(.center)
+            .lineCount(0)
+        label.backgroundColor = .blue
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
+        label.snp.makeConstraints { make in
+            make.height.greaterThanOrEqualTo(30)
+        }
+        return label
+    }
+
 
     convenience init(_ text: String?) {
         self.init(frame: .zero)
