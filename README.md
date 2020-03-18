@@ -68,7 +68,7 @@ Needs include
 - Setting up a public website for the project.
 - See the google slides for more ideas. More tasks to be added. 
 
-#### Join as tester 
+### Join as tester 
 
 Anyone can try the builds below 👇
 
@@ -76,19 +76,19 @@ Especially keen to get in touch if you are health professional to QA on the self
 
 Send your feedback on slack or on github issues.
 
-### ✅ Tasks
+## ✅ Tasks
 
 We will use [issues](https://github.com/agens-no/smittesporing/issues) for tasks that needs to be done.
 
-### 💬 Chat with us
+## 💬 Chat with us
 
 [Join us on <img src="https://user-images.githubusercontent.com/3652587/76966259-97cd3e80-691d-11ea-9f2a-b84e3989cdd6.png" width=60/> now!](https://join.slack.com/t/smittesporing/shared_invite/zt-cu8u059j-uRE_2T7JJR~y_T8T0pUIrQ)
 
-### ⚖️ License
+## ⚖️ License
 
 Fully open source under MIT license.
 
-### 📲 Download latest build
+## 📲 Download latest build
 
 - [Android](https://install.appcenter.ms/orgs/agens/apps/smittesporing/distribution_groups/public)
 - iOS (no build available yet)
