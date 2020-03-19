@@ -3,47 +3,17 @@ update_fastlane
 default_platform(:ios)
 
 platform :ios do
-  desc "Download and install certificates"
-  lane :certificates do
-    setup_ci
-
-    match(
-      app_identifier: ["no.agens.covid19"], 
-      username: "ios-enterprise@agens.no",
-      type: "enterprise",
-      readonly: is_ci,
-      git_url: "git@bitbucket.org:agens/ios-certificates-agens-enterprise.git",
-    )
-
-    match(
-      app_identifier: ["no.agens.covid19"], 
-      username: "ios-enterprise@agens.no",
-      type: "development",
-      readonly: is_ci,
-      git_url: "git@bitbucket.org:agens/ios-certificates-agens-enterprise.git",
-    )
-
-    match(
-      app_identifier: ["no.agens.covid19.appstore"], 
-      username: "ios-dev@agens.no",
-      type: "appstore",
-      readonly: is_ci,
-      git_url: "git@bitbucket.org:agens/ios-certificates-agens.git",
-    )
-
-  end
-
-  lane :cultivate do
-    update_xcconfig_value(
-      path: 'Config.xcconfig',
-      name: 'APPCENTER_SECRET',
-      value: ENV["APPCENTER_SECRET"]
-    )
-  end
-
+  desc "Upload version to AppCenter"
   lane  :upload_appcenter do
     setup_ci
+    cultivate
+    match_enterprise
+    version_info = appcenter_fetch_version_number
 
+    increment_build_number(
+      build_number: version_info["build_number"].to_i + 1
+    )
+    
     gym(
       workspace: "./Covid19.xcworkspace",
       configuration: "Release",
@@ -53,6 +23,53 @@ platform :ios do
     appcenter_upload(notify_testers: true)
   end
 
+  desc "Download and install enterprise certificates"
+  lane :match_enterprise do
+    match(
+      app_identifier: ["no.agens.covid19"], 
+      username: "ios-enterprise@agens.no",
+      type: "enterprise",
+      readonly: is_ci,
+      git_url: "git@bitbucket.org:agens/ios-certificates-agens-enterprise.git",
+    )
+  end
 
-  
+  desc "Download and install enterprise certificates"
+  lane :match_development do
+    match(
+      app_identifier: ["no.agens.covid19"], 
+      username: "ios-enterprise@agens.no",
+      type: "development",
+      readonly: is_ci,
+      git_url: "git@bitbucket.org:agens/ios-certificates-agens-enterprise.git",
+    )
+  end
+
+  desc "Download and install enterprise certificates"
+  lane :match_appstore do
+    match(
+      app_identifier: ["no.agens.covid19.appstore"], 
+      username: "ios-dev@agens.no",
+      type: "appstore",
+      readonly: is_ci,
+      git_url: "git@bitbucket.org:agens/ios-certificates-agens.git",
+    )
+  end
+
+  desc "Download and install all certificates"
+  lane :certificates do
+    setup_ci
+    match_enterprise
+    match_development
+    match_appstore
+  end
+
+  desc "Cultivate xcconfig with secret values"
+  lane :cultivate do
+    update_xcconfig_value(
+      path: 'Config.xcconfig',
+      name: 'APPCENTER_SECRET',
+      value: ENV["APPCENTER_SECRET"]
+    )
+  end
 end

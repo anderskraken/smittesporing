@@ -16,6 +16,26 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios upload_appcenter
+```
+fastlane ios upload_appcenter
+```
+Upload version to AppCenter
+### ios match_enterprise
+```
+fastlane ios match_enterprise
+```
+Download and install enterprise certificates
+### ios match_development
+```
+fastlane ios match_development
+```
+Download and install enterprise certificates
+### ios match_appstore
+```
+fastlane ios match_appstore
+```
+Download and install enterprise certificates
 ### ios certificates
 ```
 fastlane ios certificates
@@ -25,12 +45,7 @@ Download and install certificates
 ```
 fastlane ios cultivate
 ```
-
-### ios upload_appcenter
-```
-fastlane ios upload_appcenter
-```
-
+Cultivate xcconfig with secret values
 
 ----
 
