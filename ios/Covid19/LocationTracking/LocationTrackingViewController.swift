@@ -34,11 +34,7 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
         infoBadge = InfoBadge(text: "Sporing er ikke aktiv.", image: UIImage(named: "location"), tint: .darkGray)
         addCenteredWithMargin(infoBadge)
 
-        trackingButton = MainButton(text: "Aktiver sporing", type: .primary, action: requestLocationPermission)
-        trackingButton.add(for: .touchUpInside) {
-            self.trackingActive.toggle()
-        }
-
+        trackingButton = MainButton(text: "Aktiver sporing", type: .primary, action: toggleTracking)
         view.addSubview(trackingButton)
         trackingButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(UIEdgeInsets.horizontal)
@@ -61,6 +57,26 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
             : "Sporing er ikke aktiv.")
     }
     
+    private func toggleTracking() {
+        if trackingActive {
+            trackingActive = false
+        } else {
+            enableTracking()
+        }
+    }
+    private func enableTracking() {
+        switch(CLLocationManager.authorizationStatus()) {
+        case .authorizedAlways, .authorizedWhenInUse:
+            trackingActive = true
+        case .restricted, .denied:
+            present(getSettingsDialog(), animated: true, completion: nil)
+        case .notDetermined:
+            requestLocationPermission()
+        default:
+            return
+        }
+    }
+        
     private func requestLocationPermission() {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
@@ -75,5 +91,21 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
                 }
             }
         }
+    }
+
+    private func getSettingsDialog() -> UIAlertController {
+        let alertController = UIAlertController(title: "Trenger tilgang til posisjon", message: "Du kan gi tilgang til posisjonen din i innstillinger, for å registrere dine bevegelser.", preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "Instillinger", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Acbryt", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        return alertController
     }
 }
