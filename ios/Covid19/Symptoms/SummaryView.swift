@@ -36,20 +36,17 @@ class SummaryView: UIView {
         )
     }
     
-    func createSection(title: String, infos: [String?]) -> UIView {
-        let sectionTitle = UILabel(title).withFont(UIFont.semiBold(size: 14)).colored(.blue)
-        let infoString = infos.compactMap({ $0 }).map({ "• \($0)" }).joined(separator: "\n")
-        let infolabel = UILabel(infoString).withFont(UIFont.regular(size: 18)).colored(.textBlack)
-        let sectionView = UIStackView()
-        sectionView.addVertically(spacing: 8, views: sectionTitle, infolabel)
-        return sectionView
+    func createSection(title: String, infos: [NSAttributedString?]) -> UIView {
+        let titleLabel = UILabel(title).withFont(UIFont.semiBold(size: 14)).colored(.blue)
+        let labels = UIStackView(spacing: 2, verticalViews: infos.compactMap({ $0 }).map({
+            UILabel($0).colored(.textBlack).lineCount(0)
+        }))
+        return UIStackView(spacing: 8, verticalViews: titleLabel, labels)
     }
 
     func createSymptomsSection(title: String, symptoms: [String]) -> UIView {
-        let title = UILabel(title).withFont(UIFont.semiBold(size: 14)).colored(.blue)
-        let sectionView = UIStackView()
-        sectionView.addVertically(spacing: 8, views: title, symptomsView)
-        return sectionView
+        let titleLabel = UILabel(title).withFont(UIFont.semiBold(size: 14)).colored(.blue)
+        return UIStackView(spacing: 8, verticalViews: titleLabel, symptomsView)
     }
     
     override func layoutSubviews() {

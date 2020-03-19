@@ -60,6 +60,11 @@ extension UILabel {
         return label
     }
 
+    convenience init(_ attributedText: NSAttributedString?) {
+        self.init(frame: .zero)
+        self.attributedText = attributedText
+        numberOfLines = 0
+    }
 
     convenience init(_ text: String?) {
         self.init(frame: .zero)

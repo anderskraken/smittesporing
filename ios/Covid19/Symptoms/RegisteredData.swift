@@ -6,7 +6,7 @@
 //  Copyright © 2020 Agens. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct RegisteredData: Codable {
     let gender: String
@@ -20,27 +20,50 @@ struct RegisteredData: Codable {
     let returnedHomeDate: String?
     let symptoms: [String]
     
-    var personaliaDesc: String {
-        "\(gender), \(age), \(inRiskGroup ? "" : "ikke ")i risikogruppe"
+    var personaliaDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• \(gender), \(age), ",
+            italicPart: inRiskGroup ? "" : "ikke ",
+            lastPart: "i risikogruppe")
     }
     
-    var suspicionDesc: String? {
-        suspectsInfection ? "Mistenker smitte" : nil
+    var suspicionDesc: NSAttributedString? {
+        suspectsInfection ? NSAttributedString(string: "• Mistenker smitte") : nil
     }
     
-    var testedDesc: String {
-        "Har \(testedPositive ? "" : "ikke ")tested positivt"
+    var testedDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• Har ",
+                         italicPart: testedPositive ? "" : "ikke ",
+                         lastPart: "tested positivt")
     }
     
-    var provenInfectionDesc: String {
-        "Har \(testedPositive ? "" : "ikke ")fått påvist smitte"
+    var provenInfectionDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• Har ",
+                         italicPart: testedPositive ? "" : "ikke ",
+                         lastPart: "fått påvist smitte")
     }
     
-    var contactDesc: String {
-        "Har \(inContactWithInfectedPerson ? "" : "ikke ")vært i kontakt med person som har testet positivt for COVID-19"
+    var contactDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• Har ",
+                         italicPart: inContactWithInfectedPerson ? "" : "ikke ",
+                         lastPart: "vært i kontakt med person som har testet positivt for COVID-19")
     }
-
-    var travelDesc: String {
-        "Har \(beenOutsideNordic ? "" : "ikke ")vært utenfor Norden de siste 14 dagene"
+    
+    var travelDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• Har ",
+                         italicPart: beenOutsideNordic ? "" : "ikke ",
+                         lastPart: "vært utenfor Norden de siste 14 dagene")
+    }
+    
+    func stringWithItalic(firstPart: String, italicPart: String, lastPart: String) -> NSAttributedString {
+        let italic = [NSAttributedString.Key.font : UIFont.italic(size: 18)!] as [NSAttributedString.Key : Any]
+        let regular = [NSAttributedString.Key.font : UIFont.regular(size: 18)!] as [NSAttributedString.Key : Any]
+        
+        let italicText = NSMutableAttributedString(string:italicPart, attributes: italic)
+        let endingText = NSMutableAttributedString(string:lastPart, attributes: regular)
+        
+        let result = NSMutableAttributedString(string:firstPart, attributes: regular)
+        result.append(italicText)
+        result.append(endingText)
+        return result
     }
 }

@@ -72,8 +72,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
             
         }
         
-        let stack = UIStackView()
-        stack.addVertically(views: message, SummaryView(data: data), editButton, shareButton)
+        let stack = UIStackView(verticalViews: message, SummaryView(data: data), editButton, shareButton)
         scrollView.addFilling(stack, insets: UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0))
     }
     

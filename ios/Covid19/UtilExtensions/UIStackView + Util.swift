@@ -10,6 +10,15 @@ import UIKit
 
 extension UIStackView {
     
+    convenience init(spacing: CGFloat = 20, verticalViews: UIView...) {
+        self.init(spacing: spacing, verticalViews: verticalViews)
+    }
+
+    convenience init(spacing: CGFloat = 20, verticalViews: [UIView]) {
+        self.init(frame: .zero)
+        addVertically(spacing: spacing, views: verticalViews)
+    }
+
     func setupVertical(spacing: CGFloat = 20) {
         self.spacing = spacing
         axis = .vertical
