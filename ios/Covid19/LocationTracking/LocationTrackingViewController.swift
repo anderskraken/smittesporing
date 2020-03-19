@@ -12,13 +12,18 @@ import CoreLocation
 class LocationTrackingViewController: UIViewController, CLLocationManagerDelegate {
 
     var trackingButton: MainButton!
-    var infoBadge: InfoBadge!
     var locationManager: CLLocationManager?
+    var statusIcon = UIButton()
+    var statusLabel = UILabel.bodySmall("")
+    var centerStack = UIStackView()
+    var bottomInfo = UIView()
+    var trackingTime: Date? = LocalDataManager.shared.getTrackingTime()
     
     var trackingActive = LocalDataManager.shared.getTracking() {
         didSet {
+            trackingTime = trackingActive ? Date() : nil
+            LocalDataManager.shared.saveLocal(trackingEnabled: trackingActive, time: trackingTime)
             updateViews()
-            LocalDataManager.shared.saveLocal(trackingEnabled: trackingActive)
         }
     }
     
@@ -29,12 +34,28 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
     }
     
     override func viewDidLayoutSubviews() {
-        addTitle("Bevegelser")
+        let title = createTitle("Bevegelser")
+        statusIcon.snp.makeConstraints { make in
+            make.width.height.equalTo(20)
+            make.left.equalTo(title.snp.right).offset(10)
+            make.centerY.equalTo(title)
+        }
+        statusLabel.snp.makeConstraints { make in
+            make.top.equalTo(title.snp.bottom).offset(10)
+            make.left.equalTo(title)
+        }
     }
     
     private func setupViews() {
-        infoBadge = InfoBadge(text: "Sporing er ikke aktiv.", image: UIImage(named: "location"), tint: .darkGray)
-        addCenteredWithMargin(infoBadge)
+        view.addSubview(statusLabel)
+        view.addSubview(statusIcon)
+        statusIcon.setImage(UIImage(named: "location"), for: .normal)
+        statusIcon.add(for: .touchUpInside) {
+            self.trackingActive = false
+        }
+        
+        centerStack.clipsToBounds = false
+        addCenteredWithMargin(centerStack)
 
         trackingButton = MainButton(text: "Aktiver sporing", type: .primary, action: toggleTracking)
         view.addSubview(trackingButton)
@@ -42,7 +63,7 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
             make.left.right.equalToSuperview().inset(UIEdgeInsets.horizontal)
         }
 
-        let bottomInfo = UILabel.bodySmall("Lokasjonsdata lagres lokalt inntil du velger å dele disse.")
+        bottomInfo = UILabel.bodySmall("Lokasjonsdata lagres lokalt inntil du velger å dele disse.")
         view.addSubview(bottomInfo)
         bottomInfo.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview().inset(UIEdgeInsets.margins)
@@ -53,12 +74,32 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
     private func updateViews() {
         trackingButton.set(type: trackingActive ? .activated : .primary)
         trackingButton.setTitle(trackingActive ? "Sporing aktiv" : "Aktiver sporing", for: .normal)
-        infoBadge.set(tint: trackingActive ? .blue : .darkGray)
-        infoBadge.set(text: trackingActive
-            ? "Sporing er aktiv. Det viktigste du kan gjøre er å holde avstand fra andre."
-            : "Sporing er ikke aktiv.")
+        statusLabel.text = trackingActive ? "Aktiv siden \(trackingTime?.prettyString ?? "")" : "Sporing er ikke aktivert."
+        statusIcon.tintColor = trackingActive ? .blue : .stroke
+        bottomInfo.isHidden = trackingActive
+        trackingButton.isHidden = trackingActive
+        if trackingActive {
+            showTrackingInfo()
+        } else {
+            showTrackingDisabledInfo()
+        }
     }
     
+    private func showTrackingDisabledInfo() {
+        centerStack.removeAllSubviews()
+        let info = InfoBadge(text: "Sporing er ikke aktiv.", image: UIImage(named: "location"), imageTint: .stroke)
+        centerStack.addVertically(views: info)
+    }
+
+    private func showTrackingInfo() {
+        centerStack.removeAllSubviews()
+        let activatedInfo = InfoCard(text: "Smittesporing er aktivert. Takk for at du bidrar!",
+                            image: UIImage(named: "tada"), imageTint: .blue)
+        let stayHomeInfo = InfoCard(text: "Det viktigste du kan gjøre er å holde avstand fra andre.",
+                            image: UIImage(named: "hand"), imageTint: .blue)
+        centerStack.addVertically(views: activatedInfo, stayHomeInfo)
+    }
+
     private func toggleTracking() {
         if trackingActive {
             trackingActive = false

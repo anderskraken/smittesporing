@@ -18,6 +18,8 @@
 		63527D9E2422B0FF002B21C5 /* Collections + Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D9D2422B0FF002B21C5 /* Collections + Util.swift */; };
 		63527DA02422B642002B21C5 /* FadingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D9F2422B642002B21C5 /* FadingScrollView.swift */; };
 		63527DA2242379CA002B21C5 /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527DA1242379CA002B21C5 /* LocalDataManager.swift */; };
+		63527DA424240214002B21C5 /* InfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527DA324240214002B21C5 /* InfoCard.swift */; };
+		63527DA6242419BC002B21C5 /* Date + Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527DA5242419BC002B21C5 /* Date + Formatting.swift */; };
 		6368F0CC24212E430010C071 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6368F0CB24212E420010C071 /* Default-568h@2x.png */; };
 		6368F0CF242135F30010C071 /* UIColor + Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6368F0CE242135F30010C071 /* UIColor + Util.swift */; };
 		6368F10B24213F2E0010C071 /* Barlow-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6368F0F924213F2E0010C071 /* Barlow-ThinItalic.ttf */; };
@@ -85,6 +87,8 @@
 		63527D9D2422B0FF002B21C5 /* Collections + Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections + Util.swift"; sourceTree = "<group>"; };
 		63527D9F2422B642002B21C5 /* FadingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadingScrollView.swift; sourceTree = "<group>"; };
 		63527DA1242379CA002B21C5 /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
+		63527DA324240214002B21C5 /* InfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCard.swift; sourceTree = "<group>"; };
+		63527DA5242419BC002B21C5 /* Date + Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Formatting.swift"; sourceTree = "<group>"; };
 		6368F0CB24212E420010C071 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6368F0CE242135F30010C071 /* UIColor + Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Util.swift"; sourceTree = "<group>"; };
 		6368F0F924213F2E0010C071 /* Barlow-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ThinItalic.ttf"; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				6368F13224223EAD0010C071 /* UIViewController + Util.swift */,
 				6368F136242242E40010C071 /* UIControl + Util.swift */,
 				63527D8D24225D0A002B21C5 /* UIStackView + Util.swift */,
+				63527DA5242419BC002B21C5 /* Date + Formatting.swift */,
 			);
 			path = UtilExtensions;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				6368F12C242237440010C071 /* InfoBadge.swift */,
+				63527DA324240214002B21C5 /* InfoCard.swift */,
 				63527D9F2422B642002B21C5 /* FadingScrollView.swift */,
 				6368F134242240AC0010C071 /* MainButton.swift */,
 				63527D8F24226049002B21C5 /* FormRadioButton.swift */,
@@ -528,9 +534,11 @@
 				63527D9A24229AB4002B21C5 /* RegisteredData.swift in Sources */,
 				6368F135242240AC0010C071 /* MainButton.swift in Sources */,
 				DCF3D7102421214600671399 /* AppDelegate.swift in Sources */,
+				63527DA6242419BC002B21C5 /* Date + Formatting.swift in Sources */,
 				6368F1222421455F0010C071 /* SymptomsViewController.swift in Sources */,
 				63527D9024226049002B21C5 /* FormRadioButton.swift in Sources */,
 				6368F11E242144040010C071 /* UIFont + Util.swift in Sources */,
+				63527DA424240214002B21C5 /* InfoCard.swift in Sources */,
 				63527D9224226E50002B21C5 /* FormInputSection.swift in Sources */,
 				6368F12D242237440010C071 /* InfoBadge.swift in Sources */,
 				63527DA02422B642002B21C5 /* FadingScrollView.swift in Sources */,

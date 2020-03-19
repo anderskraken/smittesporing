@@ -11,6 +11,10 @@ import UIKit
 extension UIViewController {
     
     func addTitle(_ title: String) {
+        _ = createTitle(title)
+    }
+    
+    func createTitle(_ title: String) -> UIView {
         let titleView = UIView()
         view.addSubview(titleView)
         titleView.snp.makeConstraints { make in
@@ -25,6 +29,7 @@ extension UIViewController {
             make.right.bottom.lessThanOrEqualToSuperview()
             make.centerY.equalToSuperview()
         }
+        return titleView
     }
     
     func addCenteredWithMargin(_ view: UIView) {

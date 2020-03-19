@@ -20,7 +20,7 @@ class ShareViewController: UIViewController {
         super.viewDidLoad()
         addTitle("Del data")
         
-        let info = InfoBadge(text: infoText, image: nil)
+        let info = UILabel.body(infoText)
         addCenteredWithMargin(info)
     }
 }

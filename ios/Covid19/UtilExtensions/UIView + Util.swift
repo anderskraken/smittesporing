@@ -27,7 +27,8 @@ extension UIView {
     func addCenteredWithMargin(_ view: UIView) {
         addSubview(view)
         view.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerY.equalToSuperview().offset(40)
+            make.centerX.equalToSuperview()
             make.height.lessThanOrEqualToSuperview()
             make.leftMargin.rightMargin.equalTo(UIEdgeInsets.horizontal)
         }
@@ -37,5 +38,14 @@ extension UIView {
         for subview in subviews {
             subview.removeFromSuperview()
         }
+    }
+}
+
+extension CALayer {
+    func addShadow(height: CGFloat = 1, radius: CGFloat = 3, opacity: Float = 0.15) {
+        shadowOffset = CGSize(width: 0, height: height)
+        shadowRadius = radius
+        shadowOpacity = opacity
+        shadowColor = UIColor.black.cgColor
     }
 }

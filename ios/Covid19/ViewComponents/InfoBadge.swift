@@ -13,11 +13,11 @@ class InfoBadge: UIStackView {
     var imageView: UIImageView!
     var label: UILabel!
     
-    init(text: String?, image: UIImage?, tint: UIColor? = nil) {
+    init(text: String, image: UIImage?, imageTint: UIColor? = nil) {
         super.init(frame: .zero)
         
         imageView = UIImageView(image: image)
-            .tinted(tint)
+            .tinted(imageTint)
             .withContentMode(.scaleAspectFit)
             .withSize(56, height: 56)
 

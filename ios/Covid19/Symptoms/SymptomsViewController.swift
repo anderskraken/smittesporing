@@ -25,7 +25,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
     func setupUnregisteredView() {
         addTitle("Symptomer")
         
-        let info = InfoBadge(text: "Du har ikke lagt inn noe informasjon.", image: UIImage(named: "person"), tint: .darkGray)
+        let info = InfoBadge(text: "Du har ikke lagt inn noe informasjon.", image: UIImage(named: "person"), imageTint: .darkGray)
         addCenteredWithMargin(info)
         
         let registerButton = MainButton(text: "Registrer Informasjon", type: .primary, action: registerTapped)
@@ -54,7 +54,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
         
         let message = InfoBadge(text: "Du må holde deg i hjemmekarantene frem til og med 28. mars.",
                              image: UIImage(named: "home"),
-                             tint: .blue)
+                             imageTint: .blue)
         
 
         view.addSubview(scrollView)

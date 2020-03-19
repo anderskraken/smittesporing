@@ -11,8 +11,9 @@ import Foundation
 class LocalDataManager {
     
     final let DATA_KEY = "LocalData"
-    final let TRACKING_KEY = "LocalData"
-    
+    final let TRACKING_KEY = "TrackingEnabled"
+    final let TRACKING_TIME_KEY = "TrackingTime"
+
     static let shared = LocalDataManager()
 
     private init() { }
@@ -20,11 +21,6 @@ class LocalDataManager {
     var data: RegisteredData? {
         set { saveLocal(data: newValue) }
         get { getLocalData() }
-    }
-
-    var trackingEnabled: Bool {
-        set { saveLocal(trackingEnabled: newValue) }
-        get { getTracking() }
     }
 
     func saveLocal(data: RegisteredData?) {
@@ -43,14 +39,25 @@ class LocalDataManager {
         }
     }
     
-    func saveLocal(trackingEnabled: Bool?) {
+    func saveLocal(trackingEnabled: Bool?, time: Date?) {
         let defaults = UserDefaults.standard
         defaults.set(trackingEnabled, forKey: TRACKING_KEY)
+        if let time = time {
+            defaults.set(time.timeIntervalSince1970, forKey: TRACKING_TIME_KEY)
+        } else {
+            defaults.removeObject(forKey: TRACKING_TIME_KEY)
+        }
     }
 
     func getTracking() -> Bool {
         let defaults = UserDefaults.standard
         return defaults.bool(forKey: TRACKING_KEY)
+    }
+
+    func getTrackingTime() -> Date? {
+        let defaults = UserDefaults.standard
+        let trackingTime = defaults.double(forKey: TRACKING_TIME_KEY) as TimeInterval
+        return trackingTime == 0 ? nil : Date(timeIntervalSince1970: trackingTime)
     }
 }
 
