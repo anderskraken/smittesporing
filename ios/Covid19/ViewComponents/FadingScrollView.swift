@@ -52,6 +52,7 @@ class FadingScrollView: UIScrollView {
         self.scrollDirection = direction
         self.fadingEdges = fadingEdges
         super.init(frame: .zero)
+        self.delaysContentTouches = false
     }
 
     required init?(coder aDecoder: NSCoder) {
