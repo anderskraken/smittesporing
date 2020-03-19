@@ -10,7 +10,8 @@ import Foundation
 
 class LocalDataManager {
     
-    final let DEFAULTS_KEY = "LocalData"
+    final let DATA_KEY = "LocalData"
+    final let TRACKING_KEY = "LocalData"
     
     static let shared = LocalDataManager()
 
@@ -20,21 +21,36 @@ class LocalDataManager {
         set { saveLocal(data: newValue) }
         get { getLocalData() }
     }
-    
+
+    var trackingEnabled: Bool {
+        set { saveLocal(trackingEnabled: newValue) }
+        get { getTracking() }
+    }
+
     func saveLocal(data: RegisteredData?) {
         let defaults = UserDefaults.standard
         if let encoded = data?.encode() {
-            defaults.set(encoded, forKey: DEFAULTS_KEY)
+            defaults.set(encoded, forKey: DATA_KEY)
         }
     }
 
     func getLocalData() -> RegisteredData? {
         let defaults = UserDefaults.standard
-        if let value = defaults.value(forKey: DEFAULTS_KEY) as? Data {
+        if let value = defaults.value(forKey: DATA_KEY) as? Data {
             return RegisteredData.decode(from: value)
         } else {
             return nil
         }
+    }
+    
+    func saveLocal(trackingEnabled: Bool?) {
+        let defaults = UserDefaults.standard
+        defaults.set(trackingEnabled, forKey: TRACKING_KEY)
+    }
+
+    func getTracking() -> Bool {
+        let defaults = UserDefaults.standard
+        return defaults.bool(forKey: TRACKING_KEY)
     }
 }
 

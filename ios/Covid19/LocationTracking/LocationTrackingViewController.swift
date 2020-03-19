@@ -15,15 +15,17 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
     var infoBadge: InfoBadge!
     var locationManager: CLLocationManager?
     
-    var trackingActive = false {
+    var trackingActive = LocalDataManager.shared.getTracking() {
         didSet {
             updateViews()
+            LocalDataManager.shared.saveLocal(trackingEnabled: trackingActive)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        updateViews()
     }
     
     override func viewDidLayoutSubviews() {
