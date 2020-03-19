@@ -11,6 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import no.agens.covid19.storage.LocationRepository
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener {
@@ -21,6 +26,14 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        startKoin {
+            androidLogger()
+            androidContext(this@MainActivity)
+            modules(module {
+                single { LocationRepository(this@MainActivity) }
+            })
+        }
 
         if (BuildConfig.DEBUG == true) {
             Timber.plant(Timber.DebugTree())

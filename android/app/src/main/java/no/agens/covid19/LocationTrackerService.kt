@@ -5,13 +5,21 @@ import android.content.Intent
 import android.os.IBinder
 import android.os.Looper
 import com.google.android.gms.location.*
+import no.agens.covid19.storage.LocationRepository
+import no.agens.covid19.storage.domain.Location
+import org.koin.android.ext.android.inject
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class LocationTrackerService : Service() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
+
+    private val locationRepository: LocationRepository by inject()
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
@@ -34,8 +42,12 @@ class LocationTrackerService : Service() {
                     return
                 }
 
+                val formatter = SimpleDateFormat.getDateTimeInstance()
                 locationResult.locations.forEach { location ->
-                    Timber.d("received location: ${location.latitude}, ${location.longitude}")
+
+                    locationRepository.addLocations(
+                        Location(longitude = location.longitude, latitude = location.latitude,
+                            timestamp = formatter.format(Date()), altitude = location.altitude))
                 }
             }
         }
