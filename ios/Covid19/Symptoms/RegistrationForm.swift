@@ -9,7 +9,8 @@
 import UIKit
 
 protocol FormDelegate: NSObject {
-    func registered(data: RegisteredData)
+    func showSummary(data: RegisteredData)
+    func cancelRegistration()
 }
 
 
@@ -22,7 +23,7 @@ class RegistrationForm: UIView, FormInputDelegate {
     let mainStack = UIStackView()
     let bottomContent = UIView()
 
-    lazy var continueButton = MainButton(text: "Neste", type: .primary, action: nextPage)
+    lazy var continueButton = MainButton(text: "Avbryt", type: .primary, action: nextPage)
     lazy var backButton = MainButton(text: "Tilbake", type: .secondary, action: previousPage)
     
     lazy var sex = FormInputSection(title: "Biologisk kjønn", input: FormRadioButton(choices: ["Mann", "Kvinne", "Ikke oppgi"], delegate: self))
@@ -49,6 +50,7 @@ class RegistrationForm: UIView, FormInputDelegate {
         setupContent()
         nextPage()
         mainContent.addFilling(mainStack)
+        initializeFields(with: LocalDataManager.shared.data)
     }
     
     required init?(coder: NSCoder) {
@@ -88,7 +90,6 @@ class RegistrationForm: UIView, FormInputDelegate {
         buttonContainer.distribution = .fillEqually
         buttonContainer.alignment = .fill
         buttonContainer.add(views: backButton, continueButton)
-        backButton.isHidden = true
         return buttonContainer
     }
     
@@ -109,17 +110,23 @@ class RegistrationForm: UIView, FormInputDelegate {
             saveData()
         }
         didEditInput()
+        mainContent.contentOffset = .zero
     }
     
     func previousPage() {
-        showPage(1)
+        if currentPage > 1 {
+            showPage(currentPage - 1)
+        } else {
+            delegate?.cancelRegistration()
+        }
         didEditInput()
+        mainContent.contentOffset = .zero
     }
 
     func showPage(_ pageNumber: Int) {
         currentPage = pageNumber
         mainStack.removeAllSubviews()
-        backButton.isHidden = currentPage != 2
+        backButton.setTitle(currentPage == 1 ? "Avbryt" : "Tilbake", for: .normal)
         continueButton.setTitle(currentPage == 3 ? "Lagre informasjon" : "Neste", for: .normal)
         switch currentPage {
         case 1:
@@ -150,6 +157,21 @@ class RegistrationForm: UIView, FormInputDelegate {
         continueButton.alpha = enabled ? 1 : 0.5
     }
     
+    func initializeFields(with data: RegisteredData?) {
+        if let data = data {
+            sex.set(value: data.gender)
+            age.set(value: data.age)
+            riskGroup.set(value: data.inRiskGroup)
+            provenInfection.set(value: data.testedPositive)
+            suspicion.set(value: data.suspectsInfection)
+            contact.set(value: data.inContactWithInfectedPerson)
+            contactDate.set(value: data.infectedContactDate)
+            travel.set(value: data.beenOutsideNordic)
+            returnDate.set(value: data.returnedHomeDate)
+            symptoms.set(value: data.symptoms)
+        }
+    }
+    
     func saveData() {
         let data = RegisteredData(gender: sex.value as! String,
                                   age: Int(age.value as! String) ?? 0,
@@ -161,6 +183,7 @@ class RegistrationForm: UIView, FormInputDelegate {
                                   beenOutsideNordic: travel.valueIsYes,
                                   returnedHomeDate: travel.valueIsYes ? returnDate.value as? String : nil,
                                   symptoms: symptoms.value as! [String])
-        delegate?.registered(data: data)
+        LocalDataManager.shared.data = data
+        delegate?.showSummary(data: data)
     }
 }

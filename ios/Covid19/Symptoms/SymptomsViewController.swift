@@ -15,7 +15,11 @@ class SymptomsViewController: UIViewController, FormDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         addKeyboardDismisser()
-        setupUnregisteredView()
+        if let data = LocalDataManager.shared.data {
+            showSummary(data: data)
+        } else {
+            setupUnregisteredView()
+        }
     }
     
     func setupUnregisteredView() {
@@ -78,9 +82,17 @@ class SymptomsViewController: UIViewController, FormDelegate {
         setupForm()
     }
     
-    func registered(data: RegisteredData) {
-        print(data)
+    func showSummary(data: RegisteredData) {
         view.removeAllSubviews()
         setupSummary(data: data)
+    }
+    
+    func cancelRegistration() {
+        view.removeAllSubviews()
+        if let data = LocalDataManager.shared.data {
+            showSummary(data: data)
+        } else {
+            setupUnregisteredView()
+        }
     }
 }

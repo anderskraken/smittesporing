@@ -16,6 +16,10 @@ class FormDatePicker: UITextField, FormInput, UITextFieldDelegate {
     
     var value: Any? { text?.isEmpty != false ? nil : text }
     
+    override var text: String? {
+        didSet { formInputDelegate?.didEditInput() }
+    }
+    
     init(delegate: FormInputDelegate) {
         self.formInputDelegate = delegate
         super.init(frame: .zero)

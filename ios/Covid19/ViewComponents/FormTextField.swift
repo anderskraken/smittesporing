@@ -13,6 +13,10 @@ class FormTextField: UITextField, FormInput, UITextFieldDelegate {
     weak var formInputDelegate: FormInputDelegate?
     var value: Any? { text?.isEmpty != false ? nil : text }
     
+    override var text: String? {
+        didSet { formInputDelegate?.didEditInput() }
+    }
+    
     init(placeholder: String, type: UIKeyboardType, delegate: FormInputDelegate) {
         self.formInputDelegate = delegate
         super.init(frame: .zero)

@@ -15,7 +15,9 @@ class FormRadioButton: UIView, FormInput {
     
     var stack = UIStackView()
     var choices: [String]
-    var selectedChoice: String?
+    var selectedChoice: String? {
+        didSet { updateViews() }
+    }
     
     init(choices: [String], delegate: FormInputDelegate) {
         self.choices = choices
@@ -40,7 +42,7 @@ class FormRadioButton: UIView, FormInput {
         stack.distribution = .fillProportionally
         addFilling(stack)
         snp.makeConstraints { make in
-            make.height.equalTo(50)
+            make.height.greaterThanOrEqualTo(50)
         }
     }
     
@@ -67,15 +69,9 @@ class FormRadioButton: UIView, FormInput {
         button.addFilling(UILabel.body(text))
         button.addTapAnimations()
         button.add(for: .touchUpInside) {
-            self.selected(choice: text)
+            self.selectedChoice = text
         }
         return button
-    }
-    
-    private func selected(choice: String) {
-        selectedChoice = choice
-        updateViews()
-        delegate?.didEditInput()
     }
     
     private func updateViews() {
@@ -84,6 +80,13 @@ class FormRadioButton: UIView, FormInput {
             let isSelected = label?.text == selectedChoice
             button.backgroundColor = isSelected ? .blue : .white
             label?.textColor = isSelected ? .white : .textBlack
+        }
+        delegate?.didEditInput()
+    }
+    
+    func setBoolValue(_ value: Bool) {
+        if choices.count == 2 {
+            selectedChoice = value ? choices.first : choices.last
         }
     }
 }

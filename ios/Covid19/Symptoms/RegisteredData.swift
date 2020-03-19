@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RegisteredData {
+struct RegisteredData: Codable {
     let gender: String
     let age: Int
     let inRiskGroup: Bool

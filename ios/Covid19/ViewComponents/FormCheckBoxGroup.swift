@@ -15,11 +15,13 @@ class FormCheckBoxGroup: UIStackView, FormInput {
     
     var choices: [String]
     var selectedChoices = [String]()
-    
+    var checkBoxes = [String: UIButton]()
+
     init(choices: [String], delegate: FormInputDelegate) {
         self.choices = choices
         self.delegate = delegate
         super.init(frame: .zero)
+        choices.forEach { checkBoxes[$0] = createCheckBox(choice: $0) }
         addVertically(views: choices.map { createChoice($0) })
     }
     
@@ -29,8 +31,8 @@ class FormCheckBoxGroup: UIStackView, FormInput {
     
     private func createChoice(_ choice: String) -> UIView {
         let container = UIButton()
-        let checkBox = createCheckBox(choice: choice)
-        let label = UILabel.body(choice)
+        let label = UILabel.body(choice).aligned(.left)
+        let checkBox = checkBoxes[choice]!
         updateCheckBox(checkBox, isSelected: false)
         
         container.addTapAnimations()
@@ -47,9 +49,10 @@ class FormCheckBoxGroup: UIStackView, FormInput {
             make.height.lessThanOrEqualToSuperview()
             make.centerY.equalToSuperview()
             make.left.equalTo(checkBox.snp.right).offset(10)
+            make.right.lessThanOrEqualToSuperview()
         }
         container.add(for: .touchUpInside) {
-            self.tapped(checkbox: checkBox, for: choice)
+            self.tapped(choice)
         }
         return container
     }
@@ -58,21 +61,23 @@ class FormCheckBoxGroup: UIStackView, FormInput {
         let button = UIButton()
         button.addTapAnimations()
         button.layer.cornerRadius = 6
-        button.add(for: .touchUpInside) {
-            self.tapped(checkbox: button, for: choice)
-        }
         button.setImage(UIImage(named: "check"), for: .selected)
         button.tintColor = .white
+        button.add(for: .touchUpInside) {
+            self.tapped(choice)
+        }
         return button
     }
     
-    private func tapped(checkbox: UIButton, for choice: String) {
-        let isSelected = !checkbox.isSelected
-        updateCheckBox(checkbox, isSelected: isSelected)
-        if isSelected {
-            selectedChoices.append(choice)
-        } else {
-            selectedChoices.removeAll(where: { $0 == choice })
+    private func tapped(_ choice: String) {
+        if let checkBox = checkBoxes[choice] {
+            let isSelected = !checkBox.isSelected
+            updateCheckBox(checkBox, isSelected: isSelected)
+            if isSelected {
+                selectedChoices.append(choice)
+            } else {
+                selectedChoices.removeAll(where: { $0 == choice })
+            }
         }
         delegate?.didEditInput()
     }
@@ -82,6 +87,15 @@ class FormCheckBoxGroup: UIStackView, FormInput {
         button.backgroundColor = isSelected ? .blue : .white
         button.layer.borderColor = isSelected ? nil : .stroke
         button.layer.borderWidth = isSelected ? 0 : 2
+    }
+    
+    func setSelected(choices: [String]) {
+        self.selectedChoices = choices.filter { self.choices.contains($0) }
+        for choice in choices {
+            if let checkbox = checkBoxes[choice] {
+                updateCheckBox(checkbox, isSelected: true)
+            }
+        }
         delegate?.didEditInput()
     }
 }

@@ -28,6 +28,7 @@ extension UIView {
         addSubview(view)
         view.snp.makeConstraints { make in
             make.center.equalToSuperview()
+            make.height.lessThanOrEqualToSuperview()
             make.leftMargin.rightMargin.equalTo(UIEdgeInsets.horizontal)
         }
     }

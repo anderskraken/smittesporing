@@ -18,13 +18,13 @@ extension UILabel {
 
     static func title2(_ text: String?) -> UILabel {
         return UILabel(text)
-            .withFont(UIFont.medium(size: 23), maxSize: 28)
+            .withFont(UIFont.medium(size: 23))
             .colored(.textBlack)
     }
 
     static func title3(_ text: String?) -> UILabel {
         return UILabel(text)
-            .withFont(UIFont.medium(size: 16), maxSize: 28)
+            .withFont(UIFont.medium(size: 16))
             .colored(.textBlack)
     }
 
@@ -63,6 +63,7 @@ extension UILabel {
     convenience init(_ text: String?) {
         self.init(frame: .zero)
         self.text = text
+        numberOfLines = 0
     }
     
     func lineCount(_ numberOfLines: Int) -> UILabel {

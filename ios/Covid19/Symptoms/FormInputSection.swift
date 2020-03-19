@@ -33,4 +33,30 @@ class FormInputSection: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func set(value: Any?) {
+        guard let value = value else { return }
+        
+        if let input = input as? FormRadioButton {
+            if let bool = value as? Bool {
+                input.setBoolValue(bool)
+            } else {
+                input.selectedChoice = value as? String
+            }
+        } else if let input = input as? FormTextField {
+            if let intValue = value as? Int {
+                input.text = String(intValue)
+            } else if let stringValue = value as? String {
+                input.text = stringValue
+            }
+        } else if let input = input as? FormDatePicker {
+            if let stringValue = value as? String {
+                input.text = stringValue
+            }
+        } else if let input = input as? FormCheckBoxGroup {
+            if let choicesValue = value as? [String] {
+                input.setSelected(choices: choicesValue)
+            }
+        }
+    }
 }

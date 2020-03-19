@@ -35,7 +35,7 @@ class SummaryView: UIView {
     func createSection(title: String, infos: [String?]) -> UIView {
         let sectionTitle = UILabel(title).withFont(UIFont.semiBold(size: 14)).colored(.blue)
         let infoString = infos.compactMap({ $0 }).map({ "• \($0)" }).joined(separator: "\n")
-        let infolabel = UILabel(infoString).withFont(UIFont.regular(size: 18)).colored(.textBlack).lineCount(0)
+        let infolabel = UILabel(infoString).withFont(UIFont.regular(size: 18)).colored(.textBlack)
         let sectionView = UIStackView()
         sectionView.addVertically(spacing: 8, views: sectionTitle, infolabel)
         return sectionView
