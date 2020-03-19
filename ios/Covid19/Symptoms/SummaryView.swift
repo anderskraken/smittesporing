@@ -10,7 +10,11 @@ import UIKit
 
 class SummaryView: UIView {
     
+    let symptomsView = UIStackView()
+    let data: RegisteredData
+    
     init(data: RegisteredData) {
+        self.data = data
         super.init(frame: .zero)
         setup(data)
     }
@@ -42,20 +46,49 @@ class SummaryView: UIView {
     }
 
     func createSymptomsSection(title: String, symptoms: [String]) -> UIView {
-        var rows = symptoms.splitToGroups(of: 3).map { group in
-            let tagStack = UIStackView()
-            tagStack.axis = .horizontal
-            tagStack.distribution = .equalSpacing
-            tagStack.alignment = .leading
-            tagStack.spacing = 8
-            tagStack.add(views: group.map { UILabel.tag($0) })
-            return tagStack
-        } as [UIView]
-        
-        rows.insert(UILabel(title).withFont(UIFont.semiBold(size: 14)).colored(.blue), at: 0)
-        
+        let title = UILabel(title).withFont(UIFont.semiBold(size: 14)).colored(.blue)
         let sectionView = UIStackView()
-        sectionView.addVertically(spacing: 8, views: rows)
+        sectionView.addVertically(spacing: 8, views: title, symptomsView)
         return sectionView
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutSymptoms()
+    }
+    
+    private func layoutSymptoms() {
+        symptomsView.removeAllSubviews()
+        let maxWidth = symptomsView.frame.width
+        var rowWidth = CGFloat(0)
+        var rows = [UIView()]
+        for symptom in data.symptoms {
+            let tag = UILabel.tag(symptom)
+            let width = tag.intrinsicContentSize.width + 20 + 8
+            if rowWidth + width < maxWidth {
+                add(tag: tag, to: rows.last!)
+                rowWidth += width
+            } else {
+                rows.append(UIView())
+                add(tag: tag, to: rows.last!)
+                rowWidth = tag.intrinsicContentSize.width
+            }
+        }
+        symptomsView.addVertically(spacing: 8, views: rows)
+    }
+    
+    private func add(tag: UILabel, to row: UIView) {
+        let last = row.subviews.last
+        row.addSubview(tag)
+        tag.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.height.bottom.lessThanOrEqualToSuperview()
+            make.width.lessThanOrEqualToSuperview()
+            if let last = last {
+                make.left.equalTo(last.snp.right).offset(8)
+            } else {
+                make.left.equalToSuperview()
+            }
+        }
     }
 }

@@ -55,6 +55,7 @@ extension UILabel {
         label.clipsToBounds = true
         label.snp.makeConstraints { make in
             make.height.greaterThanOrEqualTo(30)
+            make.width.equalTo(label.intrinsicContentSize.width + 20).priority(.medium)
         }
         return label
     }
