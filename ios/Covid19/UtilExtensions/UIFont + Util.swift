@@ -22,7 +22,7 @@ extension UIFont {
     }
 
     static func italic(size: CGFloat) -> UIFont? {
-        return UIFont(name: "Barlow-Italic", size: size)
+        return UIFont(name: "Barlow-MediumItalic", size: size)
     }
 }
 

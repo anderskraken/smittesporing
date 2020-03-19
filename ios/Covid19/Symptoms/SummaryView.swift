@@ -56,6 +56,13 @@ class SummaryView: UIView {
     
     private func layoutSymptoms() {
         symptomsView.removeAllSubviews()
+        
+        if data.symptoms.isEmpty {
+            let emptyLabel = UILabel.body("Ingen").aligned(.left)
+            symptomsView.addVertically(views: emptyLabel)
+            return
+        }
+        
         let maxWidth = symptomsView.frame.width
         var rowWidth = CGFloat(0)
         var rows = [UIView()]

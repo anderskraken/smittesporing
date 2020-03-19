@@ -27,7 +27,7 @@ struct RegisteredData: Codable {
     }
     
     var suspicionDesc: NSAttributedString? {
-        suspectsInfection ? NSAttributedString(string: "• Mistenker smitte") : nil
+        suspectsInfection ? stringWithItalic(firstPart: "• Mistenker smitte", italicPart: "", lastPart: "") : nil
     }
     
     var testedDesc: NSAttributedString {
@@ -56,7 +56,7 @@ struct RegisteredData: Codable {
     
     func stringWithItalic(firstPart: String, italicPart: String, lastPart: String) -> NSAttributedString {
         let italic = [NSAttributedString.Key.font : UIFont.italic(size: 18)!] as [NSAttributedString.Key : Any]
-        let regular = [NSAttributedString.Key.font : UIFont.regular(size: 18)!] as [NSAttributedString.Key : Any]
+        let regular = [NSAttributedString.Key.font : UIFont.medium(size: 18)!] as [NSAttributedString.Key : Any]
         
         let italicText = NSMutableAttributedString(string:italicPart, attributes: italic)
         let endingText = NSMutableAttributedString(string:lastPart, attributes: regular)
