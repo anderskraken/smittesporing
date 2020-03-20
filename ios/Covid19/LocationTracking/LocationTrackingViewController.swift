@@ -93,11 +93,7 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
 
     private func showTrackingInfo() {
         centerStack.removeAllSubviews()
-        let activatedInfo = InfoCard(text: "Smittesporing er aktivert. Takk for at du bidrar!",
-                            image: UIImage(named: "tada"), imageTint: .blue)
-        let stayHomeInfo = InfoCard(text: "Det viktigste du kan gjøre er å holde avstand fra andre.",
-                            image: UIImage(named: "hand"), imageTint: .blue)
-        centerStack.addVertically(views: activatedInfo, stayHomeInfo)
+        centerStack.addVertically(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard)
     }
 
     private func toggleTracking() {
@@ -107,6 +103,7 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
             enableTracking()
         }
     }
+    
     private func enableTracking() {
         switch(CLLocationManager.authorizationStatus()) {
         case .authorizedAlways, .authorizedWhenInUse:

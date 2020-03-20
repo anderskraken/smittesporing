@@ -11,9 +11,9 @@ import UIKit
 class SummaryView: UIView {
     
     let symptomsView = UIStackView()
-    let data: RegisteredData
+    let data: FormData
     
-    init(data: RegisteredData) {
+    init(data: FormData) {
         self.data = data
         super.init(frame: .zero)
         setup(data)
@@ -23,7 +23,7 @@ class SummaryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(_ data: RegisteredData) {
+    func setup(_ data: FormData) {
         backgroundColor = .lightGray
         layer.cornerRadius = 6
         let stack = UIStackView()
@@ -94,5 +94,54 @@ class SummaryView: UIView {
                 make.left.equalToSuperview()
             }
         }
+    }
+}
+
+extension FormData {
+    var personaliaDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• \(gender), \(age), ",
+            italicPart: inRiskGroup ? "" : "ikke ",
+            lastPart: "i risikogruppe")
+    }
+    
+    var suspicionDesc: NSAttributedString? {
+        suspectsInfection ? stringWithItalic(firstPart: "• Mistenker smitte", italicPart: "", lastPart: "") : nil
+    }
+    
+    var testedDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• Har ",
+                         italicPart: testedPositive ? "" : "ikke ",
+                         lastPart: "tested positivt")
+    }
+    
+    var provenInfectionDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• Har ",
+                         italicPart: testedPositive ? "" : "ikke ",
+                         lastPart: "fått påvist smitte")
+    }
+    
+    var contactDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• Har ",
+                         italicPart: inContactWithInfectedPerson ? "" : "ikke ",
+                         lastPart: "vært i kontakt med person som har testet positivt for COVID-19")
+    }
+    
+    var travelDesc: NSAttributedString {
+        stringWithItalic(firstPart: "• Har ",
+                         italicPart: beenOutsideNordic ? "" : "ikke ",
+                         lastPart: "vært utenfor Norden de siste 14 dagene")
+    }
+    
+    func stringWithItalic(firstPart: String, italicPart: String, lastPart: String) -> NSAttributedString {
+        let italic = [NSAttributedString.Key.font : UIFont.italic(size: 18)!] as [NSAttributedString.Key : Any]
+        let regular = [NSAttributedString.Key.font : UIFont.medium(size: 18)!] as [NSAttributedString.Key : Any]
+        
+        let italicText = NSMutableAttributedString(string:italicPart, attributes: italic)
+        let endingText = NSMutableAttributedString(string:lastPart, attributes: regular)
+        
+        let result = NSMutableAttributedString(string:firstPart, attributes: regular)
+        result.append(italicText)
+        result.append(endingText)
+        return result
     }
 }

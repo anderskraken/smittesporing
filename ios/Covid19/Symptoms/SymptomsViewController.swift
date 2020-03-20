@@ -15,7 +15,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         addKeyboardDismisser()
-        if let data = LocalDataManager.shared.data {
+        if let data = LocalDataManager.shared.formData {
             showSummary(data: data)
         } else {
             setupUnregisteredView()
@@ -47,7 +47,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
         }
     }
     
-    func setupSummary(data: RegisteredData) {
+    func setupSummary(data: FormData) {
         addTitle("Oppsummering")
         let titleView = view.subviews.first!
         let scrollView = FadingScrollView(fadingEdges: .vertical)
@@ -81,14 +81,14 @@ class SymptomsViewController: UIViewController, FormDelegate {
         setupForm()
     }
     
-    func showSummary(data: RegisteredData) {
+    func showSummary(data: FormData) {
         view.removeAllSubviews()
         setupSummary(data: data)
     }
     
     func cancelRegistration() {
         view.removeAllSubviews()
-        if let data = LocalDataManager.shared.data {
+        if let data = LocalDataManager.shared.formData {
             showSummary(data: data)
         } else {
             setupUnregisteredView()

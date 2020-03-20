@@ -25,7 +25,7 @@ class InfoCard: UIView {
 
         label = UILabel.body(text).lineCount(0)
         
-        button = MainButton(text: buttonText ?? "", type: .secondary, action: action)
+        button = MainButton(text: buttonText ?? "", type: .primary, action: action)
 
         let views = [image == nil ? nil : imageView, text == nil ? nil : label, buttonText == nil ? nil : button].compactMap({ $0 })
         let stack = UIStackView(verticalViews: views)
@@ -35,6 +35,7 @@ class InfoCard: UIView {
             make.center.equalToSuperview()
             make.left.top.greaterThanOrEqualToSuperview().inset(UIEdgeInsets.margins)
             make.right.bottom.lessThanOrEqualToSuperview().inset(UIEdgeInsets.margins)
+            make.width.equalToSuperview().inset(UIEdgeInsets.horizontal)
         }
     }
     
@@ -51,4 +52,23 @@ class InfoCard: UIView {
             make.height.equalTo(0).priority(.low)
         }
     }
+}
+
+//MARK: Static cards
+
+extension InfoCard {
+    static let trackingEnabledCard = InfoCard(text: "Smittesporing er aktivert. Takk for at du bidrar!",
+                        image: UIImage(named: "tada"),
+                        imageTint: .blue)
+    
+    static let stayHomeCard = InfoCard(text: "Det viktigste du kan gjøre er å holde avstand fra andre.",
+                        image: UIImage(named: "hand"),
+                        imageTint: .blue)
+
+    static let notMovedCard = InfoCard(text: "Du har ikke beveget deg utenfor hjemmet ditt i dag!",
+                        image: UIImage(named: "house"))
+
+    static let riskDetectedCard = InfoCard(text: "Du har vært på et sted hvor mange har blitt smittet.",
+                        image: UIImage(named: "warning"),
+                        buttonText: "Mer informasjon")
 }

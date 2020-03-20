@@ -10,30 +10,30 @@ import Foundation
 
 class LocalDataManager {
     
-    final let DATA_KEY = "LocalData"
-    final let TRACKING_KEY = "TrackingEnabled"
+    final let FORM_DATA_KEY = "FormData"
+    final let TRACKING_ENABLED_KEY = "TrackingEnabled"
     final let TRACKING_TIME_KEY = "TrackingTime"
 
     static let shared = LocalDataManager()
 
     private init() { }
     
-    var data: RegisteredData? {
-        set { saveLocal(data: newValue) }
-        get { getLocalData() }
+    var formData: FormData? {
+        set { saveLocal(formData: newValue) }
+        get { getLocalFormData() }
     }
 
-    func saveLocal(data: RegisteredData?) {
+    func saveLocal(formData: FormData?) {
         let defaults = UserDefaults.standard
-        if let encoded = data?.encode() {
-            defaults.set(encoded, forKey: DATA_KEY)
+        if let encoded = formData?.encode() {
+            defaults.set(encoded, forKey: FORM_DATA_KEY)
         }
     }
 
-    func getLocalData() -> RegisteredData? {
+    func getLocalFormData() -> FormData? {
         let defaults = UserDefaults.standard
-        if let value = defaults.value(forKey: DATA_KEY) as? Data {
-            return RegisteredData.decode(from: value)
+        if let value = defaults.value(forKey: FORM_DATA_KEY) as? Data {
+            return FormData.decode(from: value)
         } else {
             return nil
         }
@@ -41,7 +41,7 @@ class LocalDataManager {
     
     func saveLocal(trackingEnabled: Bool?, time: Date?) {
         let defaults = UserDefaults.standard
-        defaults.set(trackingEnabled, forKey: TRACKING_KEY)
+        defaults.set(trackingEnabled, forKey: TRACKING_ENABLED_KEY)
         if let time = time {
             defaults.set(time.timeIntervalSince1970, forKey: TRACKING_TIME_KEY)
         } else {
@@ -51,7 +51,7 @@ class LocalDataManager {
 
     func getTracking() -> Bool {
         let defaults = UserDefaults.standard
-        return defaults.bool(forKey: TRACKING_KEY)
+        return defaults.bool(forKey: TRACKING_ENABLED_KEY)
     }
 
     func getTrackingTime() -> Date? {
@@ -61,7 +61,7 @@ class LocalDataManager {
     }
 }
 
-extension RegisteredData {
+extension FormData {
     
     func encode() -> Data? {
         let jsonEncoder = JSONEncoder()
@@ -77,10 +77,10 @@ extension RegisteredData {
         }
     }
     
-    static func decode(from jsonData: Data) -> RegisteredData? {
+    static func decode(from jsonData: Data) -> FormData? {
         let jsonDecoder = JSONDecoder()
         do {
-            let decoded = try jsonDecoder.decode(RegisteredData.self, from: jsonData)
+            let decoded = try jsonDecoder.decode(FormData.self, from: jsonData)
             return decoded
         }
         catch let error {
