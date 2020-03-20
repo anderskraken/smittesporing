@@ -31,18 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureAppCenter() {
-        if Env.isDebug {
-            MSAppCenter.start(Secrets.appCenterSecret, withServices:[
-              MSAnalytics.self,
-              MSCrashes.self,
-            ])
-        } else if Env.isRelease {
+        if Env.isRelease {
             MSAppCenter.start(Secrets.appCenterSecret, withServices:[
               MSAnalytics.self,
               MSCrashes.self,
               MSDistribute.self
             ])
-        } else {
+        } else if Env.isAppStore {
             MSAppCenter.start(Secrets.appCenterSecret, withServices:[
               MSAnalytics.self,
               MSCrashes.self,
