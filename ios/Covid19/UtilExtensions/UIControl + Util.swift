@@ -33,6 +33,7 @@ extension UIControl {
         add(for: .touchDown, animateButtonDown)
         add(for: .touchUpInside, animateButtonUp)
         add(for: .touchUpOutside, animateButtonUp)
+        add(for: .touchCancel, animateButtonUp)
     }
     
     func animateButtonDown() {

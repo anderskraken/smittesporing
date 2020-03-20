@@ -12,6 +12,7 @@ extension Date {
     var prettyString: String {
         let cal = Calendar.current        
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "nb_NO")
         formatter.dateFormat = "HH.mm"
         let time = formatter.string(from: self)
 

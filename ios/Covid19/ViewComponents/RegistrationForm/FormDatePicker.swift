@@ -49,6 +49,7 @@ class FormDatePicker: UITextField, FormInput, UITextFieldDelegate {
 
         let icon = UIImageView(image: UIImage(named: "calendar")).tinted(.darkGray)
         let iconView = UIView()
+        iconView.isUserInteractionEnabled = false
         iconView.addSubview(icon)
         icon.snp.makeConstraints { make in
             make.width.height.equalTo(16)
@@ -58,15 +59,14 @@ class FormDatePicker: UITextField, FormInput, UITextFieldDelegate {
         rightViewMode = .always
 
         datePicker.datePickerMode = .date
+        inputAccessoryView = createDoneToolbar()
         inputView = datePicker
-        
-        datePicker.add(for: .valueChanged) {
-            self.dateChanged(date: self.datePicker.date)
-        }
+        addTapAnimations()
     }
     
     func dateChanged(date: Date) {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "nb_NO")
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         text = formatter.string(from: date)
@@ -83,5 +83,18 @@ class FormDatePicker: UITextField, FormInput, UITextFieldDelegate {
         }
         return super.canPerformAction(action, withSender: sender)
     }
-}
+    
+    private func createDoneToolbar() -> UIToolbar {
+        let doneButton = UIBarButtonItem(title: "Ferdig", style: UIBarButtonItem.Style.plain, target: self, action: #selector(endEditing(_:)))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
 
+        let toolbar = UIToolbar()
+        toolbar.barStyle = UIBarStyle.default
+        toolbar.isTranslucent = true
+        toolbar.tintColor = UIColor.black
+        toolbar.sizeToFit()
+        toolbar.setItems([ spaceButton, doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        return toolbar
+    }
+}

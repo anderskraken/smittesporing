@@ -22,7 +22,7 @@ class FormCheckBoxGroup: UIStackView, FormInput {
         self.delegate = delegate
         super.init(frame: .zero)
         choices.forEach { checkBoxes[$0] = createCheckBox(choice: $0) }
-        addVertically(views: choices.map { createChoice($0) })
+        addVertically(spacing: 12, views: choices.map { createChoice($0) })
     }
     
     required init(coder: NSCoder) {

@@ -13,12 +13,15 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
 
     var trackingButton: MainButton!
     var locationManager: CLLocationManager?
+    var titleLabel: UIView!
     var statusIcon = UIButton()
-    var statusLabel = UILabel.bodySmall("")
+    var statusLabel = UILabel.bodySmall("").aligned(.left)
+    var scrollView = FadingScrollView(fadingEdges: .vertical)
     var centerStack = UIStackView()
     var bottomInfo = UIView()
     var trackingTime: Date? = LocalDataManager.shared.getTrackingTime()
-    
+    let trackingDisabledContainer = UIView()
+
     var trackingActive = LocalDataManager.shared.getTracking() {
         didSet {
             trackingTime = trackingActive ? Date() : nil
@@ -34,66 +37,115 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
     }
     
     override func viewDidLayoutSubviews() {
-        let title = createTitle("Bevegelser")
-        statusIcon.snp.makeConstraints { make in
-            make.width.height.equalTo(20)
-            make.left.equalTo(title.snp.right).offset(10)
-            make.centerY.equalTo(title)
+        titleLabel.snp.remakeConstraints { make in
+            make.top.left.equalToSuperview().inset(UIEdgeInsets.safeMargins)
+            make.height.equalTo(40)
         }
-        statusLabel.snp.makeConstraints { make in
-            make.top.equalTo(title.snp.bottom).offset(10)
-            make.left.equalTo(title)
-        }
+        centerContent()
     }
+//
+//    override func viewWillAppear(_ animated: Bool) {
+//        centerContent()
+//    }
     
+    private func centerContent() {
+        scrollView.layoutIfNeeded()
+        let offset = (scrollView.frame.height - centerStack.frame.maxY) / 2
+        scrollView.contentInset = UIEdgeInsets(top: max(.margin, offset), left: .margin, bottom: .margin, right: .margin)
+    }
+
     private func setupViews() {
-        view.addSubview(statusLabel)
+        titleLabel = createTitle("Bevegelser")
         view.addSubview(statusIcon)
         statusIcon.setImage(UIImage(named: "location"), for: .normal)
-        statusIcon.add(for: .touchUpInside) {
-            self.trackingActive = false
+        statusIcon.add(for: .touchUpInside) { self.trackingActive = false }
+        statusIcon.snp.makeConstraints { make in
+            make.width.height.equalTo(20)
+            make.left.equalTo(titleLabel.snp.right).offset(10)
+            make.centerY.equalTo(titleLabel)
         }
         
+        view.addSubview(statusLabel)
+        statusLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.left.equalTo(titleLabel)
+            make.right.equalToSuperview()
+        }
+        
+        view.addSubview(scrollView)
+        scrollView.contentInset = UIEdgeInsets.margins
+        scrollView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(statusLabel.snp.bottom)
+        }
+        
+        scrollView.addSubview(centerStack)
         centerStack.clipsToBounds = false
-        addCenteredWithMargin(centerStack)
-
-        trackingButton = MainButton(text: "Aktiver sporing", type: .primary, action: toggleTracking)
-        view.addSubview(trackingButton)
-        trackingButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(UIEdgeInsets.horizontal)
+        centerStack.snp.makeConstraints { make in
+            make.width.equalToSuperview().inset(UIEdgeInsets.margins)
+            make.left.right.top.bottom.equalToSuperview()
+        }
+        
+        setupTrackingDisabledViews()
+    }
+    
+    private func setupTrackingDisabledViews() {
+        let inactiveBadge = InfoBadge(text: "Sporing er ikke aktiv.", image: UIImage(named: "location"), imageTint: .stroke)
+        let trackingButton = MainButton(text: "Aktiver sporing", type: .primary, action: toggleTracking)
+        let bottomInfo = UILabel.bodySmall("Lokasjonsdata lagres lokalt inntil du velger å dele disse.")
+        let badgeContainer = UIView()
+        
+        view.addSubview(trackingDisabledContainer)
+        trackingDisabledContainer.addSubview(badgeContainer)
+        trackingDisabledContainer.addSubview(trackingButton)
+        trackingDisabledContainer.addSubview(bottomInfo)
+        trackingDisabledContainer.snp.makeConstraints { make in
+            make.top.equalTo(statusLabel.snp.bottom)
+            make.left.right.bottom.equalToSuperview().inset(UIEdgeInsets.margins)
+        }
+        
+        badgeContainer.addSubview(inactiveBadge)
+        badgeContainer.snp.makeConstraints { make in
+            make.left.right.top.equalToSuperview()
+            make.bottom.equalTo(trackingButton.snp.top)
         }
 
-        bottomInfo = UILabel.bodySmall("Lokasjonsdata lagres lokalt inntil du velger å dele disse.")
-        view.addSubview(bottomInfo)
+        inactiveBadge.snp.makeConstraints { make in
+            make.top.greaterThanOrEqualToSuperview().inset(CGFloat.margin)
+            make.bottom.lessThanOrEqualToSuperview().inset(-CGFloat.margin)
+            make.center.equalToSuperview().priority(.low)
+            make.width.equalToSuperview()
+        }
+
+        trackingButton.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+        }
+
         bottomInfo.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview().inset(UIEdgeInsets.margins)
+            make.left.right.bottom.equalToSuperview()
             make.top.equalTo(trackingButton.snp.bottom).offset(10)
         }
     }
-    
+
+
     private func updateViews() {
-        trackingButton.set(type: trackingActive ? .activated : .primary)
-        trackingButton.setTitle(trackingActive ? "Sporing aktiv" : "Aktiver sporing", for: .normal)
         statusLabel.text = trackingActive ? "Aktiv siden \(trackingTime?.prettyString ?? "")" : "Sporing er ikke aktivert."
         statusIcon.tintColor = trackingActive ? .blue : .stroke
-        bottomInfo.isHidden = trackingActive
-        trackingButton.isHidden = trackingActive
+        trackingDisabledContainer.isHidden = trackingActive
+        scrollView.isHidden = !trackingActive
         if trackingActive {
             showTrackingInfo()
-        } else {
-            showTrackingDisabledInfo()
         }
     }
     
-    private func showTrackingDisabledInfo() {
-        centerStack.removeAllSubviews()
-        let info = InfoBadge(text: "Sporing er ikke aktiv.", image: UIImage(named: "location"), imageTint: .stroke)
-        centerStack.addVertically(views: info)
-    }
-
     private func showTrackingInfo() {
+//        addScrollingContent(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard, InfoCard.notMovedCard, InfoCard.riskDetectedCard)
+        addScrollingContent(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard)
+    }
+    
+    private func addScrollingContent(views: UIView...) {
         centerStack.removeAllSubviews()
-        centerStack.addVertically(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard)
+        centerStack.addVertically(views: views)
     }
 
     private func toggleTracking() {

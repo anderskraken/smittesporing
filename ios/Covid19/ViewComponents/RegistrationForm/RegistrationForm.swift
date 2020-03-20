@@ -70,7 +70,7 @@ class RegistrationForm: UIView, FormInputDelegate {
         setupProgressBar()
         setupContent()
         nextPage()
-        mainContent.addFilling(mainStack)
+        mainContent.addFilling(mainStack, insets: UIEdgeInsets.margins)
         initializeFields(with: LocalDataManager.shared.formData)
     }
     
@@ -87,8 +87,8 @@ class RegistrationForm: UIView, FormInputDelegate {
         addSubview(mainContent)
         mainContent.showsVerticalScrollIndicator = false
         mainContent.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(UIEdgeInsets.margins)
-            make.top.equalTo(progressBar.snp.bottom).offset(CGFloat.margin)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(progressBar.snp.bottom)
         }
         
         addSubview(bottomContent)
@@ -148,7 +148,8 @@ class RegistrationForm: UIView, FormInputDelegate {
         currentPage = pageNumber
         mainStack.removeAllSubviews()
         backButton.setTitle(currentPage == 1 ? "Avbryt" : "Tilbake", for: .normal)
-        continueButton.setTitle(currentPage == 3 ? "Lagre informasjon" : "Neste", for: .normal)
+        continueButton.setTitle(currentPage == 3 ? "Lagre" : "Neste", for: .normal)
+        mainContent.delaysContentTouches = currentPage == 3
         switch currentPage {
         case 1:
             progressBar.setProgress(0.025, animated: false)

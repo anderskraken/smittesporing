@@ -37,6 +37,7 @@ class FormTextField: UITextField, FormInput, UITextFieldDelegate {
         layer.borderWidth = 2
         layer.borderColor = .stroke
         layer.cornerRadius = 6
+        addTapAnimations()
         snp.makeConstraints { make in
             make.height.equalTo(50)
         }
