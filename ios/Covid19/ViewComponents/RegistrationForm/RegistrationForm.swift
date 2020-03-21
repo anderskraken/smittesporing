@@ -71,7 +71,7 @@ class RegistrationForm: UIView, FormInputDelegate {
         setupContent()
         nextPage()
         mainContent.addFilling(mainStack, insets: UIEdgeInsets.margins)
-        initializeFields(with: LocalDataManager.shared.formData)
+        initializeFields(with: LocalStorageManager.formData)
     }
     
     required init?(coder: NSCoder) {
@@ -205,7 +205,7 @@ class RegistrationForm: UIView, FormInputDelegate {
                             beenOutsideNordic: beenOutsideNordicInput.valueIsYes,
                             returnedHomeDate: beenOutsideNordicInput.valueIsYes ? returnedHomeDateInput.value as? String : nil,
                             symptoms: symptomsInput.value as! [String])
-        LocalDataManager.shared.formData = data
+        LocalStorageManager.formData = data
         delegate?.showSummary(data: data)
     }
 }

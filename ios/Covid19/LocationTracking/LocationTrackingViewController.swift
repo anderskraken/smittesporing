@@ -9,44 +9,38 @@
 import UIKit
 import CoreLocation
 
-class LocationTrackingViewController: UIViewController, CLLocationManagerDelegate {
+class LocationTrackingViewController: UIViewController, LocationTrackingDelegate {
 
     var trackingButton: MainButton!
-    var locationManager: CLLocationManager?
     var titleLabel: UIView!
     var statusIcon = UIButton()
     var statusLabel = UILabel.bodySmall("").aligned(.left)
     var scrollView = FadingScrollView(fadingEdges: .vertical)
     var centerStack = UIStackView()
-    var bottomInfo = UIView()
-    var trackingTime: Date? = LocalDataManager.shared.getTrackingTime()
     let trackingDisabledContainer = UIView()
 
-    var trackingActive = LocalDataManager.shared.getTracking() {
-        didSet {
-            trackingTime = trackingActive ? Date() : nil
-            LocalDataManager.shared.saveLocal(trackingEnabled: trackingActive, time: trackingTime)
-            updateViews()
-        }
+    lazy var manager = LocationTrackingManager(delegate: self)
+    
+    var trackingEnabled: Bool {
+        manager.trackingEnabled
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         updateViews()
+        LocalStorageManager.deleteLocations()
     }
     
     override func viewDidLayoutSubviews() {
-        titleLabel.snp.remakeConstraints { make in
-            make.top.left.equalToSuperview().inset(UIEdgeInsets.safeMargins)
-            make.height.equalTo(40)
+        if titleLabel.frame.minY < UIEdgeInsets.safeAreaTop {
+            titleLabel.snp.remakeConstraints { make in
+                make.top.left.equalToSuperview().inset(UIEdgeInsets.safeMargins)
+                make.height.equalTo(40)
+            }
         }
         centerContent()
     }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        centerContent()
-//    }
     
     private func centerContent() {
         scrollView.layoutIfNeeded()
@@ -58,7 +52,7 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
         titleLabel = createTitle("Bevegelser")
         view.addSubview(statusIcon)
         statusIcon.setImage(UIImage(named: "location"), for: .normal)
-        statusIcon.add(for: .touchUpInside) { self.trackingActive = false }
+        statusIcon.add(for: .touchUpInside, manager.disableTracking)
         statusIcon.snp.makeConstraints { make in
             make.width.height.equalTo(20)
             make.left.equalTo(titleLabel.snp.right).offset(10)
@@ -91,7 +85,7 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
     
     private func setupTrackingDisabledViews() {
         let inactiveBadge = InfoBadge(text: "Sporing er ikke aktiv.", image: UIImage(named: "location"), imageTint: .stroke)
-        let trackingButton = MainButton(text: "Aktiver sporing", type: .primary, action: toggleTracking)
+        let trackingButton = MainButton(text: "Aktiver sporing", type: .primary, action: manager.enableTracking)
         let bottomInfo = UILabel.bodySmall("Lokasjonsdata lagres lokalt inntil du velger å dele disse.")
         let badgeContainer = UIView()
         
@@ -126,69 +120,36 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
             make.top.equalTo(trackingButton.snp.bottom).offset(10)
         }
     }
-
-
-    private func updateViews() {
-        statusLabel.text = trackingActive ? "Aktiv siden \(trackingTime?.prettyString ?? "")" : "Sporing er ikke aktivert."
-        statusIcon.tintColor = trackingActive ? .blue : .stroke
-        trackingDisabledContainer.isHidden = trackingActive
-        scrollView.isHidden = !trackingActive
-        if trackingActive {
-            showTrackingInfo()
-        }
-    }
     
     private func showTrackingInfo() {
-//        addScrollingContent(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard, InfoCard.notMovedCard, InfoCard.riskDetectedCard)
         addScrollingContent(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard)
+        addDebugGesture()
     }
     
     private func addScrollingContent(views: UIView...) {
         centerStack.removeAllSubviews()
         centerStack.addVertically(views: views)
     }
-
-    private func toggleTracking() {
-        if trackingActive {
-            trackingActive = false
-        } else {
-            enableTracking()
+    
+    internal func updateViews() {
+        let timeStamp = manager.trackingStartedTimeStamp?.prettyString
+        statusLabel.text = trackingEnabled ? timeStamp != nil ? "Aktiv siden \(timeStamp!)" : "Sporing er aktivert" : "Sporing er ikke aktivert."
+        statusIcon.tintColor = trackingEnabled ? .blue : .stroke
+        trackingDisabledContainer.isHidden = trackingEnabled
+        scrollView.isHidden = !trackingEnabled
+        if trackingEnabled {
+            showTrackingInfo()
         }
     }
     
-    private func enableTracking() {
-        switch(CLLocationManager.authorizationStatus()) {
-        case .authorizedAlways, .authorizedWhenInUse:
-            trackingActive = true
-        case .restricted, .denied:
-            present(getSettingsDialog(), animated: true, completion: nil)
-        case .notDetermined:
-            requestLocationPermission()
-        default:
-            return
-        }
-    }
+    internal func showSettingsDialog() {
+        let alertController = UIAlertController(title: "Trenger tilgang til posisjon",
+                                                message: "Du kan gi tilgang til posisjonen din i innstillinger, for å registrere dine bevegelser.",
+                                                preferredStyle: .alert)
         
-    private func requestLocationPermission() {
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        locationManager?.requestAlwaysAuthorization()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-                if CLLocationManager.isRangingAvailable() {
-                    trackingActive = true
-                }
-            }
-        }
-    }
-
-    private func getSettingsDialog() -> UIAlertController {
-        let alertController = UIAlertController(title: "Trenger tilgang til posisjon", message: "Du kan gi tilgang til posisjonen din i innstillinger, for å registrere dine bevegelser.", preferredStyle: .alert)
         let settingsAction = UIAlertAction(title: "Instillinger", style: .default) { (_) -> Void in
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            guard let bundleId = Bundle.main.bundleIdentifier,
+                let settingsUrl = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleId)") else {
                 return
             }
             if UIApplication.shared.canOpenURL(settingsUrl) {
@@ -198,6 +159,34 @@ class LocationTrackingViewController: UIViewController, CLLocationManagerDelegat
         let cancelAction = UIAlertAction(title: "Acbryt", style: .default, handler: nil)
         alertController.addAction(cancelAction)
         alertController.addAction(settingsAction)
-        return alertController
+        present(alertController, animated: true)
+    }
+
+    internal func showSignificantLocationUnavailableDialog() {
+        let alertController = UIAlertController(title: "Kunne ikke starte bevegelsessporing.",
+                                                message: "Din enhet støtter dessverre ikke lokasjonssporing.",
+                                                preferredStyle: .alert)
+        
+        let dissmissAction = UIAlertAction(title: "Jeg forstår", style: .default, handler: nil)
+        alertController.addAction(dissmissAction)
+        present(alertController, animated: true)
+    }
+
+    private func addDebugGesture() {
+        let gesture = UIRotationGestureRecognizer(target: self, action: #selector(debugPrintLocations))
+        scrollView.subviews.first?.subviews.first?.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func debugPrintLocations(sender: UIRotationGestureRecognizer) {
+        if sender.rotation > .pi / 2 {
+            sender.isEnabled = false
+            let locationLabels = LocalStorageManager.getLocations().map({
+                let lat = String(format: "%.10f", $0.coordinate.latitude)
+                let long = String(format: "%.10f", $0.coordinate.longitude)
+                return UILabel.bodySmall("\($0.timestamp.prettyString.capitalized): \(lat), \(long)")
+            }) as [UILabel]
+            centerStack.removeAllSubviews()
+            centerStack.addVertically(views: locationLabels)
+        }
     }
 }
