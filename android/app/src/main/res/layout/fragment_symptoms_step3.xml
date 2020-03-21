@@ -12,7 +12,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="100dp">
+            android:paddingBottom="110dp">
 
 
             <TextView
@@ -186,10 +186,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/step2BackButton" />
+        app:layout_constraintStart_toEndOf="@+id/step3BackButton" />
 
     <Button
-        android:id="@+id/step2BackButton"
+        android:id="@+id/step3BackButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -208,5 +208,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/colorPrimary"
         app:strokeWidth="2dp" />
+
+    <View
+        android:id="@+id/buttonsBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-16dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/step3BackButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

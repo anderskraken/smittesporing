@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="100dp">
+            android:paddingBottom="110dp">
 
 
             <TextView
@@ -142,10 +143,44 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:paddingHorizontal="20dp"
-                    android:text="@string/no"
+                    android:text="@string/no_dont_know"
                     android:textColor="@color/radio_flat_text_selector" />
 
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/lastContact"
+                style="@style/textBasic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/symptoms_last_contact_with_infected"
+                app:layout_constraintEnd_toEndOf="@id/contactGroup"
+                app:layout_constraintStart_toStartOf="@+id/contactGroup"
+                app:layout_constraintTop_toBottomOf="@+id/contactGroup" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lastContactInput"
+                style="@style/inputOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconDrawable="@drawable/ic_calendar"
+                app:endIconMode="custom"
+                app:endIconTint="@color/light_grey"
+                app:helperTextEnabled="false"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/lastContact"
+                app:layout_constraintStart_toStartOf="@+id/lastContact"
+                app:layout_constraintTop_toBottomOf="@+id/lastContact">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pick_date" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/outsideNorwayLabel"
@@ -154,9 +189,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/symptoms_outside_north_question"
-                app:layout_constraintEnd_toEndOf="@+id/contactGroup"
-                app:layout_constraintStart_toStartOf="@+id/contactGroup"
-                app:layout_constraintTop_toBottomOf="@+id/contactGroup" />
+                app:layout_constraintEnd_toEndOf="@+id/lastContactInput"
+                app:layout_constraintStart_toStartOf="@+id/lastContactInput"
+                app:layout_constraintTop_toBottomOf="@+id/lastContactInput" />
 
 
             <RadioGroup
@@ -198,6 +233,40 @@
                     android:textColor="@color/radio_flat_text_selector" />
 
             </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/backToNorway"
+                style="@style/textBasic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/symptoms_back_to_norway_qustion"
+                app:layout_constraintStart_toStartOf="@+id/outsideNorwayGroup"
+                app:layout_constraintTop_toBottomOf="@+id/outsideNorwayGroup" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/backToNorwayInput"
+                style="@style/inputOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconDrawable="@drawable/ic_calendar"
+                app:endIconMode="custom"
+                app:endIconTint="@color/light_grey"
+                app:helperTextEnabled="false"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/outsideNorwayGroup"
+                app:layout_constraintStart_toStartOf="@+id/backToNorway"
+                app:layout_constraintTop_toBottomOf="@+id/backToNorway">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pick_date" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <View
@@ -265,5 +334,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/colorPrimary"
         app:strokeWidth="2dp" />
+
+    <View
+        android:id="@+id/buttonsBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-16dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/step2BackButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

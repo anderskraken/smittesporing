@@ -57,4 +57,9 @@
     <string name="summary_symptoms">Symptomer</string>
     <string name="save_changes">Registrer endring</string>
     <string name="share_data">Del data</string>
+    <string name="symptoms_back_to_norway_qustion">Når kom du tilbake til Norge?</string>
+    <string name="pick_date">Velg dato</string>
+    <string name="select_date">Velg dato</string>
+    <string name="no_dont_know">Nei / Vet ikke</string>
+    <string name="symptoms_last_contact_with_infected">Når var du i kontakt med smittede?</string>
 </resources>
