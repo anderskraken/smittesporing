@@ -205,23 +205,6 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
             }) as [UILabel]
             centerStack.removeAllSubviews()
             centerStack.add(views: locationLabels)
-            
-//            let map = MKMapView()
-//            view.addSubview(map)
-//            map.snp.makeConstraints { make in
-//                make.edges.equalTo(scrollView)
-//            }
-//
-//            let annotations = locations.map { location in
-//                let annotation = MKPointAnnotation()
-//                annotation.coordinate = location.coordinate
-//                return annotation
-//            } as [MKAnnotation]
-//
-//            map.addAnnotations(annotations)
-//            if let coordinate = locations.last?.coordinate {
-//                map.setRegion(MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000), animated: false)
-//            }
         }
     }
 }

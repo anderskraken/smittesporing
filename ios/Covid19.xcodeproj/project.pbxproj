@@ -56,6 +56,7 @@
 		636A873A242619B7005220D0 /* LocationTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636A8739242619B7005220D0 /* LocationTrackingManager.swift */; };
 		63908A6124264B1A00FEC7DB /* Date + Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63908A6024264B1A00FEC7DB /* Date + Util.swift */; };
 		63908A63242685ED00FEC7DB /* CLLocation + Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63908A62242685ED00FEC7DB /* CLLocation + Util.swift */; };
+		63908A65242699CC00FEC7DB /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63908A64242699CC00FEC7DB /* WebViewViewController.swift */; };
 		B058781D28D6684AA55E16A6 /* Pods_Covid19.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92715C682D31244C504DE276 /* Pods_Covid19.framework */; };
 		D35398EA788E343BEFDBA985 /* Pods_Covid19Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD482D618109C3BD53474AD /* Pods_Covid19Tests.framework */; };
 		DC112C6424224DE6007A3C09 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC112C6324224DE6007A3C09 /* Configuration.swift */; };
@@ -128,6 +129,7 @@
 		636A8739242619B7005220D0 /* LocationTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTrackingManager.swift; sourceTree = "<group>"; };
 		63908A6024264B1A00FEC7DB /* Date + Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Util.swift"; sourceTree = "<group>"; };
 		63908A62242685ED00FEC7DB /* CLLocation + Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation + Util.swift"; sourceTree = "<group>"; };
+		63908A64242699CC00FEC7DB /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		783A30C6D2183ED81CB3A94B /* Pods-Covid19.release appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19.release appstore.xcconfig"; path = "Target Support Files/Pods-Covid19/Pods-Covid19.release appstore.xcconfig"; sourceTree = "<group>"; };
 		8E22C5BA6887897E28CCD003 /* Pods-Covid19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19.release.xcconfig"; path = "Target Support Files/Pods-Covid19/Pods-Covid19.release.xcconfig"; sourceTree = "<group>"; };
 		92715C682D31244C504DE276 /* Pods_Covid19.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covid19.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -302,6 +304,7 @@
 				DCF3D70F2421214600671399 /* AppDelegate.swift */,
 				DCF3D7132421214600671399 /* TabBarController.swift */,
 				63527DA1242379CA002B21C5 /* LocalStorageManager.swift */,
+				63908A64242699CC00FEC7DB /* WebViewViewController.swift */,
 				6368F13A242253F70010C071 /* LocationTracking */,
 				6368F13B2422540C0010C071 /* Symptoms */,
 				6368F13C242254160010C071 /* Sharing */,
@@ -563,6 +566,7 @@
 				63527D9424226FCD002B21C5 /* FormTextField.swift in Sources */,
 				63908A6124264B1A00FEC7DB /* Date + Util.swift in Sources */,
 				6368F1202421454E0010C071 /* LocationTrackingViewController.swift in Sources */,
+				63908A65242699CC00FEC7DB /* WebViewViewController.swift in Sources */,
 				636A873A242619B7005220D0 /* LocationTrackingManager.swift in Sources */,
 				6368F13324223EAD0010C071 /* UIViewController + Util.swift in Sources */,
 				6368F12F242238640010C071 /* UIImageView + Util.swift in Sources */,

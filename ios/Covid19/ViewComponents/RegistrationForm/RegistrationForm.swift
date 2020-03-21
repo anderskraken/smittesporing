@@ -32,7 +32,7 @@ class RegistrationForm: UIView, FormInputDelegate {
     lazy var ageInput = FormInputSection(title: "Alder",
                                          input: FormTextField(placeholder: "Skriv inn alder", type: .numberPad, delegate: self))
     
-    lazy var inRiskGroupInput = FormInputSection(title: "Er du i en risikogruppe?",
+    lazy var inRiskGroupInput = FormInputSection(title: "Er du i en ", linkText: "risikogruppe", trailingText: "?", linkPath: "https://www.fhi.no/nettpub/coronavirus/fakta/risikogrupper/",
                                                  input: FormRadioButton(choices: ["Ja", "Nei"], delegate: self))
     
     lazy var testedPositiveInput = FormInputSection(title: "Har du fått påvist smitte av COVID-19?",
