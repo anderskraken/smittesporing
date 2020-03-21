@@ -1,9 +1,11 @@
 package no.agens.covid19.ui.information.Symptoms
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.navigation.fragment.findNavController
@@ -30,6 +32,14 @@ class SymptomsStep1 : androidx.fragment.app.Fragment() {
                 Timber.d("User entered this information: $json")
                 val action = SymptomsStep1Directions.actionSymptomsStep1ToSymptomsStep2(json)
                 findNavController().navigate(action)
+            }
+        }
+
+        root.scrollView.setOnScrollChangeListener { view, i, i2, i3, i4 ->
+            val imm =
+                view.context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            if (imm.isAcceptingText) {
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
             }
         }
 
