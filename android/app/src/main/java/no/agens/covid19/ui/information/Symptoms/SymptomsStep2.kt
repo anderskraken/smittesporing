@@ -1,11 +1,15 @@
 package no.agens.covid19.ui.information.Symptoms
 
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -29,11 +33,35 @@ class SymptomsStep2 : androidx.fragment.app.Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_symptoms_step2, container, false)
+        val root = inflater.inflate(R.layout.fragment_symptoms_step2, container, false) as ConstraintLayout
 
         val receivedSymptomsFromPrevFrag = args.intermediateSymptoms
         val intermediateSymptoms = Json.parse(Symptoms.serializer(), receivedSymptomsFromPrevFrag)
         Timber.d("Got this data from prev fragment: $intermediateSymptoms")
+
+        if (intermediateSymptoms.testedPositive == true) {
+            hideSuspectInfectionField(root)
+        }
+
+        hideLastContactField(root)
+        root.contactGroup.contactGroupYes.setOnCheckedChangeListener { compoundButton, checked ->
+            if (checked) {
+                showLastContactField(root)
+            } else {
+                hideLastContactField(root)
+            }
+        }
+
+        hideBackToNorwayField(root)
+        root.outsideNorwayGroup.outsideNorwayGroupYes.setOnCheckedChangeListener { compoundButton, checked ->
+            if (checked) {
+                showBackToNorwayField(root)
+            } else {
+                hideBackToNorwayField(root)
+            }
+        }
+
+
 
         root.lastContactInput.setupDatePicker(parentFragmentManager) { selectedDate ->
 
@@ -44,8 +72,72 @@ class SymptomsStep2 : androidx.fragment.app.Fragment() {
         }
 
         root.saveButton.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_symptomsStep2_to_symptomsStep3, null))
+        root.step2BackButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         return root
+    }
+
+    private fun showLastContactField(root: ConstraintLayout) {
+        root.lastContact.visibility = View.VISIBLE
+        root.lastContactInput.visibility = View.VISIBLE
+        ConstraintSet().apply {
+            clone(root.scrollView2.innerConstraints)
+            connect(root.outsideNorwayLabel.id, ConstraintSet.TOP, root.lastContactInput.id, ConstraintSet.BOTTOM)
+            connect(root.outsideNorwayLabel.id, ConstraintSet.START, root.lastContactInput.id, ConstraintSet.START)
+            connect(root.outsideNorwayLabel.id, ConstraintSet.END, root.lastContactInput.id, ConstraintSet.END)
+            applyTo(root.scrollView2.innerConstraints)
+        }
+    }
+
+    private fun hideLastContactField(root: ConstraintLayout) {
+        root.lastContact.visibility = View.GONE
+        root.lastContactInput.visibility = View.GONE
+        ConstraintSet().apply {
+            clone(root.scrollView2.innerConstraints)
+            connect(root.outsideNorwayLabel.id, ConstraintSet.TOP, root.contactGroup.id, ConstraintSet.BOTTOM)
+            connect(root.outsideNorwayLabel.id, ConstraintSet.START, root.contactGroup.id, ConstraintSet.START)
+            connect(root.outsideNorwayLabel.id, ConstraintSet.END, root.contactGroup.id, ConstraintSet.END)
+            applyTo(root.scrollView2.innerConstraints)
+        }
+    }
+
+
+    private fun showBackToNorwayField(root: ConstraintLayout) {
+        root.backToNorway.visibility = View.VISIBLE
+        root.backToNorwayInput.visibility = View.VISIBLE
+//        ConstraintSet().apply {
+//            clone(root.scrollView2.innerConstraints)
+//            connect(root.outsideNorwayLabel.id, ConstraintSet.TOP, root.backToNorwayInput.id, ConstraintSet.BOTTOM)
+//            connect(root.outsideNorwayLabel.id, ConstraintSet.START, root.backToNorwayInput.id, ConstraintSet.START)
+//            connect(root.outsideNorwayLabel.id, ConstraintSet.END, root.backToNorwayInput.id, ConstraintSet.END)
+//            applyTo(root.scrollView2.innerConstraints)
+//        }
+    }
+
+    private fun hideBackToNorwayField(root: ConstraintLayout) {
+        root.backToNorway.visibility = View.GONE
+        root.backToNorwayInput.visibility = View.GONE
+//        ConstraintSet().apply {
+//            clone(root.scrollView2.innerConstraints)
+//            connect(root.outsideNorwayLabel.id, ConstraintSet.TOP, root.contactGroup.id, ConstraintSet.BOTTOM)
+//            connect(root.outsideNorwayLabel.id, ConstraintSet.START, root.contactGroup.id, ConstraintSet.START)
+//            connect(root.outsideNorwayLabel.id, ConstraintSet.END, root.contactGroup.id, ConstraintSet.END)
+//            applyTo(root.scrollView2.innerConstraints)
+//        }
+    }
+
+    private fun hideSuspectInfectionField(root: ConstraintLayout) {
+        root.suspectInfectionQuestion.visibility = View.GONE
+        root.suspectInfectionGroup.visibility = View.GONE
+        ConstraintSet().apply {
+            clone(root.scrollView2.innerConstraints)
+            connect(root.contactLabel.id, ConstraintSet.TOP, root.subtitle.id, ConstraintSet.BOTTOM)
+            connect(root.contactLabel.id, ConstraintSet.START, root.subtitle.id, ConstraintSet.START)
+            connect(root.contactLabel.id, ConstraintSet.END, root.subtitle.id, ConstraintSet.END)
+            applyTo(root.scrollView2.innerConstraints)
+        }
     }
 }
 

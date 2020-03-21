@@ -14,6 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/innerConstraints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="110dp">
@@ -168,7 +169,7 @@
                 app:boxStrokeColor="@color/colorPrimaryDark"
                 app:endIconDrawable="@drawable/ic_calendar"
                 app:endIconMode="custom"
-                app:endIconTint="@color/light_grey"
+                app:endIconTint="@color/grey"
                 app:helperTextEnabled="false"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false"
@@ -254,7 +255,7 @@
                 app:boxStrokeColor="@color/colorPrimaryDark"
                 app:endIconDrawable="@drawable/ic_calendar"
                 app:endIconMode="custom"
-                app:endIconTint="@color/light_grey"
+                app:endIconTint="@color/grey"
                 app:helperTextEnabled="false"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false"

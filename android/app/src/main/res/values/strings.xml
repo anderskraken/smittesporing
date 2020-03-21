@@ -33,7 +33,7 @@
     <string name="enter_age">Skriv inn alder</string>
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
-    <string name="symptoms_tested_question">Har du blitt testet for COVID-19?</string>
+    <string name="symptoms_tested_question">Har du fått påvist smitte av COVID-19?</string>
     <string name="next">Neste</string>
     <string name="cancel">Avbryt</string>
     <string name="symptoms_possible_infection_sources">Mulige smittekilder</string>

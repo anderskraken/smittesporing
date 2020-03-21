@@ -12,4 +12,4 @@ data class Symptoms(
     val inContactWithInfectedPerson: Boolean? = null,
     val beenOutsideNordic: Boolean? = null,
     val symptoms: List<String> = emptyList()
-)
+) : java.io.Serializable
