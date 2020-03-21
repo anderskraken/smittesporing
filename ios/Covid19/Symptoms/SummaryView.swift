@@ -30,7 +30,7 @@ class SummaryView: UIView {
         addFilling(stack, insets: .margins)
         stack.addVertically(
             spacing: 30,
-            views: createSection(title: "Om deg", infos: [data.personaliaDesc, data.testedDesc, data.provenInfectionDesc]),
+            views: createSection(title: "Om deg", infos: [data.personaliaDesc, data.provenInfectionDesc]),
                     createSection(title: "Mulige smittekilder", infos: [data.suspicionDesc, data.contactDesc, data.travelDesc]),
                     createSymptomsSection(title: "Symptomer", symptoms: data.symptoms)
         )
@@ -107,13 +107,7 @@ extension FormData {
     var suspicionDesc: NSAttributedString? {
         suspectsInfection ? stringWithItalic(firstPart: "• Mistenker smitte", italicPart: "", lastPart: "") : nil
     }
-    
-    var testedDesc: NSAttributedString {
-        stringWithItalic(firstPart: "• Har ",
-                         italicPart: testedPositive ? "" : "ikke ",
-                         lastPart: "tested positivt")
-    }
-    
+        
     var provenInfectionDesc: NSAttributedString {
         stringWithItalic(firstPart: "• Har ",
                          italicPart: testedPositive ? "" : "ikke ",
