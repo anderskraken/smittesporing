@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -65,7 +66,7 @@
                 <CheckBox
                     android:id="@+id/symptoms1"
                     style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:buttonTint="@color/colorPrimary"
@@ -73,13 +74,14 @@
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
                     android:text="@string/symptom_coughing"
+                    android:textAlignment="viewStart"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
                 <CheckBox
                     android:id="@+id/symptoms2"
                     style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:buttonTint="@color/colorPrimary"
@@ -87,13 +89,14 @@
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
                     android:text="@string/symptom_tired"
+                    android:textAlignment="viewStart"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
                 <CheckBox
                     android:id="@+id/symptoms3"
                     style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:buttonTint="@color/colorPrimary"
@@ -101,13 +104,14 @@
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
                     android:text="@string/symptom_fever"
+                    android:textAlignment="viewStart"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
                 <CheckBox
                     android:id="@+id/symptoms4"
                     style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:buttonTint="@color/colorPrimary"
@@ -115,13 +119,14 @@
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
                     android:text="@string/symptom_heavy_breathing"
+                    android:textAlignment="viewStart"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
                 <CheckBox
                     android:id="@+id/symptoms5"
                     style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:buttonTint="@color/colorPrimary"
@@ -129,13 +134,14 @@
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
                     android:text="@string/symptom_muscle_pains"
+                    android:textAlignment="viewStart"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
                 <CheckBox
                     android:id="@+id/symptoms6"
                     style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:buttonTint="@color/colorPrimary"
@@ -143,6 +149,7 @@
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
                     android:text="@string/symptom_diare"
+                    android:textAlignment="viewStart"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
@@ -171,6 +178,18 @@
                 app:layout_constraintEnd_toEndOf="@+id/progressBackground"
                 app:layout_constraintStart_toStartOf="@+id/progressBackground"
                 app:layout_constraintTop_toTopOf="@+id/progressBackground" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:text="Hvis symptomene dine endrer seg bør du registrere en endring."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/symptomsGroup" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

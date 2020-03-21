@@ -58,10 +58,17 @@
         <action
             android:id="@+id/action_symptomsStep3_to_symptomsSummary"
             app:destination="@id/symptomsSummary" />
+        <argument
+            android:name="intermediateSymptoms"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/symptomsSummary"
         android:name="no.agens.covid19.ui.information.Symptoms.SymptomsSummary"
-        android:label="SymptomsSummary" />
+        android:label="SymptomsSummary">
+        <argument
+            android:name="intermediateSymptoms"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
