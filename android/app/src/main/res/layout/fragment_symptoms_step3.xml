@@ -23,7 +23,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="24dp"
-                android:text="Registrer informasjon"
+                android:text="@string/symptoms_register_info_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Symptomer"
+                android:text="@string/symptoms"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/title"
                 app:layout_constraintStart_toStartOf="@+id/title"
@@ -46,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Har du noen av følgende symptomer? (kryss av)"
+                android:text="@string/symptoms_list_question"
                 app:layout_constraintEnd_toEndOf="@+id/subtitle"
                 app:layout_constraintStart_toStartOf="@+id/subtitle"
                 app:layout_constraintTop_toBottomOf="@+id/subtitle" />
@@ -72,7 +72,7 @@
                     android:gravity="center"
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
-                    android:text="Tørrhoste"
+                    android:text="@string/symptom_coughing"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
@@ -86,7 +86,7 @@
                     android:gravity="center"
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
-                    android:text="Slitenhet eller utmattelse"
+                    android:text="@string/symptom_tired"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
@@ -100,7 +100,7 @@
                     android:gravity="center"
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
-                    android:text="Feber"
+                    android:text="@string/symptom_fever"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
@@ -114,7 +114,7 @@
                     android:gravity="center"
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
-                    android:text="Tung pust"
+                    android:text="@string/symptom_heavy_breathing"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
@@ -128,7 +128,7 @@
                     android:gravity="center"
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
-                    android:text="Muskelsmerter"
+                    android:text="@string/symptom_muscle_pains"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
@@ -142,7 +142,7 @@
                     android:gravity="center"
                     android:lineHeight="22dp"
                     android:paddingHorizontal="20dp"
-                    android:text="Diaré"
+                    android:text="@string/symptom_diare"
                     android:textFontWeight="500"
                     android:textSize="18sp" />
 
@@ -180,12 +180,33 @@
         android:id="@+id/saveButton"
         style="@style/primaryButton"
         android:layout_width="0dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/step2BackButton" />
+
+    <Button
+        android:id="@+id/step2BackButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:text="Lagre informasjon"
+        android:background="@drawable/secondary_button_background"
+        android:backgroundTint="@color/white"
+        android:text="@string/back"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        app:cornerRadius="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/saveButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
