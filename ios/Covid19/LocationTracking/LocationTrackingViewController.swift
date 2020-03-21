@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 
 class LocationTrackingViewController: UIViewController, LocationTrackingDelegate {
 
@@ -29,7 +28,6 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
         super.viewDidLoad()
         setupViews()
         updateViews()
-        LocalStorageManager.deleteLocations()
     }
     
     override func viewDidLayoutSubviews() {
@@ -156,12 +154,11 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
     
     internal func showSettingsDialog() {
         let alertController = UIAlertController(title: "Trenger tilgang til posisjon",
-                                                message: "Du kan gi tilgang til posisjonen din i innstillinger, for å registrere dine bevegelser.",
+                                                message: "For å registrere dine bevegelser må du gi tilgang til posisjonen din i Innstillinger -> Personvern -> Stedstjenester -> Smittesporing.",
                                                 preferredStyle: .alert)
         
         let settingsAction = UIAlertAction(title: "Instillinger", style: .default) { (_) -> Void in
-            guard let bundleId = Bundle.main.bundleIdentifier,
-                let settingsUrl = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleId)") else {
+            guard let settingsUrl = URL(string: "\(UIApplication.openSettingsURLString)") else {
                 return
             }
             if UIApplication.shared.canOpenURL(settingsUrl) {
@@ -192,13 +189,39 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
     @objc private func debugPrintLocations(sender: UIRotationGestureRecognizer) {
         if sender.rotation > .pi / 2 {
             sender.isEnabled = false
-            let locationLabels = LocalStorageManager.getLocations().map({
+
+            let locations = LocalStorageManager.getLocations()
+
+            let locationLabels = locations.map({
                 let lat = String(format: "%.10f", $0.coordinate.latitude)
                 let long = String(format: "%.10f", $0.coordinate.longitude)
-                return UILabel.bodySmall("\($0.timestamp.prettyString.capitalized): \(lat), \(long)")
+                let label = UILabel.bodySmall("\($0.timestamp.prettyString): \(lat), \(long)").aligned(.left)
+                $0.getAddress { address in
+                    if let address = address {
+                        label.text = "\(label.text!)\n\(address)"
+                    }
+                }
+                return label
             }) as [UILabel]
             centerStack.removeAllSubviews()
-            centerStack.addVertically(views: locationLabels)
+            centerStack.add(views: locationLabels)
+            
+//            let map = MKMapView()
+//            view.addSubview(map)
+//            map.snp.makeConstraints { make in
+//                make.edges.equalTo(scrollView)
+//            }
+//
+//            let annotations = locations.map { location in
+//                let annotation = MKPointAnnotation()
+//                annotation.coordinate = location.coordinate
+//                return annotation
+//            } as [MKAnnotation]
+//
+//            map.addAnnotations(annotations)
+//            if let coordinate = locations.last?.coordinate {
+//                map.setRegion(MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000), animated: false)
+//            }
         }
     }
 }
