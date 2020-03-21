@@ -56,6 +56,9 @@ extension InfoBadge {
                                             image: UIImage(named: "person"),
                                             imageTint: .darkGray)
 
+    static let symptomsWarning = InfoBadge(text: "Dine symptomer kan tyde på at du har Covid-19.",
+                                            image: UIImage(named: "warning"))
+
     static let keepStayingSafe = InfoBadge(text: "Hold avstand fra andre for å unngå å bli smittet.",
                                             image: UIImage(named: "thumbsUp"),
                                             imageTint: .blue)

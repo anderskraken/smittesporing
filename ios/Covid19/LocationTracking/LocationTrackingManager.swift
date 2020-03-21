@@ -16,7 +16,7 @@ protocol LocationTrackingDelegate: NSObject {
 
 class LocationTrackingManager: NSObject, CLLocationManagerDelegate {
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
     weak var delegate: LocationTrackingDelegate?
     
@@ -28,6 +28,10 @@ class LocationTrackingManager: NSObject, CLLocationManagerDelegate {
             LocalStorageManager.save(trackingEnabled: trackingEnabled, timeStamp: trackingStartedTimeStamp)
             delegate?.updateViews()
         }
+    }
+    
+    var locations: [CLLocation] {
+        LocalStorageManager.getLocations()
     }
 
     init(delegate: LocationTrackingDelegate) {

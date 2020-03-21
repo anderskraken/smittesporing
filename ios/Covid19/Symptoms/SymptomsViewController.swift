@@ -73,11 +73,13 @@ class SymptomsViewController: UIViewController, FormDelegate {
     }
     
     private func getMessage(data: FormData) -> InfoBadge {
-        if data.beenOutsideNordic || data.inContactWithInfectedPerson {
+        if data.symptoms.count > 3 { //Not official criteria
+            return InfoBadge.symptomsWarning
+        } else if data.beenOutsideNordic || data.inContactWithInfectedPerson {
             let returnedDate = Date.fromDatePicker(string: data.returnedHomeDate ?? "")
             let contactDate = Date.fromDatePicker(string: data.infectedContactDate ?? "")
-            if let lastDate = [returnedDate, contactDate].compactMap({$0}).sorted().last {
-                let quaranteenDate = Calendar.current.date(byAdding: .day, value: 14, to: lastDate)!
+            if let lastDate = [returnedDate, contactDate].compactMap({$0}).sorted().last,
+                let quaranteenDate = lastDate.addingDays(14) {
                 return InfoBadge.quaranteen(date: quaranteenDate)
             } else if !data.beenOutsideNordic {
                 return InfoBadge.quaranteenContact

@@ -122,8 +122,16 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
     }
     
     private func showTrackingInfo() {
-        if let timeStamp = manager.trackingStartedTimeStamp, !Calendar.current.isDateInToday(timeStamp) {
-            addScrollingContent(views: InfoCard.stayHomeCard)
+        if let timeStamp = manager.trackingStartedTimeStamp {
+            if !timeStamp.isToday {
+                if let lastLocation = manager.locations.last, !lastLocation.timestamp.isToday {
+                    addScrollingContent(views: InfoCard.notMovedCard)
+                } else {
+                    addScrollingContent(views: InfoCard.stayHomeCard)
+                }
+            } else {
+                addScrollingContent(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard)
+            }
         } else {
             addScrollingContent(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard)
         }
