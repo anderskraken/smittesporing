@@ -43,3 +43,38 @@ class InfoBadge: UIStackView {
         imageView.tintColor = tint
     }
 }
+
+//MARK: Static badges
+
+extension InfoBadge {
+    
+    static let locationDisabled = InfoBadge(text: "Sporing er ikke aktiv.",
+                                            image: UIImage(named: "location"),
+                                            imageTint: .stroke)
+    
+    static let noInfoRegistered = InfoBadge(text: "Du har ikke lagt inn noe informasjon.",
+                                            image: UIImage(named: "person"),
+                                            imageTint: .darkGray)
+
+    static let keepStayingSafe = InfoBadge(text: "Hold avstand fra andre for å unngå å bli smittet.",
+                                            image: UIImage(named: "thumbsUp"),
+                                            imageTint: .blue)
+
+    static let quaranteenNoDate = InfoBadge(text: "Du må holde deg i hjemmekarantene frem til og med 14 dager etter at du var i utlandet eller i kontakt med noen med påvist COVID-19.",
+                                            image: UIImage(named: "home"),
+                                            imageTint: .blue)
+
+    static let quaranteenContact = InfoBadge(text: "Du må holde deg i hjemmekarantene frem til og med 14 dager etter at du var i kontakt med noen med påvist COVID-19.",
+                                            image: UIImage(named: "home"),
+                                            imageTint: .blue)
+
+    static let quaranteenTravel = InfoBadge(text: "Du må holde deg i hjemmekarantene frem til og med 14 dager etter at du var i utlandet.",
+                                            image: UIImage(named: "home"),
+                                            imageTint: .blue)
+
+    static func quaranteen(date: Date) -> InfoBadge {
+        return InfoBadge(text: "Du må holde deg i hjemmekarantene frem til og med \(date.shortDateString).",
+                  image: UIImage(named: "home"),
+                  imageTint: .blue)
+    }
+}

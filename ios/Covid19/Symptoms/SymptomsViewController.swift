@@ -25,7 +25,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
     func setupUnregisteredView() {
         addTitle("Symptomer")
         
-        let info = InfoBadge(text: "Du har ikke lagt inn noe informasjon.", image: UIImage(named: "person"), imageTint: .darkGray)
+        let info = InfoBadge.noInfoRegistered
         addCenteredWithMargin(info)
         
         let registerButton = MainButton(text: "Registrer Informasjon", type: .primary, action: registerTapped)
@@ -51,11 +51,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
         addTitle("Oppsummering")
         let titleView = view.subviews.first!
         let scrollView = FadingScrollView(fadingEdges: .vertical)
-        
-        let message = InfoBadge(text: "Du må holde deg i hjemmekarantene frem til og med 28. mars.",
-                             image: UIImage(named: "home"),
-                             imageTint: .blue)
-        
+        let message = getMessage(data: data)
 
         view.addSubview(scrollView)
         scrollView.showsVerticalScrollIndicator = false
@@ -74,6 +70,25 @@ class SymptomsViewController: UIViewController, FormDelegate {
         
         let stack = UIStackView(verticalViews: message, SummaryView(data: data), editButton, shareButton)
         scrollView.addFilling(stack, insets: UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0))
+    }
+    
+    private func getMessage(data: FormData) -> InfoBadge {
+        if data.beenOutsideNordic || data.inContactWithInfectedPerson {
+            let returnedDate = Date.fromDatePicker(string: data.returnedHomeDate ?? "")
+            let contactDate = Date.fromDatePicker(string: data.infectedContactDate ?? "")
+            if let lastDate = [returnedDate, contactDate].compactMap({$0}).sorted().last {
+                let quaranteenDate = Calendar.current.date(byAdding: .day, value: 14, to: lastDate)!
+                return InfoBadge.quaranteen(date: quaranteenDate)
+            } else if !data.beenOutsideNordic {
+                return InfoBadge.quaranteenContact
+            } else if !data.inContactWithInfectedPerson {
+                return InfoBadge.quaranteenTravel
+            } else {
+                return InfoBadge.quaranteenNoDate
+            }
+        } else {
+            return InfoBadge.keepStayingSafe
+        }
     }
     
     private func registerTapped() {

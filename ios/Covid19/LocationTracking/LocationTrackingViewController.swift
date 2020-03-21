@@ -84,7 +84,7 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
     }
     
     private func setupTrackingDisabledViews() {
-        let inactiveBadge = InfoBadge(text: "Sporing er ikke aktiv.", image: UIImage(named: "location"), imageTint: .stroke)
+        let inactiveBadge = InfoBadge.locationDisabled
         let trackingButton = MainButton(text: "Aktiver sporing", type: .primary, action: manager.enableTracking)
         let bottomInfo = UILabel.bodySmall("Lokasjonsdata lagres lokalt inntil du velger å dele disse.")
         let badgeContainer = UIView()
@@ -122,7 +122,11 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
     }
     
     private func showTrackingInfo() {
-        addScrollingContent(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard)
+        if let timeStamp = manager.trackingStartedTimeStamp, !Calendar.current.isDateInToday(timeStamp) {
+            addScrollingContent(views: InfoCard.stayHomeCard)
+        } else {
+            addScrollingContent(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard)
+        }
         addDebugGesture()
     }
     

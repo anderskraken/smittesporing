@@ -57,7 +57,8 @@ class FormDatePicker: UITextField, FormInput, UITextFieldDelegate {
         }
         rightView = iconView
         rightViewMode = .always
-
+        
+        datePicker.maximumDate = Date()
         datePicker.datePickerMode = .date
         inputAccessoryView = createDoneToolbar()
         inputView = datePicker
@@ -65,11 +66,7 @@ class FormDatePicker: UITextField, FormInput, UITextFieldDelegate {
     }
     
     func dateChanged(date: Date) {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "nb_NO")
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        text = formatter.string(from: date)
+        text = date.datePickerString
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

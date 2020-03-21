@@ -9,10 +9,31 @@
 import Foundation
 
 extension Date {
-    var prettyString: String {
-        let cal = Calendar.current        
+    
+    private static var localFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "nb_NO")
+        return formatter
+    }
+    
+    private static var datePickerFormatter: DateFormatter {
+        let formatter = Date.localFormatter
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter
+    }
+    
+    var datePickerString: String {
+        return Date.datePickerFormatter.string(from: self)
+    }
+    
+    static func fromDatePicker(string: String) -> Date? {
+        return datePickerFormatter.date(from: string)
+    }
+
+    var prettyString: String {
+        let cal = Calendar.current
+        let formatter = Date.localFormatter
         formatter.dateFormat = "HH.mm"
         let time = formatter.string(from: self)
 
@@ -25,5 +46,11 @@ extension Date {
         formatter.dateFormat = "yyyy dd.MMM"
         let date = formatter.string(from: self)
         return "\(date) kl. \(time)"
+    }
+    
+    var shortDateString: String {
+        let formatter = Date.localFormatter
+        formatter.dateFormat = "dd. MMMM"
+        return formatter.string(from: self)
     }
 }
