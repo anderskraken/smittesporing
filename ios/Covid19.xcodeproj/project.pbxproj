@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630192FF2427AF8E006373C1 /* SharingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630192FE2427AF8E006373C1 /* SharingManager.swift */; };
 		63527D8E24225D0A002B21C5 /* UIStackView + Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D8D24225D0A002B21C5 /* UIStackView + Util.swift */; };
 		63527D9024226049002B21C5 /* FormRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D8F24226049002B21C5 /* FormRadioButton.swift */; };
 		63527D9224226E50002B21C5 /* FormInputSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D9124226E50002B21C5 /* FormInputSection.swift */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		022945E09DA313894CA9BFFD /* Pods-Covid19Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tests.debug.xcconfig"; path = "Target Support Files/Pods-Covid19Tests/Pods-Covid19Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C639BF04F0B1C69DC5F324D /* Pods-Covid19Tests.release appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tests.release appstore.xcconfig"; path = "Target Support Files/Pods-Covid19Tests/Pods-Covid19Tests.release appstore.xcconfig"; sourceTree = "<group>"; };
+		630192FE2427AF8E006373C1 /* SharingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingManager.swift; sourceTree = "<group>"; };
 		63527D8D24225D0A002B21C5 /* UIStackView + Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Util.swift"; sourceTree = "<group>"; };
 		63527D8F24226049002B21C5 /* FormRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRadioButton.swift; sourceTree = "<group>"; };
 		63527D9124226E50002B21C5 /* FormInputSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInputSection.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				6368F1232421456A0010C071 /* ShareViewController.swift */,
+				630192FE2427AF8E006373C1 /* SharingManager.swift */,
 			);
 			path = Sharing;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				63908A6124264B1A00FEC7DB /* Date + Util.swift in Sources */,
 				6368F1202421454E0010C071 /* LocationTrackingViewController.swift in Sources */,
 				63908A65242699CC00FEC7DB /* WebViewViewController.swift in Sources */,
+				630192FF2427AF8E006373C1 /* SharingManager.swift in Sources */,
 				636A873A242619B7005220D0 /* LocationTrackingManager.swift in Sources */,
 				6368F13324223EAD0010C071 /* UIViewController + Util.swift in Sources */,
 				6368F12F242238640010C071 /* UIImageView + Util.swift in Sources */,

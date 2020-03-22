@@ -19,4 +19,8 @@ struct FormData: Codable {
     let beenOutsideNordic: Bool
     let returnedHomeDate: String?
     let symptoms: [String]
+    
+    var contaminationRisk: Bool {
+        symptoms.count > 3 //Not official criteria
+    }
 }

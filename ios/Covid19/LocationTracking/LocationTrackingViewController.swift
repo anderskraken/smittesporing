@@ -75,7 +75,7 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
         centerStack.clipsToBounds = false
         centerStack.snp.makeConstraints { make in
             make.width.equalToSuperview().inset(UIEdgeInsets.margins)
-            make.left.right.top.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
         setupTrackingDisabledViews()
@@ -133,7 +133,6 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
         } else {
             addScrollingContent(views: InfoCard.trackingEnabledCard, InfoCard.stayHomeCard)
         }
-        addDebugGesture()
     }
     
     private func addScrollingContent(views: UIView...) {
@@ -179,32 +178,5 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
         let dissmissAction = UIAlertAction(title: "Jeg forstår", style: .default, handler: nil)
         alertController.addAction(dissmissAction)
         present(alertController, animated: true)
-    }
-
-    private func addDebugGesture() {
-        let gesture = UIRotationGestureRecognizer(target: self, action: #selector(debugPrintLocations))
-        scrollView.subviews.first?.subviews.first?.addGestureRecognizer(gesture)
-    }
-    
-    @objc private func debugPrintLocations(sender: UIRotationGestureRecognizer) {
-        if sender.rotation > .pi / 2 {
-            sender.isEnabled = false
-
-            let locations = LocalStorageManager.getLocations()
-
-            let locationLabels = locations.map({
-                let lat = String(format: "%.10f", $0.coordinate.latitude)
-                let long = String(format: "%.10f", $0.coordinate.longitude)
-                let label = UILabel.bodySmall("\($0.timestamp.prettyString): \(lat), \(long)").aligned(.left)
-                $0.getAddress { address in
-                    if let address = address {
-                        label.text = "\(label.text!)\n\(address)"
-                    }
-                }
-                return label
-            }) as [UILabel]
-            centerStack.removeAllSubviews()
-            centerStack.add(views: locationLabels)
-        }
     }
 }

@@ -65,15 +65,18 @@ class SymptomsViewController: UIViewController, FormDelegate {
         }
         
         let shareButton = MainButton(text: "Del data", type: .secondary) {
-            
+            if let tabBarController = self.view.window?.rootViewController as? UITabBarController {
+                tabBarController.selectedIndex = 2
+            }
         }
+        shareButton.isHidden = !data.contaminationRisk
         
         let stack = UIStackView(verticalViews: message, SummaryView(data: data), editButton, shareButton)
         scrollView.addFilling(stack, insets: UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0))
     }
     
     private func getMessage(data: FormData) -> InfoBadge {
-        if data.symptoms.count > 3 { //Not official criteria
+        if data.contaminationRisk {
             return InfoBadge.symptomsWarning
         } else if data.beenOutsideNordic || data.inContactWithInfectedPerson {
             

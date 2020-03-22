@@ -43,11 +43,17 @@ extension Date {
             return "i går kl. \(time)"
         }
         
-        formatter.dateFormat = "yyyy dd.MMM"
+        formatter.dateFormat = "dd.MMM"
         let date = formatter.string(from: self)
         return "\(date) kl. \(time)"
     }
     
+    var dateTimeString: String {
+        let formatter = Date.localFormatter
+        formatter.dateFormat = "dd.MM.yyyy, HH:mm:ss"
+        return formatter.string(from: self)
+    }
+
     var shortDateString: String {
         let formatter = Date.localFormatter
         formatter.dateFormat = "dd. MMMM"
