@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_symptoms.view.*
 import kotlinx.serialization.json.Json
 import no.agens.covid19.R
 import timber.log.Timber
@@ -17,6 +19,9 @@ class SymptomsFragment : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_symptoms, container, false)
+
+        root.buttonRegisterInfo.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.symptomsStep1, null))
 
         SymptomsViewModel(root.context).observe(this.viewLifecycleOwner,
             Observer { symptoms ->
