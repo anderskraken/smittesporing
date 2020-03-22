@@ -9,7 +9,7 @@
     <color name="button_green">#009C1B</color>
     <color name="black">#000000</color>
     <color name="light_grey">#D3D3D3</color>
+    <color name="grey">#6B7787</color>
     
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/black</color>
->>>>>>> Stashed changes
 </resources>

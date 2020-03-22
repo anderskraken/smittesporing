@@ -22,12 +22,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:src="@drawable/symptoms_icon"
-        app:layout_constraintBottom_toTopOf="@id/textNoSymptoms"
+        app:layout_constraintBottom_toTopOf="@id/textInformation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textNoSymptoms"
+        android:id="@+id/textInformation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -52,6 +52,6 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textNoSymptoms" />
+        app:layout_constraintTop_toBottomOf="@id/textInformation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

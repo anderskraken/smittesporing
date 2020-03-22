@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -13,9 +14,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/innerConstraints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="100dp">
+            android:paddingBottom="110dp">
 
 
             <TextView
@@ -26,7 +28,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="24dp"
-                android:text="Registrer informasjon"
+                android:text="@string/symptoms_register_info_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -37,19 +39,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Mulige smittekilder"
+                android:text="@string/symptoms_possible_infection_sources"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/title"
                 app:layout_constraintStart_toStartOf="@+id/title"
                 app:layout_constraintTop_toBottomOf="@+id/progressBackground" />
 
             <TextView
-                android:id="@+id/gender"
+                android:id="@+id/suspectInfectionQuestion"
                 style="@style/textBasic"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Har du mistanke om at du er smittet?"
+                android:text="@string/symptoms_suspect_infection_question"
                 app:layout_constraintEnd_toEndOf="@+id/subtitle"
                 app:layout_constraintStart_toStartOf="@+id/subtitle"
                 app:layout_constraintTop_toBottomOf="@+id/subtitle" />
@@ -63,8 +65,8 @@
                 android:orientation="horizontal"
                 android:weightSum="2"
                 app:layout_constraintEnd_toEndOf="@+id/subtitle"
-                app:layout_constraintStart_toStartOf="@+id/gender"
-                app:layout_constraintTop_toBottomOf="@+id/gender">
+                app:layout_constraintStart_toStartOf="@+id/suspectInfectionQuestion"
+                app:layout_constraintTop_toBottomOf="@+id/suspectInfectionQuestion">
 
 
                 <RadioButton
@@ -77,7 +79,7 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:paddingHorizontal="20dp"
-                    android:text="Ja"
+                    android:text="@string/yes"
                     android:textColor="@color/radio_flat_text_selector" />
 
                 <RadioButton
@@ -90,7 +92,7 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:paddingHorizontal="20dp"
-                    android:text="Nei"
+                    android:text="@string/no"
                     android:textColor="@color/radio_flat_text_selector" />
 
             </RadioGroup>
@@ -102,7 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Har du vært i kontakt med noen som har testet positivt for smitte av COVID-19?"
+                android:text="@string/symptoms_in_contact_with_infected_question"
                 app:layout_constraintEnd_toEndOf="@+id/suspectInfectionGroup"
                 app:layout_constraintStart_toStartOf="@+id/suspectInfectionGroup"
                 app:layout_constraintTop_toBottomOf="@+id/suspectInfectionGroup" />
@@ -129,7 +131,7 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:paddingHorizontal="20dp"
-                    android:text="Ja"
+                    android:text="@string/yes"
                     android:textColor="@color/radio_flat_text_selector" />
 
                 <RadioButton
@@ -142,10 +144,44 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:paddingHorizontal="20dp"
-                    android:text="Nei"
+                    android:text="@string/no_dont_know"
                     android:textColor="@color/radio_flat_text_selector" />
 
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/lastContact"
+                style="@style/textBasic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/symptoms_last_contact_with_infected"
+                app:layout_constraintEnd_toEndOf="@id/contactGroup"
+                app:layout_constraintStart_toStartOf="@+id/contactGroup"
+                app:layout_constraintTop_toBottomOf="@+id/contactGroup" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lastContactInput"
+                style="@style/inputOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconDrawable="@drawable/ic_calendar"
+                app:endIconMode="custom"
+                app:endIconTint="@color/grey"
+                app:helperTextEnabled="false"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/lastContact"
+                app:layout_constraintStart_toStartOf="@+id/lastContact"
+                app:layout_constraintTop_toBottomOf="@+id/lastContact">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pick_date" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/outsideNorwayLabel"
@@ -153,10 +189,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Har du vært utenfor Norden de siste 14 dagene?"
-                app:layout_constraintEnd_toEndOf="@+id/contactGroup"
-                app:layout_constraintStart_toStartOf="@+id/contactGroup"
-                app:layout_constraintTop_toBottomOf="@+id/contactGroup" />
+                android:text="@string/symptoms_outside_north_question"
+                app:layout_constraintEnd_toEndOf="@+id/lastContactInput"
+                app:layout_constraintStart_toStartOf="@+id/lastContactInput"
+                app:layout_constraintTop_toBottomOf="@+id/lastContactInput" />
 
 
             <RadioGroup
@@ -181,7 +217,7 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:paddingHorizontal="20dp"
-                    android:text="Ja"
+                    android:text="@string/yes"
                     android:textColor="@color/radio_flat_text_selector" />
 
                 <RadioButton
@@ -194,10 +230,44 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:paddingHorizontal="20dp"
-                    android:text="Nei"
+                    android:text="@string/no"
                     android:textColor="@color/radio_flat_text_selector" />
 
             </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/backToNorway"
+                style="@style/textBasic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/symptoms_back_to_norway_qustion"
+                app:layout_constraintStart_toStartOf="@+id/outsideNorwayGroup"
+                app:layout_constraintTop_toBottomOf="@+id/outsideNorwayGroup" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/backToNorwayInput"
+                style="@style/inputOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconDrawable="@drawable/ic_calendar"
+                app:endIconMode="custom"
+                app:endIconTint="@color/grey"
+                app:helperTextEnabled="false"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/outsideNorwayGroup"
+                app:layout_constraintStart_toStartOf="@+id/backToNorway"
+                app:layout_constraintTop_toBottomOf="@+id/backToNorway">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pick_date" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <View
@@ -239,7 +309,7 @@
         android:layout_width="0dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:text="Neste"
+        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -255,7 +325,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/secondary_button_background"
         android:backgroundTint="@color/white"
-        android:text="Tilbake"
+        android:text="@string/back"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         app:cornerRadius="6dp"
@@ -265,5 +335,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/colorPrimary"
         app:strokeWidth="2dp" />
+
+    <View
+        android:id="@+id/buttonsBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-16dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/step2BackButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

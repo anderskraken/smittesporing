@@ -26,7 +26,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="24dp"
-                android:text="Oppsummering"
+                android:text="@string/summary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -49,122 +49,141 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                android:text="Dette er en oppsummering av det du fylte inn."
+                android:text="@string/summary_info"
                 android:textAlignment="center"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/summaryIcon" />
 
-            <View
-                android:id="@+id/view"
+            <LinearLayout
+                android:id="@+id/box"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="20dp"
+                android:paddingVertical="20dp"
                 android:background="@drawable/summary_rounded_corners_background"
-                app:layout_constraintBottom_toTopOf="@id/summarySaveButton"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/summarySubtitle" />
+                app:layout_constraintTop_toBottomOf="@+id/summarySubtitle">
 
 
-            <TextView
-                android:id="@+id/summaryTitle1"
-                style="@style/textTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Om deg"
-                android:textColor="#165DC6"
-                android:textFontWeight="600"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toTopOf="@+id/view" />
+                <TextView
+                    android:id="@+id/summaryTitle1"
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/summary_about_you"
+                    android:textColor="#165DC6"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="@+id/view" />
 
 
-            <TextView
-                android:id="@+id/summaryText1"
-                style="@style/textBasic"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:text="- Kvinne, 37 år i risikogruppe\n- Mer info\n- Og enda litt mer info"
-                app:layout_constraintEnd_toEndOf="@+id/view"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toBottomOf="@+id/summaryTitle1" />
+                <TextView
+                    android:id="@+id/summaryText1"
+                    style="@style/textBasic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="- Kvinne, 37 år i risikogruppe\n- Mer info\n- Og enda litt mer info"
+                    app:layout_constraintEnd_toEndOf="@+id/view"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/summaryTitle1" />
 
-            <TextView
-                android:id="@+id/summaryTitle2"
-                style="@style/textTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Mulige smittekilder"
-                android:textColor="#165DC6"
-                android:textFontWeight="600"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toBottomOf="@+id/summaryText1" />
+                <TextView
+                    android:id="@+id/summaryTitle2"
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/summary_possible_infections"
+                    android:textColor="#165DC6"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/summaryText1" />
 
-            <TextView
-                android:id="@+id/summaryText2"
-                style="@style/textBasic"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:text="- Kvinne, 37 år i risikogruppe\n- Mer info\n- Og enda litt mer info"
-                app:layout_constraintEnd_toEndOf="@+id/view"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toBottomOf="@+id/summaryTitle2" />
+                <TextView
+                    android:id="@+id/summaryText2"
+                    style="@style/textBasic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="- Kvinne, 37 år i risikogruppe\n- Mer info\n- Og enda litt mer info"
+                    app:layout_constraintEnd_toEndOf="@+id/view"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/summaryTitle2" />
 
-            <TextView
-                android:id="@+id/summaryTitle3"
-                style="@style/textTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Symptomer"
-                android:textColor="#165DC6"
-                android:textFontWeight="600"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toBottomOf="@+id/summaryText2" />
+                <TextView
+                    android:id="@+id/summaryTitle3"
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/summary_symptoms"
+                    android:textColor="#165DC6"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/summaryText2" />
 
-            <TextView
-                android:id="@+id/summaryText3"
-                style="@style/textBasic"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:text="- Kvinne, 37 år i risikogruppe\n- Mer info\n- Og enda litt mer info"
-                app:layout_constraintEnd_toEndOf="@+id/view"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toBottomOf="@+id/summaryTitle3" />
+                <TextView
+                    android:id="@+id/summaryText3"
+                    style="@style/textBasic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="- Kvinne, 37 år i risikogruppe\n- Mer info\n- Og enda litt mer info"
+                    app:layout_constraintEnd_toEndOf="@+id/view"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/summaryTitle3"
+                    tools:visibility="gone" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/symptoms_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    app:chipSpacingVertical="-12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/view"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/summaryTitle3"
+                    tools:layout_height="70dp" />
+
+            </LinearLayout>
+
 
             <Button
-                android:id="@+id/summarySaveButton"
-                style="@style/primaryButton"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="24dp"
-                android:text="Registrer endring"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/summaryText3" />
+                    android:id="@+id/registerChangeButton"
+                    style="@style/primaryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/save_changes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/box" />
+
+
 
             <Button
                 android:id="@+id/summaryShareButton"
@@ -176,20 +195,19 @@
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/secondary_button_background"
                 android:backgroundTint="@color/white"
-                android:text="Del data"
+                android:text="@string/share_data"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 app:cornerRadius="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/summarySaveButton"
+                app:layout_constraintTop_toBottomOf="@id/registerChangeButton"
                 app:strokeColor="@color/colorPrimary"
                 app:strokeWidth="2dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
