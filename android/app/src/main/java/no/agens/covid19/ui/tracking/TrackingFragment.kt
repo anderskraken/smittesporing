@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -56,6 +57,8 @@ class TrackingFragment : Fragment() {
 
         if (permissionAccessBackgroundApproved && permissionAccessFineLocationApproved) {
             locationPermissionsGranted()
+        } else {
+            requireContext().stopService(Intent(context, LocationTrackerService::class.java))
         }
 
         MessageBus.onBusChanged(this) {
@@ -76,11 +79,17 @@ class TrackingFragment : Fragment() {
         }
         val theme = context.theme
 
-        buttonActivateTracking.isEnabled = true
-        buttonActivateTracking.setText(R.string.tracking_button_is_active)
-        buttonActivateTracking.setBackgroundColor(
-            resources.getColor(R.color.button_green, theme))
-        trackingIcon.setImageDrawable(
+        containerTrackingNotActive.apply {
+            animate().alpha(0f).setDuration(500).start()
+        }
+
+        containerCards.alpha = 0f
+        containerCards.visibility = VISIBLE
+        containerCards.apply {
+            animate().alpha(1f).setDuration(500).start()
+        }
+
+        imageTrackingHeaderIcon.setImageDrawable(
             resources.getDrawable(R.drawable.tracking_arrow_active, theme))
         textTrackingState.text = resources.getString(R.string.tracking_is_active)
 
@@ -90,9 +99,8 @@ class TrackingFragment : Fragment() {
         } else {
             context.startService(intent)
         }
-        buttonActivateTracking.setOnClickListener {
-            disableTracking()
-        }
+
+        // TODO add tracking active card to recycler view
     }
 
     private fun disableTracking() {

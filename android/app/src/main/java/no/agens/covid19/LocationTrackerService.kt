@@ -120,7 +120,7 @@ class LocationTrackerService : Service(), CoroutineScope {
         return builder
             .setContentTitle(getText(R.string.background_notification_title))
             .setContentText(getText(R.string.background_notification_message))
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.drawable.tracking_arrow_active)
             .setContentIntent(pendingIntent)
             .setTicker(getText(R.string.background_notification_message))
             .build()

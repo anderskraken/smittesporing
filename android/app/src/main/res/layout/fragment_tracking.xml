@@ -10,67 +10,136 @@
         android:id="@+id/trackingHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tracking_header"
-        android:textSize="28sp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
+        android:text="@string/tracking_header"
+        android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/trackingIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
+        android:id="@+id/imageTrackingHeaderIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
         android:src="@drawable/tracking_arrow_disabled"
-        app:layout_constraintBottom_toTopOf="@id/textTrackingState"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/trackingHeader"
+        app:layout_constraintStart_toEndOf="@id/trackingHeader"
+        app:layout_constraintTop_toTopOf="@id/trackingHeader" />
 
     <TextView
         android:id="@+id/textTrackingState"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
         android:text="@string/tracking_not_active"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/trackingHeader"
+        app:layout_constraintTop_toBottomOf="@id/trackingHeader" />
+
+    <RelativeLayout
+        android:id="@+id/containerTrackingNotActive"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/buttonActivateTracking"
-        style="@style/primaryButton"
+
+        <ImageView
+            android:id="@+id/trackingIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/textTrackingNotActive"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="22dp"
+            android:src="@drawable/tracking_arrow_disabled" />
+
+        <TextView
+            android:id="@+id/textTrackingNotActive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="8dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/tracking_not_active"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/buttonActivateTracking"
+            style="@style/primaryButton"
+            android:layout_width="match_parent"
+            android:layout_above="@id/textTrackingPrivacyNotice"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/button_blue"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/tracking_activate_tracking_button_text"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textTrackingPrivacyNotice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/tracking_location_privacy_notice"
+            android:textAlignment="center"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/containerCards"
         android:layout_width="match_parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/button_blue"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:text="@string/tracking_activate_tracking_button_text"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/textTrackingPrivacyNotice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textTrackingPrivacyNotice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:text="@string/tracking_location_privacy_notice"
-        android:textAlignment="center"
-        android:textSize="14sp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/trackingHeader">
+
+        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cardTrackingActive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardElevation="3dp" android:layout_margin="20dp"
+            card_view:cardCornerRadius="14dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="35dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/tada"
+                    android:textAlignment="center"
+                    android:textSize="38sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tracking_active_thanks"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

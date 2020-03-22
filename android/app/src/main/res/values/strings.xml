@@ -11,13 +11,12 @@
     <string name="tracking_button_is_active">Avbryt sporing</string>
     <string name="menu_symptoms">Symptomer</string>
     <string name="tab_title_symptoms">Symptomer</string>
-    <string name="channel_name">COVID19</string>
-    <string name="channel_description">General notifications from the COVID19 tracker app</string>
-    <string name="background_notification_title">COVID19</string>
-    <string name="background_notification_message">COVID19 sporer lokasjonen i bakgrunnen.</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="channel_name">Generelle varsler</string>
+    <string name="channel_description">Generelle varsler fra Smittesporing</string>
+    <string name="background_notification_title">Smittesporing</string>
+    <string name="background_notification_message">Smittesporing sporer lokasjonen din i bakgrunnen.</string>
     <string name="tracking_location_privacy_notice">Lokasjonsdata lagres lokalt inntil du velger å dele disse.</string>
-    <string name="tracking_is_active">Sporing er aktiv. Det viktigste du kan gjøre er å holde avstand fra andre.</string>
+    <string name="tracking_is_active">Sporing er aktiv.</string>
     <string name="tracking_header">Bevegelser</string>
     <string name="symptoms_header">Symptomer</string>
     <string name="symptoms_no_information">Du har ikke lagt inn noe informasjon.</string>
@@ -76,4 +75,6 @@
     <string name="delete_information">Slett informasjon</string>
     <string name="symptoms_registrered_information_info">Du har allerede lagt inn informasjon. Dersom du opplever endring i symptomer bør du registrere disse.</string>
     <string name="register_change">Registrer endring</string>
+    <string name="tada">🎉</string>
+    <string name="tracking_active_thanks">Smittesporing er aktivert. Takk for at\ndu bidrar!</string>
 </resources>
