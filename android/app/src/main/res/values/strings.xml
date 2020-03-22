@@ -62,4 +62,15 @@
     <string name="select_date">Velg dato</string>
     <string name="no_dont_know">Nei / Vet ikke</string>
     <string name="symptoms_last_contact_with_infected">Når var du i kontakt med smittede?</string>
+    <string name="years">år</string>
+
+    <string name="summary_in_risk_group">i risikogruppe</string>
+    <string name="summary_in_risk_group_not"><i>ikke</i> i risikogruppe</string>
+    <string name="summary_infected_info">Har fått påvist smitte</string>
+    <string name="summary_infected_not_info">Har ikke fått påvist smitte</string>
+    <string name="summary_in_contact_with_infected_info">Har vært i kontakt med person som har testet positivt for COVID-19</string>
+    <string name="summary_in_contact_with_infected_not_info">Har ikke vært i kontakt med person som har testet positivt for COVID-19</string>
+    <string name="summary_been_outside_nordic_info">Har vært utenfor Norden de siste 14 dagene</string>
+    <string name="summary_been_outside_nordic_not_info">Har ikke vært utenfor Norden de siste 14 dagene</string>
+    <string name="none">Ingen</string>
 </resources>
