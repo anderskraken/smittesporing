@@ -2,22 +2,41 @@ package no.agens.covid19
 
 import android.app.*
 import android.content.Intent
+import android.os.Build
 import android.os.IBinder
 import android.os.Looper
 import com.google.android.gms.location.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import no.agens.covid19.storage.LocationRepository
+import no.agens.covid19.storage.domain.Location
+import org.koin.android.ext.android.inject
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.coroutines.CoroutineContext
 
-class LocationTrackerService : Service() {
+class LocationTrackerService : Service(), CoroutineScope {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
+
+    private val locationRepository: LocationRepository by inject()
+
+    private lateinit var job: Job
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
 
     override fun onCreate() {
+        job = Job()
         super.onCreate()
 
         startForeground(SERVICE_ID, buildNotification())
@@ -34,8 +53,29 @@ class LocationTrackerService : Service() {
                     return
                 }
 
-                locationResult.locations.forEach { location ->
-                    Timber.d("received location: ${location.latitude}, ${location.longitude}")
+
+                launch {
+                    val formatter = SimpleDateFormat.getDateTimeInstance()
+                    locationResult.locations.forEach { location ->
+
+                        locationRepository.addLocations(
+                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+
+                                Location(longitude = location.longitude,
+                                    latitude = location.latitude,
+                                    altitude = location.altitude,
+                                    timestamp = formatter.format(Date()),
+                                    horizontalAccuracy = location.accuracy)
+                            } else {
+                                Location(longitude = location.longitude,
+                                    latitude = location.latitude,
+                                    timestamp = formatter.format(Date()),
+                                    altitude = location.altitude,
+                                    horizontalAccuracy = location.accuracy,
+                                    bearingAccuracy = location.bearingAccuracyDegrees,
+                                    verticalAccuracy = location.verticalAccuracyMeters)
+                            })
+                    }
                 }
             }
         }
@@ -50,7 +90,7 @@ class LocationTrackerService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-
+        job.cancel()
         fusedLocationClient.removeLocationUpdates(locationCallback)
         Timber.d("LocationTrackerService is shutting down.")
     }
@@ -90,4 +130,5 @@ class LocationTrackerService : Service() {
         const val CHANNEL_ID: String = "${BuildConfig.APPLICATION_ID}_general"
         const val SERVICE_ID = 424242
     }
+
 }
