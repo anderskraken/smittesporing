@@ -58,10 +58,9 @@ class SymptomsSummary : androidx.fragment.app.Fragment() {
             root.summaryText3.text = getString(R.string.none)
         }
 
-
-        root.summarySaveButton.setOnClickListener {
-            // TODO: Save details here
-            findNavController().popBackStack(R.id.navigation_symptoms, false)
+        root.registerChangeButton.setOnClickListener {
+            val action = SymptomsSummaryDirections.actionSymptomsSummaryToSymptomsStep1()
+            findNavController().navigate(action)
         }
 
         return root

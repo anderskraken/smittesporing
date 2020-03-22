@@ -21,7 +21,6 @@ class SymptomsViewModel(context: Context) : SharedPreferenceLiveData<Symptoms?>(
     }
 }
 
-
 /**
  * Thankju, Internet: https://stackoverflow.com/a/53028546/5892676
  */
