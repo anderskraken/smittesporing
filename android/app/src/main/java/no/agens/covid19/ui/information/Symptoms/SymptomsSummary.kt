@@ -1,7 +1,6 @@
 package no.agens.covid19.ui.information.Symptoms
 
-import android.content.res.ColorStateList
-import android.graphics.Color
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +31,11 @@ class SymptomsSummary : androidx.fragment.app.Fragment() {
         val receivedSymptomsFromPrevFrag = args.intermediateSymptoms
         symptoms = Json.parse(Symptoms.serializer(), receivedSymptomsFromPrevFrag)
         Timber.d("Got this data from prev fragment: $symptoms")
+
+        root.context.getSharedPreferences(SYMPTOMS_SHARED_PREFS, Context.MODE_PRIVATE)
+            .edit()
+            .putString(SYMPTOMTS_KEY, receivedSymptomsFromPrevFrag)
+            .apply()
 
         root.setHeaderInfo(symptoms)
         root.summaryText1.text = buildAboutYouText(symptoms)

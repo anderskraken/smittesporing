@@ -73,4 +73,7 @@
     <string name="summary_been_outside_nordic_info">Har vært utenfor Norden de siste 14 dagene</string>
     <string name="summary_been_outside_nordic_not_info">Har ikke vært utenfor Norden de siste 14 dagene</string>
     <string name="none">Ingen</string>
+    <string name="delete_information">Slett informasjon</string>
+    <string name="symptoms_registrered_information_info">Du har allerede lagt inn informasjon. Dersom du opplever endring i symptomer bør du registrere disse.</string>
+    <string name="register_change">Registrer endring</string>
 </resources>
