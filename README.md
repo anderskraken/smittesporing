@@ -100,4 +100,4 @@ Fully open source under MIT license.
 ## 📲 Download latest build
 
 - [Android](https://install.appcenter.ms/orgs/agens/apps/smittesporing/distribution_groups/public)
-- iOS (no build available yet)
+- [iOS](https://install.appcenter.ms/orgs/agens/apps/Smittesporing-1/distribution_groups/public)
