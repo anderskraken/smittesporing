@@ -152,8 +152,8 @@ class LocationTrackingViewController: UIViewController, LocationTrackingDelegate
     }
     
     internal func showSettingsDialog() {
-        let alertController = UIAlertController(title: "Trenger tilgang til posisjon",
-                                                message: "For å registrere dine bevegelser må du gi tilgang til posisjonen din i Innstillinger -> Personvern -> Stedstjenester -> Smittesporing.",
+        let alertController = UIAlertController(title: "Gi tilgang til posisjon",
+                                                message: "For å registrere dine bevegelser må du gi appen tilgang til sted i innstillinger.",
                                                 preferredStyle: .alert)
         
         let settingsAction = UIAlertAction(title: "Instillinger", style: .default) { (_) -> Void in

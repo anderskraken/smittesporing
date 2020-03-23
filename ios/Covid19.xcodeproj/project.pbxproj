@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		630192FF2427AF8E006373C1 /* SharingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630192FE2427AF8E006373C1 /* SharingManager.swift */; };
+		6332D3562428CB1B003407A2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6332D3552428CB1B003407A2 /* Settings.bundle */; };
 		63527D8E24225D0A002B21C5 /* UIStackView + Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D8D24225D0A002B21C5 /* UIStackView + Util.swift */; };
 		63527D9024226049002B21C5 /* FormRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D8F24226049002B21C5 /* FormRadioButton.swift */; };
 		63527D9224226E50002B21C5 /* FormInputSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D9124226E50002B21C5 /* FormInputSection.swift */; };
@@ -82,6 +83,7 @@
 		022945E09DA313894CA9BFFD /* Pods-Covid19Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tests.debug.xcconfig"; path = "Target Support Files/Pods-Covid19Tests/Pods-Covid19Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C639BF04F0B1C69DC5F324D /* Pods-Covid19Tests.release appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tests.release appstore.xcconfig"; path = "Target Support Files/Pods-Covid19Tests/Pods-Covid19Tests.release appstore.xcconfig"; sourceTree = "<group>"; };
 		630192FE2427AF8E006373C1 /* SharingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingManager.swift; sourceTree = "<group>"; };
+		6332D3552428CB1B003407A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		63527D8D24225D0A002B21C5 /* UIStackView + Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Util.swift"; sourceTree = "<group>"; };
 		63527D8F24226049002B21C5 /* FormRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRadioButton.swift; sourceTree = "<group>"; };
 		63527D9124226E50002B21C5 /* FormInputSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInputSection.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				DCF3D7182421214700671399 /* Assets.xcassets */,
 				DCF3D71A2421214700671399 /* LaunchScreen.storyboard */,
 				DCF3D71D2421214700671399 /* Info.plist */,
+				6332D3552428CB1B003407A2 /* Settings.bundle */,
 			);
 			path = Covid19;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				6368F0CC24212E430010C071 /* Default-568h@2x.png in Resources */,
 				6368F11224213F2E0010C071 /* Barlow-SemiBold.ttf in Resources */,
 				6368F11324213F2E0010C071 /* Barlow-SemiBoldItalic.ttf in Resources */,
+				6332D3562428CB1B003407A2 /* Settings.bundle in Resources */,
 				6368F11124213F2E0010C071 /* Barlow-ExtraBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
