@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		630192FF2427AF8E006373C1 /* SharingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630192FE2427AF8E006373C1 /* SharingManager.swift */; };
 		6332D3562428CB1B003407A2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6332D3552428CB1B003407A2 /* Settings.bundle */; };
+		6332D3582428D1E3003407A2 /* String + Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332D3572428D1E3003407A2 /* String + Util.swift */; };
 		63527D8E24225D0A002B21C5 /* UIStackView + Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D8D24225D0A002B21C5 /* UIStackView + Util.swift */; };
 		63527D9024226049002B21C5 /* FormRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D8F24226049002B21C5 /* FormRadioButton.swift */; };
 		63527D9224226E50002B21C5 /* FormInputSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63527D9124226E50002B21C5 /* FormInputSection.swift */; };
@@ -84,6 +85,7 @@
 		5C639BF04F0B1C69DC5F324D /* Pods-Covid19Tests.release appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19Tests.release appstore.xcconfig"; path = "Target Support Files/Pods-Covid19Tests/Pods-Covid19Tests.release appstore.xcconfig"; sourceTree = "<group>"; };
 		630192FE2427AF8E006373C1 /* SharingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingManager.swift; sourceTree = "<group>"; };
 		6332D3552428CB1B003407A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		6332D3572428D1E3003407A2 /* String + Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Util.swift"; sourceTree = "<group>"; };
 		63527D8D24225D0A002B21C5 /* UIStackView + Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Util.swift"; sourceTree = "<group>"; };
 		63527D8F24226049002B21C5 /* FormRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRadioButton.swift; sourceTree = "<group>"; };
 		63527D9124226E50002B21C5 /* FormInputSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInputSection.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				6368F130242239360010C071 /* UIView + Util.swift */,
 				6368F13224223EAD0010C071 /* UIViewController + Util.swift */,
 				6368F136242242E40010C071 /* UIControl + Util.swift */,
+				6332D3572428D1E3003407A2 /* String + Util.swift */,
 				63527D8D24225D0A002B21C5 /* UIStackView + Util.swift */,
 				63908A6024264B1A00FEC7DB /* Date + Util.swift */,
 				63527DA5242419BC002B21C5 /* Date + Formatting.swift */,
@@ -577,6 +580,7 @@
 				630192FF2427AF8E006373C1 /* SharingManager.swift in Sources */,
 				636A873A242619B7005220D0 /* LocationTrackingManager.swift in Sources */,
 				6368F13324223EAD0010C071 /* UIViewController + Util.swift in Sources */,
+				6332D3582428D1E3003407A2 /* String + Util.swift in Sources */,
 				6368F12F242238640010C071 /* UIImageView + Util.swift in Sources */,
 				6368F131242239360010C071 /* UIView + Util.swift in Sources */,
 				6368F137242242E40010C071 /* UIControl + Util.swift in Sources */,

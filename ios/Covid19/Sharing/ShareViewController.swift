@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class ShareViewController: UIViewController {
 
@@ -46,11 +47,12 @@ class ShareViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let cannotShareData = LocalStorageManager.getFormData()?.contaminationRisk != true
-        shareButton.isHidden = cannotShareData
-        if cannotShareData && !scrollView.isHidden {
-            toggleViews()
-        }
+///We'll keep this enabled for now, for testing purposes
+//        let cannotShareData = LocalStorageManager.getFormData()?.contaminationRisk != true
+//        shareButton.isHidden = cannotShareData
+//        if cannotShareData && !scrollView.isHidden {
+//            toggleViews()
+//        }
     }
     
     private func toggleViews() {
@@ -64,7 +66,7 @@ class ShareViewController: UIViewController {
     }
     
     private func printShareData() {
-        var labels = [UILabel.title3("FormData:")]
+        var labels = [UILabel.title3("FormData:")] as [UIView]
 
         if let form = LocalStorageManager.getFormData() {
             let mirroredForm = Mirror(reflecting: form)
@@ -76,16 +78,36 @@ class ShareViewController: UIViewController {
             labels.append(UILabel.bodySmall("Ikke oppgitt").aligned(.left))
         }
         
-        let locationLabels = LocalStorageManager.getLocations().map {
+        let locations = LocalStorageManager.getLocations()
+        let map = getMap(locations: locations)
+        let locationLabels = locations.map {
             let lat = String(format: "%.10f", $0.coordinate.latitude)
             let long = String(format: "%.10f", $0.coordinate.longitude)
             return UILabel.bodySmall("\($0.timestamp.dateTimeString):\nLatitude: \(lat)\nLongitude: \(long)").aligned(.left)
         } as [UILabel]
         
         labels.append(UILabel.title3("Movements:"))
+        labels.append(map)
         labels.append(contentsOf: locationLabels)
-        
         scrollView.removeAllSubviews()
         scrollView.addFilling(UIStackView(spacing: 10, verticalViews: labels), insets: UIEdgeInsets.margins)
+    }
+    
+    private func getMap(locations: [CLLocation]) -> MKMapView {
+        let map = MKMapView()
+        map.snp.makeConstraints { make in
+            make.height.equalTo(400)
+        }
+                
+        let annotations = locations.map { location in
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location.coordinate
+            annotation.title = location.timestamp.prettyString.capitalizedFirstLetter
+            return annotation
+            } as [MKAnnotation]
+        
+        map.addAnnotations(annotations)
+        map.showAnnotations(annotations, animated: false)
+        return map
     }
 }
