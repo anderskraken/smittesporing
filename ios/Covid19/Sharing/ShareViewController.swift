@@ -88,7 +88,11 @@ class ShareViewController: UIViewController {
         
         labels.append(UILabel.title3("Movements:"))
         labels.append(map)
-        labels.append(contentsOf: locationLabels)
+        if locations.isEmpty {
+            labels.append(UILabel.bodySmall("Ingen bevegelser registrert").aligned(.left))
+        } else {
+            labels.append(contentsOf: locationLabels)
+        }
         scrollView.removeAllSubviews()
         scrollView.addFilling(UIStackView(spacing: 10, verticalViews: labels), insets: UIEdgeInsets.margins)
     }
