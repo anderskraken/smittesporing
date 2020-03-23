@@ -28,7 +28,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
         let info = InfoBadge.noInfoRegistered
         addCenteredWithMargin(info)
         
-        let registerButton = MainButton(text: "Registrer Informasjon", type: .primary, action: registerTapped)
+        let registerButton = MainButton(text: "Registrer Informasjon", type: .primary, action: editTapped)
         view.addSubview(registerButton)
         registerButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(UIEdgeInsets.horizontal)
@@ -36,11 +36,11 @@ class SymptomsViewController: UIViewController, FormDelegate {
         }
     }
     
-    func setupForm() {
+    func setupForm(page: Int = 1) {
         addTitle("Registrer informasjon")
         let titleView = view.subviews.first!
         view.addSubview(registrationForm)
-        registrationForm.showPage(1)
+        registrationForm.showPage(page)
         registrationForm.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(titleView.snp.bottom)
@@ -61,7 +61,7 @@ class SymptomsViewController: UIViewController, FormDelegate {
         }
         
         let editButton = MainButton(text: "Registrer endring", type: .primary) {
-            self.registerTapped()
+            self.editTapped()
         }
         
         let shareButton = MainButton(text: "Del data", type: .secondary) {
@@ -98,9 +98,9 @@ class SymptomsViewController: UIViewController, FormDelegate {
         }
     }
     
-    private func registerTapped() {
+    private func editTapped() {
         view.removeAllSubviews()
-        setupForm()
+        setupForm(page: 3)
     }
     
     func showSummary(data: FormData) {

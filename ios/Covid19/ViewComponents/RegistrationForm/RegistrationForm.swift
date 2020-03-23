@@ -147,6 +147,7 @@ class RegistrationForm: UIView, FormInputDelegate {
     func showPage(_ pageNumber: Int) {
         currentPage = pageNumber
         mainStack.removeAllSubviews()
+        backButton.isHidden = currentPage == 3 && LocalStorageManager.getFormData() != nil
         backButton.setTitle(currentPage == 1 ? "Avbryt" : "Tilbake", for: .normal)
         continueButton.setTitle(currentPage == 3 ? "Lagre" : "Neste", for: .normal)
         mainContent.delaysContentTouches = currentPage == 3
