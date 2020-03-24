@@ -27,6 +27,9 @@ class LocationRepository(context: Context) {
 
         @Query("SELECT * FROM Location ORDER BY datetime(timestamp) DESC LIMIT 1")
         fun fetchLast(): Location
+
+        @Query("SELECT * FROM Location")
+        fun fetchAll(): List<Location>
     }
 
     fun addLocations(location: Location) {
@@ -35,4 +38,5 @@ class LocationRepository(context: Context) {
     }
 
     fun getLast(): Location = database.locationDao().fetchLast()
+    fun getAllLocations(): List<Location> = database.locationDao().fetchAll()
 }
