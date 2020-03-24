@@ -123,8 +123,4 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        stopKoin()
-    }
 }
