@@ -145,7 +145,7 @@ class LocationTrackerService : Service(), CoroutineScope {
     companion object {
         const val CHANNEL_ID: String = "${BuildConfig.APPLICATION_ID}_general"
         const val SERVICE_ID = 424242
-        const val DISTANCE_SAVE_THRESHOLD = 5.0
+        const val DISTANCE_SAVE_THRESHOLD = 15.0
     }
 
 }
