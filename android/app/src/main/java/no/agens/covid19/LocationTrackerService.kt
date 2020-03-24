@@ -59,11 +59,14 @@ class LocationTrackerService : Service(), CoroutineScope {
                     locationResult.locations.forEach { location ->
 
                         val lastLocation = locationRepository.getLast()
-                        val distanceToLast = android.location.Location("Last point").apply {
-                            latitude = lastLocation.latitude
-                            longitude = lastLocation.longitude
-                            altitude = lastLocation.altitude
-                        }.distanceTo(location)
+
+                        val distanceToLast: Float =
+                            android.location.Location("Last point").apply {
+                                latitude = lastLocation?.latitude ?: 0.0
+                                longitude = lastLocation?.longitude ?: 0.0
+                                altitude = lastLocation?.altitude ?: 0.0
+                            }.distanceTo(location)
+
 
                         if (distanceToLast > DISTANCE_SAVE_THRESHOLD) {
 

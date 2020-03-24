@@ -26,7 +26,7 @@ class LocationRepository(context: Context) {
         fun insert(location: Location)
 
         @Query("SELECT * FROM Location ORDER BY datetime(timestamp) DESC LIMIT 1")
-        fun fetchLast(): Location
+        fun fetchLast(): Location?
 
         @Query("SELECT * FROM Location")
         fun fetchAll(): List<Location>
@@ -37,6 +37,6 @@ class LocationRepository(context: Context) {
         Timber.d("New location added to database: $location")
     }
 
-    fun getLast(): Location = database.locationDao().fetchLast()
+    fun getLast(): Location? = database.locationDao().fetchLast()
     fun getAllLocations(): List<Location> = database.locationDao().fetchAll()
 }
