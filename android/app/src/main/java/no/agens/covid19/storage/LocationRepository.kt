@@ -24,10 +24,15 @@ class LocationRepository(context: Context) {
 
         @Insert
         fun insert(location: Location)
+
+        @Query("SELECT * FROM Location ORDER BY datetime(timestamp) DESC LIMIT 1")
+        fun fetchLast(): Location
     }
 
-    suspend fun addLocations(location: Location) {
+    fun addLocations(location: Location) {
         database.locationDao().insert(location)
         Timber.d("New location added to database: $location")
     }
+
+    fun getLast(): Location = database.locationDao().fetchLast()
 }

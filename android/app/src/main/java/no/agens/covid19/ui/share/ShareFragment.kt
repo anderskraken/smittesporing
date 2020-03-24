@@ -1,4 +1,4 @@
-package no.agens.covid19.ui.information
+package no.agens.covid19.ui.share
 
 import android.os.Bundle
 import android.view.LayoutInflater

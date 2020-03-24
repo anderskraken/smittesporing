@@ -1,6 +1,7 @@
 package no.agens.covid19.preferences
 
 import android.content.Context
+import java.util.*
 
 object PreferencesRepository {
 
@@ -14,7 +15,13 @@ object PreferencesRepository {
     }
 
     fun enableTracking(context: Context) {
+        preferences(context).edit()
+            .putLong(Keys.TRACKING_ENABLED_TIMESTAMP, System.currentTimeMillis()).apply()
         preferences(context).edit().remove(Keys.TRACKING_DISABLED).apply()
+    }
+
+    fun getTrackingEnabledTimestamp(context: Context): Date {
+        return Date(preferences(context).getLong(Keys.TRACKING_ENABLED_TIMESTAMP, 0))
     }
 
     private fun preferences(context: Context) =
@@ -22,5 +29,6 @@ object PreferencesRepository {
 
     private object Keys {
         const val TRACKING_DISABLED = "tracking_disabled"
+        const val TRACKING_ENABLED_TIMESTAMP = "tracking_enabled_timestamp"
     }
 }

@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/navigation_share"
-        android:name="no.agens.covid19.ui.information.ShareFragment"
+        android:name="no.agens.covid19.ui.share.ShareFragment"
         android:label="@string/tab_title_share"
         tools:layout="@layout/fragment_share" />
     <fragment
