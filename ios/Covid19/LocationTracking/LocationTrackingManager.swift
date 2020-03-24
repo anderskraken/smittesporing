@@ -23,6 +23,8 @@ class LocationTrackingManager: NSObject {
     private(set) var trackingStartedTimeStamp: Date? = LocalStorageManager.getTrackingStartedTimeStamp()
     private(set) var trackingEnabled = LocalStorageManager.getTrackingEnabled()
     
+    private var permissionRequested = false
+    
     var locations: [CLLocation] {
         LocalStorageManager.getLocations()
     }
@@ -41,11 +43,13 @@ class LocationTrackingManager: NSObject {
     }
 
     func disableTracking() {
+        permissionRequested = false
         locationManager.stopMonitoringSignificantLocationChanges()
         setTracking(enabled: false)
     }
 
     func enableTracking() {
+        permissionRequested = true
         switch(CLLocationManager.authorizationStatus()) {
         case .authorizedAlways:
             startMySignificantLocationChanges()
@@ -59,6 +63,7 @@ class LocationTrackingManager: NSObject {
     }
     
     func startMySignificantLocationChanges() {
+        permissionRequested = false
         guard CLLocationManager.significantLocationChangeMonitoringAvailable() else {
             delegate?.showSignificantLocationUnavailableDialog()
             return
@@ -66,7 +71,9 @@ class LocationTrackingManager: NSObject {
         
         locationManager.startMonitoringSignificantLocationChanges()
         locationManager.allowsBackgroundLocationUpdates = true
-        setTracking(enabled: true)
+        if !trackingEnabled {
+            setTracking(enabled: true)
+        }
     }
 }
 
@@ -74,7 +81,7 @@ extension LocationTrackingManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
-            if !trackingEnabled {
+            if trackingEnabled || permissionRequested {
                 startMySignificantLocationChanges()
             }
         } else if trackingEnabled {
