@@ -1,34 +1,41 @@
-# ![👋 Smittesporing](https://user-images.githubusercontent.com/3652587/76966051-44f38700-691d-11ea-9e6f-029972c943f9.jpg)
+# ![🐛 Smittesporing - Covid-19 Contact Tracing](https://user-images.githubusercontent.com/3652587/76966051-44f38700-691d-11ea-9e6f-029972c943f9.jpg)
 
-A pro-bono plug-and-use open source project for government health organisations to monitor Covid-19 spread by help of a mobile app (Android & iOS) that tracks and stores the user's movements locally on the device, and only submits these securely to the government registry when you reasonably suspect that you have been infected.
+An open-source project to provide government health organisations with the plug-and-use tools to monitor Covid-19 spread by help of a mobile app (Android & iOS) that traces and stores the citizen's movements securely on the device. The citizen submits these securely to the government registry only when the user reasonably suspects to carry symptoms or to have been in contact with confirmed cases. Thanks to the more accurate data, health workers can much more easily trace contacts and identify patterns.
 
-With Smittesporing governmental health authorities can
-- Analyse and identify sources of infection
-- Track corona symptoms real-time
-- See where there an outbreak
-- Understand and project need of treatment for covid-19 in the coming days
+Health workers can
+- Analyse outbreak areas and identify sources of contagion 
+- Trace corona symptoms and possible contacts in real-time
+- Forecast need of treatment for covid-19 in the coming days
 
-With Smittesporing the end users can
-- Share their current symptoms and movements with the government
-- Help detect source of infections
+End users can
+- Share their current symptoms and movements with the government, help detect source of infections
+- Receive alert if user has been in a high-endemic location
+- Overview of relevant/personalised rules and guideliens given your case history
 
 ## 🤩 Why?
 
-Because we want to help save lives. We have no commercial interest here, and we don't have an existing product to peddle.
+Countries facing Covid-19 outbreak *urgently* need radically better tools for contact tracing, to identify sources and limit further spread. On Sunday 15 March, Norway's leading UX & tech agency therefore launched this open source effort, after consideration of how we could best help the situation the world is facing. Whilst we started with deployment in Norway as the main case, we quickly realised that this project may be even more important in other countries.
 
-## 🎯 Is this backed by the Norwegian health organisations?
+We have no commercial interest here, and we don't have an existing product to peddle.
 
-Not yet -  We are in touch with several entitites within the Norwegian government, and there is a lot of interest - yet understandably they are quite swamped at the moment.
+## 🗺️ Is this in use by any health organisations yet?
 
-We don't want to spend time on this project unless it can be of use, and would be glad to merge with other efforts. Without government support within Friday 20 March we will probably kill this project.
+We just launched, however we are already in touch with several entitites within the Norwegian government - both in health authorities and international development. Yet understandably they are quite swamped at the moment.
 
-In the meantime we continue work on vision, pitch and direction of the project. 
+A few governments have already bootstrapped similar apps for contact tracing (Singapore, Philippines, China, Israel) - however this project aims to be easily deployed in any country, yet whilst ensuring security and privacy concerns.
+
+## 🤔 Why don't you use X, Y or Z?
+We are open to all suggestions, yet have a strong preference for limiting both scope and use of third-party frameworks and libraries now, so we can ship quickly. We can be ready to launch the apps from April.
+
+We chose for instance to focus on native location tracking as this was the area where we could get the most value quickest. Tracing of contacts via bluetooth (whilst also somewhat valuable) is complex to get workable, and includes working around privay measures put in place in iOS with third-party libraries.
+
+There are many benfits from limiting use of third-party frameworks and libraries. With native mobile apps we ensure not only good location data but as importantly better privacy and security with less risk of data bleed.
 
 ## 🔐 Security and privacy
 
-We create the frontend following best practice wrt privacy and security (ssl pinning, strong encryption using secure enclave). 
+We create the frontend following best practice with regards to privacy and security, including SSL pinning, strong encryption using secure enclave.
 
-The backend for this project is out of scope for us, but if government wants help implementing backend I think developers of Norway is ready to scramble!
+The backend for this project is (currently) out of scope, yet we have thoughts and suggestions about the design/architecture ad data visualisation tools. The data is anonomyised when shared with the backend. We believe that this data should nevertheless be treated as health data, and should only be available by trusted health authorities.
 
 ## 🗂 Resources
 
@@ -48,18 +55,20 @@ English version: [https://docs.google.com/presentation/d/1gSJ7ohVBFdqynN2oO6TFzC
 
 Glad you asked!
 
-
 #### Spread the word
 
 Do you know anyone in health authorities or health NGO that might be helpful to make this happen - reach out to them.
 
 #### Join as project manager
 
-We need someone who can create issues and tasks with acceptance criterias
+We need someone who can create issues and tasks with acceptance criterias.
 
 #### Join as designer
 
-[Join](https://join.slack.com/t/smittesporing/shared_invite/zt-cu8u059j-uRE_2T7JJR~y_T8T0pUIrQ) our slack to talk more! We'll be happy to give you access to Figma. If you prefer Sketch, then that's fine too! 
+[Join](https://join.slack.com/t/smittesporing/shared_invite/zt-cu8u059j-uRE_2T7JJR~y_T8T0pUIrQ) our slack to talk more. We'll be happy to give you access to Figma. If you prefer Sketch, then that's fine too.
+
+Design ideas to be explored include:
+- Gamify the quarentine with streaks.
 
 #### Join as app developer
 
@@ -73,7 +82,7 @@ High level we got work to do such as
 #### Join as web developer
 
 Needs include
-- The government needs a good web app to dive into all the data.
+- Web apps to analyse and visualise the data (especially GeoJSON with time-series data).
 - Setting up a public website for the project.
 - See the google slides for more ideas. More tasks to be added. 
 
