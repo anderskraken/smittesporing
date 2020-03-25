@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_tracking.*
 import no.agens.covid19.*
 import no.agens.covid19.preferences.PreferencesRepository
+import timber.log.Timber
 
 class TrackingFragment : Fragment() {
 
@@ -58,6 +59,7 @@ class TrackingFragment : Fragment() {
         if (permissionAccessBackgroundApproved && permissionAccessFineLocationApproved) {
             locationPermissionsGranted()
         } else {
+            Timber.d("TrackingFragment.onResume - permissions NOT granted")
             requireContext().stopService(Intent(context, LocationTrackerService::class.java))
         }
 

@@ -15,6 +15,7 @@ import no.agens.covid19.storage.LocationRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import timber.log.Timber
 
@@ -121,4 +122,5 @@ class MainActivity : AppCompatActivity(), CheckLocationPermissionsListener {
             }
         }
     }
+
 }

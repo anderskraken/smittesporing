@@ -58,23 +58,42 @@ class LocationTrackerService : Service(), CoroutineScope {
                     val formatter = SimpleDateFormat.getDateTimeInstance()
                     locationResult.locations.forEach { location ->
 
-                        locationRepository.addLocations(
-                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                        val lastLocation = locationRepository.getLast()
 
-                                Location(longitude = location.longitude,
-                                    latitude = location.latitude,
-                                    altitude = location.altitude,
-                                    timestamp = formatter.format(Date()),
-                                    horizontalAccuracy = location.accuracy)
-                            } else {
-                                Location(longitude = location.longitude,
-                                    latitude = location.latitude,
-                                    timestamp = formatter.format(Date()),
-                                    altitude = location.altitude,
-                                    horizontalAccuracy = location.accuracy,
-                                    bearingAccuracy = location.bearingAccuracyDegrees,
-                                    verticalAccuracy = location.verticalAccuracyMeters)
-                            })
+                        val distanceToLast: Float =
+                            android.location.Location("Last point").apply {
+                                latitude = lastLocation?.latitude ?: 0.0
+                                longitude = lastLocation?.longitude ?: 0.0
+                                altitude = lastLocation?.altitude ?: 0.0
+                            }.distanceTo(location)
+
+
+                        if (distanceToLast > DISTANCE_SAVE_THRESHOLD) {
+
+                            Timber.d(
+                                "Distance to last location is $distanceToLast meters. Saving it!")
+
+                            locationRepository.addLocations(
+                                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+
+                                    Location(longitude = location.longitude,
+                                        latitude = location.latitude,
+                                        altitude = location.altitude,
+                                        timestamp = formatter.format(Date()),
+                                        horizontalAccuracy = location.accuracy)
+                                } else {
+                                    Location(longitude = location.longitude,
+                                        latitude = location.latitude,
+                                        timestamp = formatter.format(Date()),
+                                        altitude = location.altitude,
+                                        horizontalAccuracy = location.accuracy,
+                                        bearingAccuracy = location.bearingAccuracyDegrees,
+                                        verticalAccuracy = location.verticalAccuracyMeters)
+                                })
+                        } else {
+                            Timber.d(
+                                "Distance between last location and new is $distanceToLast meters. Will not be stored because it's less than $DISTANCE_SAVE_THRESHOLD meters")
+                        }
                     }
                 }
             }
@@ -129,6 +148,7 @@ class LocationTrackerService : Service(), CoroutineScope {
     companion object {
         const val CHANNEL_ID: String = "${BuildConfig.APPLICATION_ID}_general"
         const val SERVICE_ID = 424242
+        const val DISTANCE_SAVE_THRESHOLD = 15.0
     }
 
 }
