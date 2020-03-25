@@ -12,7 +12,7 @@ End users can
 - Receive alert if user has been in a high-endemic location
 - Overview of relevant/personalised rules and guideliens given your case history
 
-## 🤩 Why?
+## ❓ Why?
 
 Countries facing Covid-19 outbreak *urgently* need radically better tools for contact tracing, to identify sources and limit further spread. On Sunday 15 March, Norway's leading UX & tech agency therefore launched this open source effort, after consideration of how we could best help the situation the world is facing. Whilst we started with deployment in Norway as the main case, we quickly realised that this project may be even more important in other countries.
 
@@ -27,9 +27,9 @@ A few governments have already bootstrapped similar apps for contact tracing (Si
 ## 🤔 Why don't you use X, Y or Z?
 We are open to all suggestions, yet have a strong preference for limiting both scope and use of third-party frameworks and libraries now, so we can ship quickly. We can be ready to launch the apps from April.
 
-We chose for instance to focus on native location tracking as this was the area where we could get the most value quickest. Tracing of contacts via bluetooth (whilst also somewhat valuable) is complex to get workable, and includes working around privay measures put in place in iOS with third-party libraries.
+We chose for instance to focus on native location tracking as this is the tech that provides the most reliable data with shortest time to market. Tracing of contacts via bluetooth (whilst also valuable) is complex to get working, and includes working around privacy measures put in place in iOS with third-party libraries.
 
-There are many benfits from limiting use of third-party frameworks and libraries. With native mobile apps we ensure not only good location data but as importantly better privacy and security with less risk of data bleed.
+There are many benefits from limiting use of third-party frameworks and libraries. With native mobile apps we ensure not only good location data but as importantly better privacy and security with less risk of data bleed.
 
 ## 🔐 Security and privacy
 
