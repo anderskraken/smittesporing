@@ -66,16 +66,16 @@ class ShareViewController: UIViewController {
     }
     
     private func printShareData() {
-        var labels = [UILabel.title3("FormData:")] as [UIView]
+        var views = [UILabel.title3("FormData:")] as [UIView]
 
         if let form = LocalStorageManager.getFormData() {
             let mirroredForm = Mirror(reflecting: form)
             let formString = mirroredForm.children.map { field in
                 "\(field.label?.capitalized ?? ""): \(field.value)"
             }.joined(separator: "\n")
-            labels.append(UILabel.bodySmall(formString).aligned(.left))
+            views.append(UILabel.bodySmall(formString).aligned(.left))
         } else {
-            labels.append(UILabel.bodySmall("Ikke oppgitt").aligned(.left))
+            views.append(UILabel.bodySmall("Ikke oppgitt").aligned(.left))
         }
         
         let locations = LocalStorageManager.getLocations()
@@ -86,15 +86,16 @@ class ShareViewController: UIViewController {
             return UILabel.bodySmall("\($0.timestamp.dateTimeString):\nLatitude: \(lat)\nLongitude: \(long)").aligned(.left)
         } as [UILabel]
         
-        labels.append(UILabel.title3("Movements:"))
-        labels.append(map)
+        views.append(UILabel.title3("Movements:"))
+        views.append(map)
         if locations.isEmpty {
-            labels.append(UILabel.bodySmall("Ingen bevegelser registrert").aligned(.left))
+            views.append(UILabel.bodySmall("Ingen bevegelser registrert").aligned(.left))
         } else {
-            labels.append(contentsOf: locationLabels)
+            views.append(MainButton(text: "Slett lokasjonsdata", type: .secondary, action: showDeleteDialog))
+            views.append(contentsOf: locationLabels)
         }
         scrollView.removeAllSubviews()
-        scrollView.addFilling(UIStackView(spacing: 10, verticalViews: labels), insets: UIEdgeInsets.margins)
+        scrollView.addFilling(UIStackView(spacing: 10, verticalViews: views), insets: UIEdgeInsets.margins)
     }
     
     private func getMap(locations: [CLLocation]) -> MKMapView {
@@ -114,4 +115,20 @@ class ShareViewController: UIViewController {
         map.showAnnotations(annotations, animated: false)
         return map
     }
+    
+    internal func showDeleteDialog() {
+        let alertController = UIAlertController(title: "Slette data",
+                                                message: "Er du sikker på at du vil slette lokasjonsdata?",
+                                                preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Slett", style: .default) { (_) -> Void in
+            LocalStorageManager.deleteLocations()
+            self.printShareData()
+        }
+        let cancelAction = UIAlertAction(title: "Acbryt", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        present(alertController, animated: true)
+    }
+
 }
